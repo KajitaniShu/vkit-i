@@ -26,11 +26,11 @@ class Signboard{
             map: this.texLoader.load('./public/img/signboard_' + this.imageType + '.png'),
             transparent: true
         });
-        const imgGeo       = new THREE.PlaneGeometry(30,19, 1);
+        const imgGeo       = new THREE.PlaneGeometry(32,21, 1);
         const imgBoard     = new THREE.Mesh(imgGeo, this.img);
         imgBoard.name = "img";
         imgBoard.material.needsUpdate = true;
-        imgBoard.position.set(this.x, 16, this.z+1.5);
+        imgBoard.position.set(this.x+0.2, 17, this.z+0.5);
         this.scene.add(this.signboard, imgBoard);
     }
 

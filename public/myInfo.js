@@ -138,7 +138,7 @@ class MyInfo{
     }
 
     setCamera(){
-        this.camera.position.set(this.x + 100, 100, this.y + 120);
+        this.camera.position.set(this.x + 130, 130, this.y + 120);
         this.camera.lookAt(this.x, 5, this.y);
     }
 
