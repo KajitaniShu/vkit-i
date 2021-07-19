@@ -159,7 +159,7 @@ class Player{
 
     // カメラの位置を更新する
     setCamera(){
-        this.camera.position.set(this.x, 150, this.y + 180);
+        this.camera.position.set(this.x + 50, 150, this.y + 180);
         this.camera.lookAt(this.x, 5, this.y);
     }
 
