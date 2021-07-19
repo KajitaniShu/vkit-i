@@ -8,7 +8,7 @@ class World{
         this.socket         = socket;
         this.canvas         = canvas;
         this.renderer       = createRenderer(this.canvas);
-        this.scene          = createScene("#fcfcff");
+        this.scene          = createScene("#fbfbfb");
         this.camera         = createCamera();
         this.receiver       = new Receiver(this.socket, this.scene, this.camera);
         this.type           = Math.floor( Math.random() * 10 ) + 1 ;
