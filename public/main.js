@@ -13,6 +13,7 @@ socket.on('connect', async () =>{
     $('#loading').hide();
     $('body').css('background-color','white');
     $('#canvas1').show();
+    $('#desc-btn').show();
     world.Start();
     
     setInterval(() => {
