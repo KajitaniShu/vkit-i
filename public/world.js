@@ -14,13 +14,14 @@ class World{
         this.type           = Math.floor( Math.random() * 10 ) + 1 ;
         this.signboard      = new Signboard(this.scene, -60, 210, 3);
         this.modalManager   = new ModalManager(this.canvas);
-        this.myInfo         = new MyInfo(this.socket, this.scene, this.type, this.camera, this.modalManager);
-        this.input          = new InputManager(this.myInfo, this.socket);
+        this.player         = new Player(this.socket, this.scene, this.type, this.camera, this.modalManager);
+        this.input          = new InputManager(this.player, this.socket);
         const {ambientLight, mainLight} = createLight('white', '#e8ffff', 10, 80, 10);
         this.scene.add(ambientLight, mainLight);
-        this.context  = canvas.getContext('2d');
-        this.count    = 0;
-        this.clock    = new THREE.Clock();
+        this.context        = canvas.getContext('2d');
+        this.count          = 0;
+
+        // 画面サイズが変わったときアスペクト比を変更する
         resize(this.camera, this.renderer);
         window.addEventListener('resize', () => {
             resize(this.camera, this.renderer);
@@ -30,6 +31,7 @@ class World{
         });
     }
     
+    // 初期化処理
     async init(){
         const loader = new Loader();
         // 九工大マップモデルをロード
@@ -39,21 +41,17 @@ class World{
         this.signboard.set();
     }
 
+    // サーバーとの通信を開始する
     Start(){
         this.receiver.Start();
-        this.myInfo.Start();
-        socket.emit('start', this.myInfo.type, this.myInfo.x, this.myInfo.y);
+        this.player.Start();
+        socket.emit('start', this.player.type, this.player.x, this.player.y);
     }
-    
 
+    // アニメーションの更新
     Animate(){
-        this.count = (this.count+this.clock.getDelta());
-        this.myInfo.move();
+        this.player.move();
         this.signboard.animate();
-        if(this.count >= 0.15){
-            this.myInfo.nextStep();
-            this.count = 0;
-        } 
         this.renderer.render( this.scene, this.camera );
     }
     

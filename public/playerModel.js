@@ -32,6 +32,7 @@ class PlayerModel{
         this.scene.add(this.sprite);
     }
 
+    // キャラクター(自分以外)の角度を変える
     changeAngle(angle){
         if(this.angle != angle){
             this.angle = angle;
@@ -40,11 +41,13 @@ class PlayerModel{
         }
     }
 
+    // キャラクター(自分以外)が動いているかチェック
     isMove(){
         if(this.x != this.oldX || this.y != this.oldY) return true;
         else return false;
     }
 
+    //位置を更新
     updatePosition(x, y){
         const isMove = this.x != x || this.y != y;
         
@@ -59,6 +62,7 @@ class PlayerModel{
         }
     }
 
+    // 足踏みモーションを進める
     nextStep(){
         if(this.isMove()) {
             this.step = ( this.step + 1 ) % 4;
