@@ -15,7 +15,7 @@ class World{
         this.signboard      = new Signboard(this.scene, -60, 210, 3);
         this.modalManager   = new ModalManager(this.canvas);
         this.player         = new Player(this.socket, this.scene, this.type, this.camera, this.modalManager);
-        this.input          = new InputManager(this.player, this.socket);
+        this.input          = new InputManager(this.player, this.socket, this.canvas);
         const {ambientLight, mainLight} = createLight('white', '#e8ffff', 10, 80, 10);
         this.scene.add(ambientLight, mainLight);
         this.context        = canvas.getContext('2d');

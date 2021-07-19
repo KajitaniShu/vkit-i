@@ -4,8 +4,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta property="description" content="九工大飯塚オンラインバーチャルキャンパス">
     <link rel="icon" href="/public/img/vkit-t.ico">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/public/css/description.css">
     <link rel="stylesheet" type="text/css" href="/public/css/colorbox.css">
 </head>
 <body style="width:100%;height:100%;margin:0;  background-color: dodgerblue; text-align: center;">
@@ -13,16 +17,30 @@
         <img src="/public/img/dog.svg" alt="読み込み中" style=" margin-top: 45vh; width: 2em;">
         <p style="color: white;  line-height: 0; font-family: 'Noto Sans JP', sans-serif;">読み込み中</p>
     </div>
-    <canvas id="canvas1" width="1920" height="1080" style="display: none;width:100%;height:100%;object-fit:contain;"></canvas>
-    
-    
-    
-    
+
+    <div id="main">
+        <button id="desc-btn" class="button_wrap">
+            <p><i class="fas fa-question"></i></p>
+        </button>
+        <canvas id="canvas1" width="1920" height="1080" style="display: none;width:100%;height:100%;object-fit:contain;"></canvas>
+    </div>
+        
+    <div id="description" style="display: none;">
+        <button id="back-btn" class="button_wrap">
+            <p><i class="far fa-hand-point-left"></i></p>
+        </button>
+        <p class="title">- 操作方法 -</p>
+        <div class="main">
+            <h2>前後移動</h2>
+            <img src="/public/img/description1.svg" class="topimg" alt="操作方法">
+            <h2>左右移動</h2>
+            <img src="/public/img/description2.svg" class="topimg" alt="操作方法">
+        </div>
+    </div>
+        
     <!--iframeで表示するwebページ--> 
     <a class="webpage"></a>
     <a class="youtube" frameborder="5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></a>
-    
-    
     
     <script src="../public/three/three.js"></script>
     <script src="../public/three/GLTFLoader.js"></script>
