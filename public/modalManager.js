@@ -18,7 +18,7 @@ class ModalManager{
             /*'マイクロ化総合技術センター'    :{leftX:  -13,  rightX :   46, frontY: -114,  backY: -140},*/
             'キャリア支援室'                :{leftX:  -25,  rightX :   -2, frontY:   65,  backY:   13},
             '情報基盤センター'              :{leftX:  -73,  rightX :  -14, frontY:   84,  backY:   53},
-            'インキュベーション施設'        :{leftX: -143,  rightX :  -90, frontY:   84,  backY:   66},
+            /*'インキュベーション施設'        :{leftX: -143,  rightX :  -90, frontY:   84,  backY:   66},*/
             /*'ラーニングアゴラ棟'            :{leftX:  188,  rightX :  230, frontY:  -68,  backY: -112},*/
             '福利棟'                        :{leftX:  109,  rightX :  143, frontY:  -72,  backY: -110},
         }
@@ -52,7 +52,7 @@ class ModalManager{
             /*'マイクロ化総合技術センター'    :{url: "https://www.cms.kyutech.ac.jp/",                    youtube: false},*/
             'キャリア支援室'                :{url: "https://www.kyutech.ac.jp/career/",                 youtube: false},
             '情報基盤センター'              :{url: "https://www.isc.kyutech.ac.jp/",                    youtube: false},
-            'インキュベーション施設'        :{url: "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html", youtube: false},
+            /*'インキュベーション施設'        :{url: "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html", youtube: false},*/
             /*'ラーニングアゴラ棟'            :{url: "https://www.gce.kyutech.ac.jp/campus/agora/",       youtube: false},*/
             '福利棟'                        :{url: "https://kyushu.seikyou.ne.jp/kyutech/",             youtube: false}
         }

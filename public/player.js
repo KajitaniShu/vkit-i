@@ -18,7 +18,7 @@ class Player{
         });
         this.playerImage.map.repeat.x = 0.33;
         this.playerImage.map.repeat.y = 0.25;
-        this.geometry       = new THREE.PlaneGeometry(7, 7, 7);
+        this.geometry       = new THREE.PlaneGeometry(5, 5, 5);
         this.sprite         = new THREE.Mesh(this.geometry, this.playerImage);
         this.step           = 1;
         this.count          = 0.0;
