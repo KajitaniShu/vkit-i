@@ -1,7 +1,31 @@
+body{
+    margin:0;
+    padding:0px;
+    background-color: dodgerblue; 
+    text-align: center;
+}
+
+#loading{
+    width: 100%;
+}
+
+.wait-icon{
+    margin-top: 39.5vh;
+    margin-bottom: 0.5em; 
+    width: 4em;
+}
+
+.wait-text{
+    color: white;
+    line-height: 0;
+    font-family:'Noto Sans JP', sans-serif;
+}
+
 /*canvasを重ねる*/
 .display-wrap {
     position: relative;
 }
+
 .canvas {
     display: none;
     object-fit:contain;
@@ -11,6 +35,24 @@
 }
 
 
+.fotter-btn{
+    display: inline-block;
+    font-size: 0.7em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+    color: #454545;
+    text-decoration: none;
+    margin-top:1em;
+    padding:0.1em 0.6em;
+    border-radius: 3px;
+}
+
+.fotter-btn:hover 
+{
+    background: #4b4b4b;
+    color: white;
+}
+
 #canvas1{
     width: auto;
     height:auto;
@@ -18,7 +60,5 @@
 }
 
 #canvas2{
-    height:100vh;
-    width:30vw;
     z-index: 2;
 }

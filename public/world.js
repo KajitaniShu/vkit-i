@@ -18,6 +18,7 @@ class World{
         this.modalManager   = new ModalManager(this.canvas);
         this.player         = new Player(this.socket, this.scene, this.type, this.camera, this.modalManager);
         this.input          = new InputManager(this.player, this.socket, this.canvas);
+        this.debug          = new DebugManager(this.d_canvas, this.d_context);
         
         const {ambientLight, mainLight} = createLight('white', '#e8ffff', 10, 80, 10);
         this.scene.add(ambientLight, mainLight);
@@ -42,9 +43,6 @@ class World{
         map.scale.set(2, 2, 2);
         this.scene.add(map);
         this.signboard.set();
-        const texBox = createTexbox('あいうえお');
-        texBox.position.set(10, 30, 150);
-        this.scene.add(texBox);
     }
 
     // サーバーとの通信を開始する
@@ -56,10 +54,14 @@ class World{
 
     // アニメーションの更新
     Animate(){
-        //debug(this.context, "x: 12, y: 34, z: -34\nあいうえおかきくけこ\noeewifjwoienfaopwfa%\esf\nえｓふぇｓｆ");
         this.player.move();
         this.signboard.animate();
         this.renderer.render( this.scene, this.camera );
+        this.debug.clear();
+        if(this.input.debugFlag) this.debug.draw("player x: " + this.player.x + " y: " + this.player.y + " z: " + this.player.z + "\n"
+                + "player angle:" + this.player.angle + "\n"
+                + "");
+        
     }
     
 }

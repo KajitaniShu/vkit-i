@@ -14,6 +14,7 @@ class InputManager{
             's': 'back',
             'a': 'left',
             'd': 'right',
+            'ctrl+1': 'debug',
     
             'ArrowUp'   : 'forward',
             'ArrowDown' : 'back',
@@ -26,6 +27,7 @@ class InputManager{
             'touchRight' : 'right',
         };
         this.mouseFlag = false;
+        this.debugFlag = false;
 
         ////////// キー操作 //////////
         // キーを押した時
@@ -33,14 +35,16 @@ class InputManager{
             if ($('#main').css('display') == 'block') {
                 if(this.key[event.key]) this.player.command('reset');
             }
-        
             event.preventDefault();
         }, {passive:false});
 
         // キーから手を離したとき
         document.addEventListener('keydown', (event) => {
             if ($('#main').css('display') == 'block') {
-                if(this.key[event.key]) this.player.command(this.key[event.key]);
+                // 操作キーが押された場合
+                if(this.key[event.key] && !(event.ctrlKey || event.metaKey)) this.player.command(this.key[event.key]);
+                // Ctrlも一緒に押していた場合
+                else if (event.key == '1'  && (event.ctrlKey || event.metaKey)) this.debugFlag = !this.debugFlag;
             }
             event.preventDefault();
         }, {passive:false});

@@ -25,6 +25,7 @@ class Player{
         this.offset         = 0.35;
         this.x              = 25 + Math.floor( Math.random() * 30 ) + 1 ;
         this.y              = 260 + Math.floor( Math.random() * 30 ) + 1 ;
+        this.z              = 3;
         this.pos            = null;
         this.beforeX        = this.x;
         this.beforeY        = this.y;
@@ -37,7 +38,7 @@ class Player{
         this.angle          = 270;
         this.imageType      = this.imageType = 0.75 - (this.angle / 90 ) * 0.25;
         this.playerImage.map.offset.set(this.offset, this.imageType);
-        this.sprite.position.set(this.x, 3, this.y);
+        this.sprite.position.set(this.x, this.z, this.y);
         this.setCamera();
     }
 
@@ -69,7 +70,7 @@ class Player{
         this.x = x;
         this.y = y;
 
-        this.sprite.position.set(this.x, 3, this.y);
+        this.sprite.position.set(this.x, this.z, this.y);
         this.setCamera();
         socket.emit('move', this.x, this.y, this.angle);
     }
