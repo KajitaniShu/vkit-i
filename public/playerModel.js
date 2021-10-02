@@ -10,8 +10,11 @@ class PlayerModel{
         this.id = socketID;
         this.scene = scene;
         this.type = type;
+        const texture       = new THREE.TextureLoader().load('./public/img/player' + this.type + '.png');
+        texture.minFilter = THREE.LinearFilter;
+        texture.maxFilter = THREE.LinearFilter;
         this.playerImage =  new THREE.MeshBasicMaterial({
-            map: new THREE.TextureLoader().load('./public/img/player' + type + '.png'),
+            map: texture,
             transparent:true
         });
         this.playerImage.map.offset.set(0.05, 0.25);

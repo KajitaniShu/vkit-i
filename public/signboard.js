@@ -4,41 +4,50 @@
 // → 看板を管理し、画像を切り替える                      //
 //********************************************************//
 class Signboard{
-    constructor(scene, x, z, size){
+    constructor(scene){
         this.scene          = scene;
-        this.size           = size;
-        this.x              = x;
-        this.y              = 0;
-        this.z              = z;
         this.imageType      = 0;
         this.loader         = new Loader();
         this.texLoader      = new THREE.TextureLoader();
-        this.tex2 = this.texLoader.load('./public/img/signboard_1.png');
+        this.tex2           = this.texLoader.load('./public/img/signboard_1.png');
+        this.signboard      = new THREE.Group();
+        this.size           = 3;
         this.count = 0;
     }
 
-    async set(){
+    async set(x, y, z, scale){
         // 看板モデルをロード
-        this.signboard = await this.loader.load('../public/models/signboard.glb');
-        this.signboard.scale.set(3, 3, 3);
-        this.signboard.position.set(this.x, this.y, this.z);
-        this.img =  new THREE.MeshPhongMaterial({
-            map: this.texLoader.load('./public/img/signboard_' + this.imageType + '.png'),
+        const signboard = await this.loader.load('../public/models/signboard.glb');
+        signboard.scale.set(3, 3, 3);
+        this.signboard.add(signboard);
+
+        // テクスチャ読み込み
+        const texture = this.texLoader.load('./public/img/signboard_' + this.imageType + '.png');
+        texture.minFilter = THREE.LinearFilter;
+        texture.maxFilter = THREE.LinearFilter;
+
+        const img =  new THREE.MeshPhongMaterial({
+            map: texture,
             transparent: true
         });
-        const imgGeo       = new THREE.PlaneGeometry(32,21, 1);
-        const imgBoard     = new THREE.Mesh(imgGeo, this.img);
+        const imgGeo       = new THREE.PlaneGeometry(31,21, 1);
+        const imgBoard     = new THREE.Mesh(imgGeo, img);
         imgBoard.name = "img";
         imgBoard.material.needsUpdate = true;
-        imgBoard.position.set(this.x+0.2, 17, this.z+0.5);
-        this.scene.add(this.signboard, imgBoard);
+        imgBoard.position.set(0.2, 17, 0.4);
+        this.signboard.add(imgBoard);
+        this.signboard.scale.set(scale, scale, scale);
+        this.signboard.position.set(x, y, z);
+        this.scene.add(this.signboard);
     }
 
     async next(){
         this.imageType = (this.imageType+1) % this.size;
         const board = this.scene.getObjectByName("img");
-        const img = await this.texLoader.load('./public/img/signboard_' + this.imageType + '.png');
-        board.material.map = img;
+        const texture = await this.texLoader.load('./public/img/signboard_' + this.imageType + '.png');
+        texture.minFilter = THREE.LinearFilter;
+        texture.maxFilter = THREE.LinearFilter;
+        board.material.map = texture;
         board.material.needsUpdate = true;
     }
 

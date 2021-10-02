@@ -12,8 +12,11 @@ class Player{
         this.camera         = camera;
         this.modalManager   = modalManager;
         this.clock          = new THREE.Clock();
+        const texture       = new THREE.TextureLoader().load('./public/img/player' + this.type + '.png');
+        texture.minFilter = THREE.LinearFilter;
+        texture.maxFilter = THREE.LinearFilter;
         this.playerImage    = new THREE.MeshBasicMaterial({
-            map: new THREE.TextureLoader().load('./public/img/player' + this.type + '.png'),
+            map: texture,
             transparent:true
         });
         this.playerImage.map.repeat.x = 0.33;

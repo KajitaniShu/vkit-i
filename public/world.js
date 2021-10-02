@@ -14,7 +14,7 @@ class World{
         this.camera         = createCamera();
         this.receiver       = new Receiver(this.socket, this.scene, this.camera);
         this.type           = Math.floor( Math.random() * 10 ) + 1 ;
-        this.signboard      = new Signboard(this.scene, -60, 210, 3);
+        this.signboard      = new Signboard(this.scene);
         this.modalManager   = new ModalManager(this.canvas);
         this.player         = new Player(this.socket, this.scene, this.type, this.camera, this.modalManager);
         this.input          = new InputManager(this.player, this.socket, this.canvas);
@@ -42,7 +42,7 @@ class World{
         const map = await loader.load('../public/models/kyutech_map.glb');
         map.scale.set(2, 2, 2);
         this.scene.add(map);
-        this.signboard.set();
+        this.signboard.set(-60, 1.8, 215, 1.5);
     }
 
     // サーバーとの通信を開始する
