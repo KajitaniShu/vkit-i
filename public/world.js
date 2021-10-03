@@ -60,7 +60,7 @@ class World{
         this.debug.clear();
         if(this.input.debugFlag) this.debug.draw("player x: " + this.player.x + " y: " + this.player.y + " z: " + this.player.z + "\n"
                 + "player angle:" + this.player.angle + "\n"
-                + "");
+                + "online players: " + this.receiver.numPlayers);
         
     }
     

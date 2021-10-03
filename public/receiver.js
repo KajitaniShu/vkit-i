@@ -19,8 +19,7 @@ class Receiver{
     Start(){
         
         this.socket.on('update', (players) => {
-            // 現在のプレイヤー数を取得
-            this.numPlayers = players.length;
+            this.numPlayers = Object.values(players).length;                    // 現在のプレイヤー数を取得
             // プレイヤーアニメーション用にカウントアップ
             this.count = (this.count+this.clock.getDelta());
             // サーバーを抜けたプレイヤーのモデルをシーンから除外
