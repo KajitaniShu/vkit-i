@@ -87,7 +87,7 @@ class World{
         
         this.camera.position.set(250, 130, 200);
         this.camera.lookAt(39, 0, -30);
-        this.controls.target.set(39, 0, -30);
+        this.controls.target.set(30, -35, -30);
         this.controls.enableRotate = false;
         this.controls.enableZoom   = false;
         this.controls.autoRotate = true;
