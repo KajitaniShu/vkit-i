@@ -9,11 +9,7 @@ body{
     width: 100%;
 }
 
-.wait-icon{
-    margin-top: 39.5vh;
-    margin-bottom: 0.5em; 
-    width: 4em;
-}
+
 
 .wait-text{
     color: white;
@@ -23,6 +19,7 @@ body{
 
 /*canvasを重ねる*/
 .display-wrap {
+    text-align: center;
     position: relative;
 }
 
@@ -61,4 +58,77 @@ body{
 
 #canvas2{
     z-index: 2;
+}
+
+.main-title{
+    background-color: #212121;
+    color: white;
+    position: absolute;
+    z-index: 3;
+    margin-top: 10vh;
+    padding:0.2em 0.8em;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+@media( max-width:999px) {
+    .wait-icon{
+        margin-top: 43.5vh;
+        margin-bottom: 0.3em; 
+        width: 2.5em;
+    }
+    .start-button
+    {
+        z-index: 100;
+        position: absolute;
+        bottom:5vh;
+        right:1em;
+        font-family:'M PLUS Rounded 1c', sans-serif;
+        padding:0.1em 0.8em;
+        display: inline-block;
+        text-decoration: none;
+        color: #4b4b4b;
+        background: white;
+        border: solid 2px #4b4b4b;
+        border-radius: 2em;
+        transition: .2s;
+    }
+
+    .start-button:hover 
+    {
+        background: #4b4b4b;
+        color: white;
+    }
+}
+
+@media( min-width:1000px) {
+    .wait-icon{
+        margin-top: 39.5vh;
+        margin-bottom: 0.5em; 
+        width: 4em;
+    }
+    .start-button
+    {
+        z-index: 100;
+        position: absolute;
+        bottom:5vh;
+        right:2em;
+        font-family:'M PLUS Rounded 1c', sans-serif;
+        font-size: 1.3em;
+        padding:0.1em 0.8em;
+        display: inline-block;
+        text-decoration: none;
+        color: #4b4b4b;
+        background: white;
+        border: solid 2px #4b4b4b;
+        border-radius: 2em;
+        transition: .2s;
+    }
+
+    .start-button:hover 
+    {
+        background: #4b4b4b;
+        color: white;
+    }
 }
