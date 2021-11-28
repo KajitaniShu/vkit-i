@@ -79,7 +79,7 @@ class World{
         //const textBox = createTextbox('groups', '講義棟');
         //this.scene.add(textBox);
 
-        const plane = new THREE.GridHelper(20000, 4000, "#C1C1C1", "#C1C1C1");
+        const plane = new THREE.GridHelper(20000, 4000, "#D1D1D1", "#D1D1D1");
         plane.position.y = -1;
         this.scene.add(plane);
         // fog
