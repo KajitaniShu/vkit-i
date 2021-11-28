@@ -54,12 +54,14 @@ class InputManager{
         ////////// タッチ入力 //////////
         // 画面をタッチしたとき
         this.canvas.addEventListener('touchstart', (event)=>{
+            if(event.touches.length > 1) return;
             this.player.recordStartPoint(event.touches[0].clientX, event.touches[0].clientY);
             event.preventDefault();
         }, {passive:false});
 
         // タッチした手を動かしたとき
         this.canvas.addEventListener('touchmove', (event)=>{
+            if(event.touches.length > 1) return;
             this.player.touchMove(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
             event.preventDefault();
         }, {passive:false});

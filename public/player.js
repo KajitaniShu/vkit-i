@@ -44,13 +44,13 @@ class Player{
         this.playerImage.map.offset.set(this.offset, this.imageType);
         this.sprite.position.set(this.x, this.y, this.z);
         this.active         = false;
-        this.setCamera();
     }
 
     Start(){
         this.active = true;
         this.scene.add(this.sprite);
-        this.setCamera();
+        this.camera.position.set(this.x, this.y+40, this.z+60);
+        this.controls.target.set(this.x, this.y+2, this.z);
     }
 
     // キャラクターの角度を変える
@@ -81,7 +81,6 @@ class Player{
         this.z = z;
 
         this.sprite.position.set(this.x, this.y, this.z);
-        this.setCamera();
         socket.emit('move', this.x, this.z, this.angle);
     }
 
@@ -162,20 +161,25 @@ class Player{
     // 前後移動
     forward(distance){
         if(!this.active) return;
-        var newZ = this.z - distance;
+        let newZ = this.z - distance;
+        let newCameraZ = this.camera.position.z - distance;
         this.updatePosition(this.x, newZ);
+        this.setCamera(this.x, newCameraZ);
     }
 
     // 左右移動
     right(distance){
         if(!this.active) return;
-        var newX = this.x + distance;
+        let newX = this.x + distance;
+        let newCameraX = this.camera.position.x + distance;
         this.updatePosition(newX, this.z);
+        this.setCamera(newCameraX, this.camera.position.z);
     }
 
     // カメラの位置を更新する
-    setCamera(){
-        this.camera.position.set(this.x, this.y+40, this.z + 60);
+    setCamera(x, z){
+        this.camera.position.x = x;
+        this.camera.position.z = z;
         this.controls.target.set(this.x, this.y+2, this.z);
     }
 

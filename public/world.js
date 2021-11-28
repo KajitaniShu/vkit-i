@@ -91,6 +91,7 @@ class World{
         this.controls.enableRotate = false;
         this.controls.enableZoom   = false;
         this.controls.autoRotate = true;
+        this.controls.enablePan = false;
     }
 
     // サーバーとの通信を開始する
