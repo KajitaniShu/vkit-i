@@ -72,8 +72,8 @@
     {
         z-index: 100;
         position: absolute;
-        top:1em;
-        right:1em;
+        top:2em;
+        right:2em;
         width:3.5em;
         height:3.5em;
         font-family:'M PLUS Rounded 1c', sans-serif;
@@ -148,7 +148,7 @@
     {
         z-index: 100;
         position: absolute;
-        top:1em;
+        top:2em;
         right:2em;
         width:3.5em;
         height:3.5em;
