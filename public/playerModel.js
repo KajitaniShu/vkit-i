@@ -20,7 +20,7 @@ class PlayerModel{
         this.playerImage.map.offset.set(0.05, 0.25);
         this.playerImage.map.repeat.x = 0.33;
         this.playerImage.map.repeat.y = 0.25; 
-        this.geometry = new THREE.PlaneGeometry(5, 5, 5);
+        this.geometry = new THREE.PlaneGeometry(2, 2, 2);
         this.sprite = new THREE.Mesh(this.geometry, this.playerImage);
         this.step = 1;
         this.offset = 0.35;
