@@ -21,6 +21,7 @@ class World{
         this.player         = new Player(this.socket, this.scene, this.type, this.camera, this.controls, this.modalManager);
         this.input          = new InputManager(this.player, this.socket, this.canvas, this.controls);
         this.debug          = new DebugManager(this.d_canvas, this.d_context, this.modalManager, this.controls);
+        this.active         = false;
 
         const {ambientLight, mainLight} = createLight('white', '#e8ffff', 10, 80, 10);
         this.scene.add(ambientLight, mainLight);
@@ -92,6 +93,8 @@ class World{
         this.controls.enableZoom   = false;
         this.controls.autoRotate = true;
         this.controls.enablePan = false;
+
+        this.active = true;
     }
 
     // サーバーとの通信を開始する

@@ -10,6 +10,8 @@ const d_canvas = $('#canvas2')[0];
 const world = new World(socket, canvas, d_canvas);
 
 socket.on('connect', async () =>{
+    if(world.active) return;
+
     await world.init();
     $('#loading').hide();
     $('body').css('background-color','white');
@@ -21,8 +23,6 @@ socket.on('connect', async () =>{
         world.Start();
     });
     $('#desc-btn').show();
-    
-    
     setInterval(() => {
         world.Animate();
     },1000/30);
