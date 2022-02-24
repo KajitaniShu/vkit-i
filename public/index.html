@@ -1,81 +1,47 @@
 <!DOCTYPE html>
-<head>
-    <title>バーチャル九工大情報工学部</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta property="description" content="九工大飯塚オンラインバーチャルキャンパス">
-    <link rel="icon" href="/public/img/vkit-t.ico">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Noto+Sans+JP&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@300;400;600&display=swap" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/description.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/colorbox.css">
-</head>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- jQuery UI-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-<body>
-    <div id="loading">
-        <img src="/public/img/wait.svg" class="wait-icon" alt="読み込み中">
-        <p class="wait-text">読み込み中</p>
-    </div>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <div id="main">
-        <div class="display-wrap">
-            <button id="desc-btn" class="button_wrap" style="display: none;">
-                <p><i class="fas fa-question"></i></p>
-            </button>
-            <canvas id="canvas1" class="canvas"></canvas>
-            <canvas id="canvas2" class="canvas"></canvas>
-        </div>
-        
-    </div>
-        
-    <div id="description" style="display: none;">
-        <button id="back-btn" class="button_wrap">
-            <p><i class="far fa-hand-point-left"></i></p>
-        </button>
-        <p class="title">- 操作方法 -</p>
-        <div class="main">
-            <h2>前後移動</h2>
-            <img src="/public/img/description1.svg" class="topimg" alt="操作方法">
-            <h2>左右移動</h2>
-            <img src="/public/img/description2.svg" class="topimg" alt="操作方法">
-        </div>
-        <a href="https://forms.gle/LMqXUxmWncNP4FhG9" class="fotter-btn">開発メンバー募集中</a>
-    </div>
-        
-    <!--iframeで表示するwebページ--> 
-    <a class="webpage"></a>
-    <a class="youtube" frameborder="5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></a>
-    
-    <script src="../public/three/three.js"></script>
-    <script src="../public/three/GLTFLoader.js"></script>
-    <script src="../public/three/OrbitControls.js"></script>
-    <script src="../public/three/PointerLockControls.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="/public/jquery.colorbox-min.js"></script>
-    <script src="/public/world.js"></script>
-    <script src="/public/inputManager.js"></script>
-    <script src="/public/loader.js"></script>
-    <script src="/public/text.js"></script>
-    <script src="/public/receiver.js"></script>
-    <script src="/public/renderer.js"></script>
-    <script src="/public/scene.js"></script>
-    <script src="/public/camera.js"></script>
-    <script src="/public/player.js"></script>
-    <script src="/public/debug.js"></script>
-    <script src="/public/light.js"></script>
-    <script src="/public/signboard.js"></script>
-    <script src="/public/resizer.js"></script>
-    <script src="/public/playerModel.js"></script>
-    <script src="/public/modalManager.js"></script>
-    <script src="/public/main.js"></script>
-    
-</body>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>
