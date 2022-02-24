@@ -4,23 +4,25 @@
 // → モーダルウィンドウの制御を行う                      //
 //********************************************************//
 class ModalManager{
-    constructor(canvas){
+    constructor(canvas, scene){
         this.canvas = canvas;
+        this.scene  = scene;
+        this.boxes  = [];
         this.position = {
             // 各施設のマップ上での位置
-            '研究管理棟'                    :{leftX:  -70,  rightX :   -3, frontY:  168,  backY:  102},
-            '図書館'                        :{leftX:   90,  rightX :  150, frontY:  191,  backY:  153},
-            '講義棟'                        :{leftX:  112,  rightX :  175, frontY:   65,  backY:  -10},
-            '研究棟'                        :{leftX:  -86,  rightX :   60, frontY:   -8,  backY:  -67},
-            '総合研究棟'                    :{leftX: -142,  rightX : -110, frontY:   12,  backY:  -23},
-            '課外活動共用施設'              :{leftX:  178,  rightX :  235, frontY: -185,  backY: -217},
-            '体育館'                        :{leftX:  184,  rightX :  231, frontY: -332,  backY: -380},
-            /*'マイクロ化総合技術センター'    :{leftX:  -13,  rightX :   46, frontY: -114,  backY: -140},*/
-            'キャリア支援室'                :{leftX:  -25,  rightX :   -2, frontY:   65,  backY:   13},
-            '情報基盤センター'              :{leftX:  -73,  rightX :  -14, frontY:   84,  backY:   53},
-            /*'インキュベーション施設'        :{leftX: -143,  rightX :  -90, frontY:   84,  backY:   66},*/
-            /*'ラーニングアゴラ棟'            :{leftX:  188,  rightX :  230, frontY:  -68,  backY: -112},*/
-            '福利棟'                        :{leftX:  109,  rightX :  143, frontY:  -72,  backY: -110},
+            '研究管理棟'                    :{leftX:  -37,  rightX :    1, frontY:   86,  backY:   48, height: 10},
+            '図書館'                        :{leftX:   46,  rightX :   76, frontY:   96,  backY:   74, height: 10},
+            '講義棟'                        :{leftX:   54,  rightX :   89, frontY:   34,  backY:  -6,  height: 20},
+            '研究棟'                        :{leftX:  -44,  rightX :   31, frontY:   -2,  backY:  -35, height: 35},
+            '総合研究棟'                    :{leftX:  -76,  rightX :  -48, frontY:   10,  backY:  -18, height: 31},
+            '課外活動共用施設'              :{leftX:   86,  rightX :  120, frontY:  -89,  backY: -111, height: 11},
+            '体育館'                        :{leftX:   89,  rightX :  117, frontY: -164,  backY: -192, height: 13},
+            /*'マイクロ化総合技術センター'    :{leftX:  -13,  rightX :   46, frontY: -114,  backY: -140, height: 20},*/
+            'キャリア支援室'                :{leftX:  -14,  rightX :    1, frontY:   42,  backY:    6, height:  9},
+            '情報基盤センター'              :{leftX:  -39,  rightX :   -5, frontY:   43,  backY:   25, height: 15},
+            /*'インキュベーション施設'        :{leftX: -143,  rightX :  -90, frontY:   84,  backY:   66, height: 20},*/
+            /*'ラーニングアゴラ棟'            :{leftX:  188,  rightX :  230, frontY:  -68,  backY: -112, height: 20},*/
+            '福利棟'                        :{leftX:   53,  rightX :   74, frontY:  -34,  backY:  -64, height: 9},
         }
         this.urls = {
             // 各施設のマップ上での位置(youtubeならtrue, それ以外のサイトならfalseを設定)
@@ -61,6 +63,33 @@ class ModalManager{
         $('#cboxClose').click(function () {
             parent.$.colorbox.close();
         });
+    }
+
+    draw(){
+        if(this.boxes.length == 0){
+            Object.keys(this.position).forEach((key) => {
+                const pos   = this.position[key];
+                let x_size  = pos.rightX - pos.leftX;
+                let y_size  = pos.frontY  - pos.backY;
+                let centerX = (pos.rightX + pos.leftX)  / 2;
+                let centerZ = (pos.backY  + pos.frontY) / 2;
+                let material = new THREE.MeshBasicMaterial( { color: 0x008866, wireframe:true} );
+                let mesh = new THREE.Mesh( new THREE.BoxBufferGeometry( x_size, pos.height, y_size) ,material );
+                mesh.position.set(centerX, pos.height/2, centerZ);
+                this.boxes.push(mesh);
+            });
+        }
+        Object.keys(this.boxes).forEach((key) => {
+            this.scene.add(this.boxes[key]);
+        });
+    }
+
+    remove(){
+        if(this.boxes.length != 0){
+            for (const mesh of this.boxes) {
+                this.scene.remove(mesh);
+            }
+        }
     }
     
 

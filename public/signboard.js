@@ -18,7 +18,6 @@ class Signboard{
     async set(x, y, z, scale){
         // 看板モデルをロード
         const signboard = await this.loader.load('../public/models/signboard.glb');
-        signboard.scale.set(3, 3, 3);
         this.signboard.add(signboard);
 
         // テクスチャ読み込み
@@ -30,11 +29,11 @@ class Signboard{
             map: texture,
             transparent: true
         });
-        const imgGeo       = new THREE.PlaneGeometry(31,21, 1);
+        const imgGeo       = new THREE.PlaneGeometry(10,6.5, 1);
         const imgBoard     = new THREE.Mesh(imgGeo, img);
         imgBoard.name = "img";
         imgBoard.material.needsUpdate = true;
-        imgBoard.position.set(0.2, 17, 0.4);
+        imgBoard.position.set(0.05, 5.5, 0.15);
         this.signboard.add(imgBoard);
         this.signboard.scale.set(scale, scale, scale);
         this.signboard.position.set(x, y, z);

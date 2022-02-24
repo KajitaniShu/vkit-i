@@ -31,6 +31,7 @@ class Receiver{
                     this.playerModels[key].isActive = false;
                 }
             });
+            
             // 自分以外のプレイヤーを描画
             Object.values(players).forEach((player) => {
                 if(player.id != this.socket.id){    // 自分自身はここでは描画しない

@@ -2,39 +2,49 @@
 // textTexture()関数                                      //
 // → 渡されたテキストをテクスチャにする                  //
 //********************************************************//
-function createTexbox(text){
+function createTextbox(icon, text){
     // テクスチャ用canvasを作成
     const texCanvas = document.createElement('canvas');
     const context   = texCanvas.getContext('2d');
-    texCanvas.width = text.length * 120+200;
-    texCanvas.height = 300;
-    // canvasの大きさを設定
-    context.font     = `bold 120px 'monospace'`;
+    
+    const text_length = context.measureText(text).width;
+    const x = 120;  //左上の頂点x座標
+    const y = 120;  //左上の頂点y座標
+    const w = text_length*9.8+250;  //横の長さ
+    const h = 0;  //縦の長さ
 
-    // 中央にテキストを描画
-    context.textAlign    = 'left';
-    context.textBaseline = 'hanging';
+    texCanvas.width = text_length*9.8+570;
+    texCanvas.height = text_length*9.8+570;
+
+    const line_color = "white";
+    const fill_color = "#4285F4";  //塗りつぶし色
+
     context.lineWidth = 20;
-    context.lineCap = "square"; 
-    context.fillStyle = "rgba(150, 150, 150, 1.0)";
-    context.fillRect(0, 0, texCanvas.width, texCanvas.height);
-    context.fillStyle = "rgba(0, 0, 0, 1.0)";
-    context.fillRect(20, 20, texCanvas.width-40, texCanvas.height-40);
-    context.fillStyle = "rgba(150, 150, 150, 1.0)";
-    context.fillText(text, 100, 95);
+    context.strokeStyle = line_color;
+    context.fillStyle = fill_color;
+    
+
+    context.arc(x, y+h, 100, Math.PI*1/2,Math.PI*2/2);
+    context.arc(x, y, 100, Math.PI*2/2,Math.PI*3/2);
+    context.arc(x+w, y, 100, Math.PI*3/2,Math.PI*4/2);
+    context.arc(x+w, y+h, 100, Math.PI*4/2,Math.PI*5/2);
+    context.closePath();
+    context.stroke();
+    context.fill();
+    context.textBaseline = 'hanging';
+    context.fillStyle = "white"; 
+    context.font='140px Material Icons';
+    context.fillText(icon, 100, 78);
+    context.font='500 100px Noto Sans JP, serif';
+    context.fillText(text, 290, 62);
+
     const texture = new THREE.CanvasTexture(texCanvas);
-    texture.minFilter = THREE.LinearFilter;
-    texture.maxFilter = THREE.LinearFilter;
-    texture.format = THREE.RGBAFormat;
 
-
-    // テクスチャを作成
-    const textBox     = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(texCanvas.width*0.025, texCanvas.height*0.025, 1),
-        new THREE.MeshPhongMaterial({
-            map: texture,
-            transparent: true,
-            color:"white"
-    }));
+    const material = new THREE.MeshPhongMaterial({
+        map:texture,
+        transparent: true
+    });
+    const geometry  =  new THREE.PlaneGeometry(50, 50, 1);
+    const textBox = new THREE.Mesh(geometry, material);
     return textBox;
 }

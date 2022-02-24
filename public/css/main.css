@@ -9,12 +9,6 @@ body{
     width: 100%;
 }
 
-.wait-icon{
-    margin-top: 39.5vh;
-    margin-bottom: 0.5em; 
-    width: 4em;
-}
-
 .wait-text{
     color: white;
     line-height: 0;
@@ -23,6 +17,7 @@ body{
 
 /*canvasを重ねる*/
 .display-wrap {
+    text-align: center;
     position: relative;
 }
 
@@ -59,6 +54,61 @@ body{
     z-index:1;
 }
 
-#canvas2{
-    z-index: 2;
+@media( max-width:999px) {
+    .wait-icon{
+        margin-top: 43.5vh;
+        margin-bottom: 0.3em; 
+        width: 2.5em;
+    }
+    #start-button
+    {
+        z-index: 100;
+        position: relative;
+        font-family:'M PLUS Rounded 1c', sans-serif;
+        font-size: 1.3em;
+        padding:0.1em 0.8em;
+        text-decoration: none;
+        color: #4b4b4b;
+        background: white;
+        border: solid 1.5px #4b4b4b;
+        border-radius: 0.3em;
+        transition: .2s;
+        margin-top: 80vh;
+    }
+
+    #start-button:hover 
+    {
+        background: #4b4b4b;
+        color: white;
+    }
+}
+
+@media( min-width:1000px) {
+    .wait-icon{
+        margin-top: 39.5vh;
+        margin-bottom: 0.5em; 
+        width: 4em;
+    }
+
+    #start-button
+    {
+        z-index: 100;
+        position: relative;
+        font-family:'M PLUS Rounded 1c', sans-serif;
+        font-size: 1.3em;
+        padding:0.1em 0.8em;
+        text-decoration: none;
+        color: #4b4b4b;
+        background: white;
+        border: solid 2px #4b4b4b;
+        border-radius: 0.3em;
+        transition: .2s;
+        margin-top: 80vh;
+    }
+
+    #start-button:hover 
+    {
+        background: #4b4b4b;
+        color: white;
+    }
 }

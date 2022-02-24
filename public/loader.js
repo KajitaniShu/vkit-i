@@ -11,7 +11,9 @@ class Loader{
     // モデル読み込み関数
     async load(path){
         const model_data = await this.loader.loadAsync(path);
-        const model = model_data.scene;
-        return model;
+        const targets = [...model_data.scene.children];
+
+        
+        return model_data.scene;
     }
 }
