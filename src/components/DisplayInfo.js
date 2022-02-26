@@ -8,13 +8,14 @@ import * as THREE from 'three'
 
 
 Drei.softShadows()
-export const Draw2D = ({itemList, setItemList}) => {
+export const DisplayInfo = ({itemList, setItemList}) => {
     const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 
     return (
         <React.Suspense centered fallback={
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><CircularProgress /></Box>
         }>
+            <p>2D</p>
             <Fiber.Canvas>
                 {itemList.map((value, key) => {
                     return (

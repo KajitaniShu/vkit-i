@@ -1,16 +1,16 @@
 import React from 'react';
-import { Draw3D } from './Draw3D';
-import { Draw2D } from './Draw2D';
-import { Tabbar } from './Tabbar';
-import TabContext from '@mui/lab/TabContext';
+import { MainContents } from './MainContents';
+import { DisplayInfo } from './DisplayInfo';
+import { InfoButton } from './InfoButton';
 
 export const DisplayArea = ({itemList, setItemList}) => {
-    const [value, setValue] = React.useState("2D");
+    // メインのコンテンツ表示と説明画面の表示を切り替える
+    const [isMain, setIsMain] = React.useState(true);
 
     return (
-        <TabContext value={value}>
-            <Tabbar value={value} setValue={setValue} />
-            {value==="2D" ? <Draw2D itemList={itemList} setItemList={setItemList}/> : <Draw3D itemList={itemList}/>}
-        </TabContext>
+        <>
+        <InfoButton isMain={isMain} setIsMain={setIsMain} />
+        {isMain===true ? <MainContents/> : <DisplayInfo itemList={itemList} setItemList={setItemList}/> }
+        </>
     );
 }

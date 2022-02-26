@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Fiber from '@react-three/fiber';
 import * as Drei from "@react-three/drei";
-import { Model3D } from './Model3D';
+import { Model_map } from './Model_map';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
@@ -27,10 +27,10 @@ const model_list = [
     "./models/map_research_satellite.glb",
     "./models/map_swimming_pool.glb",
     "./models/map_workshop.glb",
-    ]
+]
 
 Drei.softShadows()
-export const Draw3D = ({itemList}) => {
+export const MainContents = () => {
 
     return (
         <React.Suspense centered fallback={
@@ -54,9 +54,9 @@ export const Draw3D = ({itemList}) => {
                     shadow-mapSize-width={1024}
                 />
                     
-                    {itemList.map((value, key) => {
+                    {model_list.map((modelPath, key) => {
                         return (
-                            <Model3D value={value} key={key}/>
+                            <Model_map modelPath={modelPath} key={key}/>
                         )
                     })}
                     <Drei.ContactShadows position={[0, 0, 0]} opacity={0.4} width={1000} height={1000} blur={0.2} far={4.5} />
