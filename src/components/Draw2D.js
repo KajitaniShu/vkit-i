@@ -1,6 +1,4 @@
-import React, {useState} from 'react'
-import * as Fiber from '@react-three/fiber';
-import * as Drei from "@react-three/drei";
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -9,7 +7,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
 
-Drei.softShadows()
 export const Draw2D = ({isMain, setIsMain, itemList, setItemList}) => {
 const Img = styled('img')({
   margin: 'auto',
