@@ -1,10 +1,12 @@
 import React, {useState}from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
-import InfoIcon from '@mui/icons-material/Info';
-import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
-
+import { IconButton } from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { Fab } from '@mui/material';
 
 const useStyles = makeStyles({
     text: {
@@ -15,28 +17,24 @@ const useStyles = makeStyles({
 });
 
 export const InfoButton = ({isMain, setIsMain}) => {
-    const changeScene = () => {
-        console.log(isMain);
+    const style = useStyles();
+    
+    const handleChange = () => {
         setIsMain(!isMain);
     };
 
     return (
-        <Box sx={{m: 1}}>
+        <Box sx={{position: "absolute", top:10, right:10, fontWeight: 'light', p:2, pr:4}} >
             <Grid
-            container
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="center"
+                container
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="center"
             >
-                <IconButton 
-                    size="large" 
-                    onClick={changeScene}
-                >
-                    <InfoIcon />
+                <IconButton onClick={handleChange}>
+                    <InfoOutlinedIcon size="large"/>
                 </IconButton>
             </Grid>
-            
         </Box>
-            
     );
 }

@@ -1,16 +1,23 @@
-import React from 'react';
-import { MainContents } from './MainContents';
-import { DisplayInfo } from './DisplayInfo';
+import React, {useState} from 'react';
+import { Draw3D } from './Draw3D';
+import { Draw2D } from './Draw2D';
 import { InfoButton } from './InfoButton';
+import Box from '@mui/material/Box';
 
 export const DisplayArea = ({itemList, setItemList}) => {
-    // メインのコンテンツ表示と説明画面の表示を切り替える
-    const [isMain, setIsMain] = React.useState(true);
+    const [isMain, setIsMain] = useState(true);
 
     return (
-        <>
-        <InfoButton isMain={isMain} setIsMain={setIsMain} />
-        {isMain===true ? <MainContents/> : <DisplayInfo itemList={itemList} setItemList={setItemList}/> }
-        </>
+        <Box
+            sx={{
+                bgcolor: 'background.paper',
+                width: "100%",
+                height:"100%",
+                position: 'relative',
+            }}
+        >
+            {isMain ? <Draw2D itemList={itemList} setItemList={setItemList}/> : <Draw3D className="main-contents" itemList={itemList}/>}
+            <InfoButton isMain={isMain}  setIsMain={setIsMain} />
+        </Box>
     );
 }
