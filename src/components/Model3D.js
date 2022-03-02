@@ -1,6 +1,7 @@
 import React, {useState, useRef} from 'react'
 import * as Drei from "@react-three/drei";
 import { Html, Stats } from "@react-three/drei";
+import {Canvas, useFrame} from '@react-three/fiber';
 
 // 文字数をカウント (半角に対応)
 function count(text){
