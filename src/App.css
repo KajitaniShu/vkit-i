@@ -21,9 +21,52 @@ body {
 .innerText{
   text-align: center;
   font-weight: bold;
-  color: white;
-  background-color: #212121;
-  opacity: 0.8;
   padding: 0.2em 0.5em;
   border-radius: 5px;
+}
+
+.bgBlack{
+  opacity: 0.8;
+  background-color: #212121;
+  color: white;
+}
+
+.bgGray{
+  opacity: 0.8;
+  background-color: #565656;
+  color: white;
+}
+
+.bgWhite{
+  background-color: white;
+  color: #212121;
+}
+
+.commentBox {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #212121;
+}
+.commentBox:after, .commentBox:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.commentBox:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-top-color: #ffffff;
+	border-width: 3px;
+	margin-left: -3px;
+}
+.commentBox:before {
+	border-color: rgba(33, 33, 33, 0);
+	border-top-color: #212121;
+	border-width: 4px;
+	margin-left: -4px;
 }

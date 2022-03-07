@@ -1,3 +1,50 @@
+export const bldgNames = [
+    // 各施設のマップ上での位置
+    {name: '研究管理棟'},
+    {name: '図書館'},
+    {name: '講義棟'},
+    {name: '研究棟'},
+    {name: '総合研究棟'},
+    {name: 'マイクロ化総合技術センター'},
+    {name: '課外活動共用施設'},
+    {name: '体育館'},
+    {name: 'キャリア支援室'},
+    {name: '共通教育研究棟'},
+    {name: '情報基盤センター'},
+    {name: 'インキュベーション施設'},
+    {name: 'ラーニングアゴラ棟'},
+    {name: '福利棟'},
+    {name: '実習棟'},
+    {name: 'MILAiS'},
+    {name: 'スチューデント・レジデンス'}
+]
+
+export const model_list = [
+    "./models/map_activity.glb",
+    "./models/map_administration.glb",
+    "./models/map_agora.glb",
+    "./models/map_cafeteria.glb",
+    "./models/map_career.glb",
+    "./models/map_dormitory.glb",
+    "./models/map_education.glb",
+    "./models/map_500.glb",
+    "./models/map_microelectronic.glb",
+    "./models/map_gym.glb",
+    "./models/map_nature.glb",
+    "./models/map_incubation.glb",
+    "./models/map_isc.glb",
+    "./models/map_lecture.glb",
+    "./models/map_lecture_large.glb",
+    "./models/map_lecture2.glb",
+    "./models/map_library.glb",
+    "./models/map_machine_workshop.glb",
+    "./models/map_MILAiS.glb",
+    "./models/map_research.glb",
+    "./models/map_research_satellite.glb",
+    "./models/map_swimming_pool.glb",
+    "./models/map_workshop.glb",
+]
+
 export const bldgPos= {
     // 各施設のマップ上での位置
     '研究管理棟'                    :{leftX:  -37,  rightX :    1, frontY:   86,  backY:   48, height: 10},
@@ -47,4 +94,47 @@ export const bldgURL = {
     /*'インキュベーション施設'        :{url: "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html", youtube: false},*/
     /*'ラーニングアゴラ棟'            :{url: "https://www.gce.kyutech.ac.jp/campus/agora/",       youtube: false},*/
     '福利棟'                        :{url: "https://kyushu.seikyou.ne.jp/kyutech/",             youtube: false}
+}
+
+export const bldgCenterPos = [
+    // 各施設のマップ上での位置
+    {name: '研究管理棟',                    pos:[-17,  12,  80]},
+    {name: '図書館',                        pos:[ 54,  12,  80]},
+    {name: '講義棟',                        pos:[ 71,  21,   0]},
+    {name: '研究棟',                        pos:[ 18,  34,  -8]},
+    {name: '総合研究棟',                    pos:[-62,  33,   5]},
+    {name: 'マイクロ化総合技術センター',    pos:[  7,  12, -70]},
+    {name: '課外活動共用施設',              pos:[104,  12, -94]},
+    {name: '体育館',                        pos:[103.4,16,-178]},
+    {name: 'キャリア支援室',                pos:[ -6,  15,  20]},
+    {name: '共通教育研究棟',                pos:[ 27,  21,  58]},
+    {name: '情報基盤センター',              pos:[-21,  17,  37]},
+    {name: 'インキュベーション施設',        pos:[-57,  11,  37]},
+    {name: 'ラーニングアゴラ棟',            pos:[104.5, 8, -45]},
+    {name: '福利棟',                        pos:[ 64,   11,-45]},
+    {name: '実習棟',                        pos:[-25,  10, -70]},
+    {name: 'MILAiS',                        pos:[119.3, 6,  24]},
+    {name: 'スチューデント・レジデンス',    pos:[-71,  17,-232]}
+    
+]
+
+
+export const path = {
+    '講義棟':{
+        route:[[30, 2, 25], [48, 2, 25], [48, 2, -2], [48, 100, -2],   [48, 2, 25], [30, 2, 25], [30, 2, 120], [30, -100, 120]],
+                                                       /* 目的地 */                                              /* 定位置 */
+        comment: ["この右の建物が講義棟です。", "大学4年間の授業は大体ここで行われます。"]
+    },
+    'インキュベーション施設':{
+        route:[[-57,2, 120], [-57,2, 48], [-57, 100, 48], [-57, 2, 48], [-57,2, 120], [30, 2, 120], [30, -100, 120]],
+                                          /* 目的地 */                                               /* 定位置 */
+
+        comment: ["目の前にある施設がインキュベーション施設です。", "この施設は起業を考えている学生や教員が使うことができます。"]
+    },
+    '福利棟':{
+        route:[[30, 2, 25], [48, 2, 25], [48, 2, -57], [48, 100, -57], [48, 2, 25], [30, 2, 25], [30,2,120], [30,-100,120]],
+                                                        /* 目的地 */                                          /* 定位置 */
+
+        comment: ["この右の建物が福利棟です。", "食堂や売店が入っています。"]
+    }
 }

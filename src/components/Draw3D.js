@@ -1,52 +1,27 @@
 import React, {useRef, useState} from 'react'
-import * as Fiber from '@react-three/fiber';
-import {Canvas, useFrame} from '@react-three/fiber';
+import {Canvas} from '@react-three/fiber';
 import * as Drei from "@react-three/drei";
 import { Model3D } from './Model3D';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import * as THREE from 'three'
-import nextOffset from './NextOffset';
-import Player from './Player';
-import {Modal} from './Modal';
+import {Player} from './Player';
 import {Car} from './Car';
+import {Signboards} from './Signboard';
+import {model_list} from './BldgData';
+import {GuideNPC} from './GuideNPC';
+import {GuideModal} from './GuideModal';
+import {RoomDetail} from './RoomDetail';
+import {Bounds, useBounds} from "@react-three/drei";
 
-
-const model_list = [
-    "./models/map_activity.glb",
-    "./models/map_administration.glb",
-    "./models/map_agora.glb",
-    "./models/map_cafeteria.glb",
-    "./models/map_career.glb",
-    "./models/map_dormitory.glb",
-    "./models/map_education.glb",
-    "./models/map_gym.glb",
-    "./models/map_nature.glb",
-    "./models/map_incubation.glb",
-    "./models/map_isc.glb",
-    "./models/map_lecture.glb",
-    "./models/map_lecture_large.glb",
-    "./models/map_lecture2.glb",
-    "./models/map_library.glb",
-    "./models/map_machine_workshop.glb",
-    "./models/map_MILAiS.glb",
-    "./models/map_research.glb",
-    "./models/map_research_satellite.glb",
-    "./models/map_swimming_pool.glb",
-    "./models/map_workshop.glb",
-]
 
 Drei.softShadows()
-export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlayerAngle, isMain}) => {
+export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlayerAngle, guidePos, setGuidePos, dest, setDest, gIndex, setGIndex, controllable, setControllable, isMain, isBound, setIsBound}) => {
     const [forward, setForward]     = useState(false);
     const [back, setBack]           = useState(false);
     const [left, setLeft]           = useState(false);
     const [right, setRight]         = useState(false);
-    const [openModal, setOpenModal] = useState(false);
-    const [opened, setOpened]       = useState(false);
 
     const canvas = useRef();
-
     const key = {
         'w':'forward',
         's': 'back',
@@ -121,27 +96,55 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
         <React.Suspense centered fallback={
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><CircularProgress /></Box>
         }>
-            <Canvas ref={canvas} dpr={[1, 2]} className="relative" shadows={true} camera={{
+            <Canvas ref={canvas} dpr={[1, 2]} shadows className="relative"  camera={{
+                position: [200, 100, 400],
                 fov: 30,
                 aspect: window.innerWidth / window.innerHeight,
                 near: 0.1,
                 far: 2000
             }}>
-                <Drei.OrbitControls />
+                
                 <Drei.Environment preset="city" />
                 <ambientLight intensity={0.5} />
-                {model_list.map((value, key) => {
-                    return (
-                        <Model3D value={value} key={key}/>
-                    )
-                })}
+                <Bounds><Model3D isBound={isBound} /></Bounds>
+                
+                
                 <Car />
-                <Player playerPos={playerPos} setPlayerPos={setPlayerPos} playerAngle={playerAngle} setPlayerAngle={setPlayerAngle} forward={forward} back={back} left={left} right={right}/>
+                <Signboards />
+                <Player   
+                    playerPos={playerPos} 
+                    setPlayerPos={setPlayerPos}
+                    playerAngle={playerAngle} 
+                    setPlayerAngle={setPlayerAngle} 
+                    forward={forward} 
+                    back={back} 
+                    left={left} 
+                    right={right}
+                    controllable={controllable}
+                    guidePos={guidePos} 
+                    isBound={isBound} 
+                />
+                
+                <GuideNPC 
+                    playerPos={playerPos}
+                    setPlayerPos={setPlayerPos}
+                    playerAngle={playerAngle} 
+                    setPlayerAngle={setPlayerAngle} 
+                    guidePos={guidePos} 
+                    setGuidePos={setGuidePos}
+                    dest={dest}
+                    setDest={setDest}
+                    gIndex={gIndex} 
+                    setGIndex={setGIndex}
+                    controllable={controllable}
+                    setControllable={setControllable}
+                    isBound={isBound}
+                    setIsBound={setIsBound}
+                />
+                <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound}/>
                 <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
                 <Drei.BakeShadows />
-                
             </Canvas>
-            <Modal playerPos={playerPos} openModal={openModal} setOpenModal={setOpenModal} opened={opened} setOpened={setOpened}/>
         </React.Suspense>
     );
 };

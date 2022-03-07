@@ -6,12 +6,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
 import {bldgPos, bldgURL} from './BldgData';
 
 function where(x, z){
@@ -78,7 +72,7 @@ export const Modal = ({playerPos, openModal, setOpenModal, opened, setOpened}) =
         </DialogContent>
         
         <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose}>close</Button>
         </DialogActions>
         
         </Dialog>
