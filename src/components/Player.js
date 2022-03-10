@@ -4,60 +4,61 @@ import { Html } from "@react-three/drei"
 import * as THREE from 'three'
 import nextOffset from './NextOffset';
 
-
+// 文字数をカウント (半角に対応)
+function countText(text){
+    var length = 0.0;
+    for(var i=0; i < text.length; i++) {
+        text[i].match(/[ -~]/) ? length += 0.5 : length += 1.0;
+    }
+    return length;
+}
 
 export const Player = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, forward, back, left, right, controllable, guidePos, isBound}) => {
-    
-    const [openModal, setOpenModal] = useState(false);
-    const [opened, setOpened]       = useState(false);
+    const pPos = useRef();                      // プレイヤーモデルの位置
+    const clock     = new THREE.Clock();        // デルタタイム取得用
+    var speed = 17;                             // プレイヤーの歩くスピード
+    var count = 0;                              // プレイヤーの足踏みモーション用(カウント)
+    var step = 0;                               // プレイヤーの足踏みモーション用(画像タイプ)
 
-    // 文字数をカウント (半角に対応)
-    function countText(text){
-        var length = 0.0;
-        for(var i=0; i < text.length; i++) {
-            text[i].match(/[ -~]/) ? length += 0.5 : length += 1.0;
-        }
-        return length;
-    }
-
-    const ref = useRef();
-    const name = useRef();
-
+    // プレイヤーのテクスチャを用意する
     const texture = new THREE.TextureLoader().load('./images/player1.png');
     texture.wrapS  = THREE.RepeatWrapping;
     texture.repeat.set(0.33,0.25);
     texture.offset.x = 0.33;
-    
-    let count = 0;
-    let step = 0;
 
     useFrame(({camera}) => {
+        //console.log(pPos.current.position.x, pPos.current.position.z);
+
+        const deltaTime = clock.getDelta(); // デルタタイムを取得
+        count+=deltaTime;                   // 足踏みモーション用カウント変数を更新
+
+        // プレイヤーの位置を更新
         if(controllable){
-            if(forward) { playerPos.z -= 0.3; playerAngle = 270}
-            if(back)    { playerPos.z += 0.3; playerAngle = 0}
-            if(left)    { playerPos.x -= 0.3; playerAngle = 90}
-            if(right)   { playerPos.x += 0.3; playerAngle = 180}
+            if(forward) { playerPos.z -= deltaTime*speed; playerAngle = 270}
+            if(back)    { playerPos.z += deltaTime*speed; playerAngle =   0}
+            if(left)    { playerPos.x -= deltaTime*speed; playerAngle =  90}
+            if(right)   { playerPos.x += deltaTime*speed; playerAngle = 180}
 
             setPlayerPos(playerPos);
             setPlayerAngle(playerAngle);
         }
 
-        ref.current.position.x = playerPos.x;
-        ref.current.position.y = playerPos.y;
-        ref.current.position.z = playerPos.z;
+        // 3Ｄ空間内のプレイヤーの位置を更新
+        pPos.current.position.x = playerPos.x;
+        pPos.current.position.y = playerPos.y;
+        pPos.current.position.z = playerPos.z;
 
+        // 「教室を探す」昨日が使われてなければカメラの位置と注視点を更新
         if(isBound==='none'){
-            camera.position.x = ref.current.position.x;
-            camera.position.y = ref.current.position.y+50;
-            camera.position.z = ref.current.position.z+100;
+            camera.position.x = pPos.current.position.x;
+            camera.position.y = pPos.current.position.y+50;
+            camera.position.z = pPos.current.position.z+100;
             camera.lookAt(playerPos.x, playerPos.y,  playerPos.z);
         }
         
-
-        //console.log(ref.current.position.x, ref.current.position.z);
+        // プレイヤーの足踏みモーション
         texture.offset.y = 0.75 - (playerAngle / 90 ) * 0.25;
-        count++;
-        if(count >= 10){                 // 0.15毎に足踏み
+        if(count >= 0.2){                 // 0.15毎に足踏み
             texture.offset.x = nextOffset(step= (step+1) % 4);
             count = 0;
         }
@@ -65,7 +66,7 @@ export const Player = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, fo
     
     return (
         <>
-            <group ref={ref}>
+            <group ref={pPos}>
                 <mesh position={[0,0,0]}>
                     <planeBufferGeometry attach="geometry" args={[4,4]}/>
                     <meshStandardMaterial attach="material" map={texture} transparent={true}/>

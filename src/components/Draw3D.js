@@ -94,7 +94,7 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
     
     return (
         <React.Suspense centered fallback={
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><CircularProgress /></Box>
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}><CircularProgress /></Box>
         }>
             <Canvas ref={canvas} dpr={[1, 2]} shadows className="relative"  camera={{
                 position: [200, 100, 400],
@@ -103,7 +103,6 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
                 near: 0.1,
                 far: 2000
             }}>
-                
                 <Drei.Environment preset="city" />
                 <ambientLight intensity={0.5} />
                 <Bounds><Model3D isBound={isBound} /></Bounds>
@@ -143,7 +142,7 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
                 />
                 <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound}/>
                 <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
-                <Drei.BakeShadows />
+                
             </Canvas>
         </React.Suspense>
     );
