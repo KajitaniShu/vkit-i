@@ -15,7 +15,7 @@ import {Bounds, useBounds} from "@react-three/drei";
 
 
 Drei.softShadows()
-export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos, dest, setDest, gIndex, setGIndex, controllable, isMain, isBound, setIsBound}) => {
+export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos, dest, gIndex, controllable, isMain, isBound, setIsBound, lead}) => {
     const forward   = useRef(false);
     const back      = useRef(false);
     const left      = useRef(false);
@@ -126,15 +126,11 @@ export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos,
                 <GuideNPC 
                     playerPos={playerPos}
                     playerAngle={playerAngle}
-                    guidePos={guidePos} 
-                    setGuidePos={setGuidePos}
+                    guidePos={guidePos}
                     dest={dest}
-                    setDest={setDest}
-                    gIndex={gIndex} 
-                    setGIndex={setGIndex}
+                    gIndex={gIndex}
                     controllable={controllable}
-                    isBound={isBound}
-                    setIsBound={setIsBound}
+                    lead={lead}
                 />
                 
                 <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound}/>

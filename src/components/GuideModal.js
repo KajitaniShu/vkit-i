@@ -7,14 +7,11 @@ import Typography from '@mui/material/Typography';
 import {bldgNames} from './BldgData';
 
 
-export const GuideModal = ({setDest, openModal, setOpenModal}) => {
+export const GuideModal = ({dest, setOpenModal}) => {
 
     function handleDest(value){
-
-        console.log(value);
-        openModal = false;
-        setOpenModal(openModal);
-        setDest(value);
+        setOpenModal(false);
+        dest.current = value;
     }
 
     return (

@@ -16,8 +16,9 @@ export const DisplayArea = ({itemList, setItemList}) => {
 
     // ガイドNPCの位置座標
     const guidePos      = useRef(new THREE.Vector3(30, 2, 120));
-    const [    dest,         setDest] = useState('none');
-    const [  gIndex,       setGIndex] = useState(0);
+    const dest          = useRef('none');
+    const gIndex        = useRef(0);
+    const lead          = useRef(false);                // 先導フラグ(キャラクターが近くに来るまで待つ用)
 
     // 教室検索システム
     const [isBound, setIsBound]     = useState('none');
@@ -38,14 +39,13 @@ export const DisplayArea = ({itemList, setItemList}) => {
                             playerPos={playerPos}
                             playerAngle={playerAngle}
                             guidePos={guidePos}
-                            dest={dest} 
-                            setDest={setDest}
-                            gIndex={gIndex} 
-                            setGIndex={setGIndex}
+                            dest={dest}
+                            gIndex={gIndex}
                             controllable={controllable}
                             isMain={isMain}
                             isBound={isBound}
                             setIsBound={setIsBound}
+                            lead={lead}
                         /> :
                         <Draw2D 
                             itemList={itemList} 

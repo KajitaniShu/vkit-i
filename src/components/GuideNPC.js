@@ -17,11 +17,11 @@ function countText(text){
     return length;
 }
 
-export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gIndex, setGIndex, controllable, isBound, setIsBound}) => {
+export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, gIndex, controllable}) => {
     
-    const [lead,           setLead] = useState(false);  // 先導フラグ(キャラクターが近くに来るまで待つ用)
-    const [textBox,     setTextBox] = useState("");     // 説明を表示するテキストボックス
+    const [textBox, setTextBox]     = useState("");     // 説明を表示するテキストボックス
     const [openModal, setOpenModal] = useState(false);  // 行先を表示するモーダルウィンドウが開いているか閉じているか
+    const lead          = useRef(false);  // 先導フラグ(キャラクターが近くに来るまで待つ用)
     const count         = useRef(0);                    // NPCの歩行アニメーション用(画像変更タイミングを測る用)
     const step          = useRef(0);                    // NPCの歩行アニメーション用(画像変更用)
     const leadPointX    = useRef(30);                   // プレイヤーが歩いていく目的地(x)
@@ -42,7 +42,7 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
     // プレイヤーをガイドのところまで移動させる
     function playerToNPC(x, z, deltaTime){
         var speed = 10;
-        if(lead && (Math.abs(guidePos.current.x-playerPos.current.x)+Math.abs(guidePos.current.z-playerPos.current.z))<8) speed = 5;
+        if(lead.current && (Math.abs(guidePos.current.x-playerPos.current.x)+Math.abs(guidePos.current.z-playerPos.current.z))<8) speed = 5;
 
         if      (leadPointX.current - playerPos.current.x >  1)  { playerPos.current.x+=deltaTime*speed; playerAngle.current = 180; }
         else if (leadPointX.current - playerPos.current.x < -1)  { playerPos.current.x-=deltaTime*speed; playerAngle.current =  90; }
@@ -51,7 +51,7 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
         else{
             leadPointX.current = x;
             leadPointZ.current = z;
-            setLead(true);
+            lead.current = true;
         }
     }
 
@@ -67,7 +67,7 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
         var speed = 10;
 
         // プレイヤーが近くに来るまでは静止
-        if(!lead) speed = 0;
+        if(!lead.current) speed = 0;
 
         // 目的地方向に移動
         if(x - guidePos.current.x > 1){ // 目的地が右方向にある場合
@@ -112,22 +112,22 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
     useFrame(() => {
         const deltaTime = clock.getDelta();                                 // デルタタイムを取得
 
-        if(dest !== 'none'){
-            var nextDest = path[dest].route[gIndex];                        // 次の曲がり角を設定
+        if(dest.current !== 'none'){
+            var nextDest = path[dest.current].route[gIndex.current];                        // 次の曲がり角を設定
 
             // 目的地に向かっているとき
             if(nextDest[1] !== 100){
-                if(controllable.current && gIndex === 0) controllable.current = false;   // ガイド中はコントロール不可にする
+                if(controllable.current && gIndex.current === 0) controllable.current = false;   // ガイド中はコントロール不可にする
                 if(nextDest[1] === -100) {
-                    setDest('none');                                       // 定位置  (y座標が-100)についたら目的地を'none'に戻す
-                    srimeAngle.current =   0;                              // 手前を向く
-                    setLead(false);                                        // 先導フラグをオフ
-                    setGIndex(0);                                          // 参照する曲がり角を0番目にする
+                    dest.current = 'none'                                       // 定位置  (y座標が-100)についたら目的地を'none'に戻す
+                    srimeAngle.current =   0;                                   // 手前を向く
+                    lead.current = false;                                       // 先導フラグをオフ
+                    gIndex.current = 0;                                         // 参照する曲がり角を0番目にする
                     leadPointX.current =  30;
                     leadPointZ.current = 120;
                 }else{
                     // 目的地方向に移動 (曲がり角についたら次の曲がり角を設定)
-                    if(!moveNPC(nextDest[0], nextDest[2], deltaTime)) setGIndex(++gIndex); 
+                    if(!moveNPC(nextDest[0], nextDest[2], deltaTime)) gIndex.current++; 
                 }
                 
             // 目的地に到達したとき
@@ -141,19 +141,19 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
                 // 目的地に着いたら400カウントして帰る
                 if(countGtime.current < 6) {
                     countGtime.current+=deltaTime;
-                    if(countGtime.current < 0.1 && textBox === "") setTextBox(path[dest].comment[0]);   // 建物の説明 1/2個目 を表示
-                    if(countGtime.current >   3 && textBox !== "") setTextBox(path[dest].comment[1]);  // 建物の説明 2/2個目 を表示
+                    if(countGtime.current < 0.1 && textBox === "") setTextBox(path[dest.current].comment[0]);   // 建物の説明 1/2個目 を表示
+                    if(countGtime.current >   3 && textBox !== "") setTextBox(path[dest.current].comment[1]);  // 建物の説明 2/2個目 を表示
                 }else{
                     setTextBox("");
                     // 定位置に帰り始める
                     countGtime.current = 0;
-                    setGIndex(++gIndex);
+                    gIndex.current++;
                 }
             }
         }else{
             // モーダルウィンドウを開く・閉じる
-            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2) < 40 && !openModal) setOpenModal(true);
-            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2) >= 40 && openModal) setOpenModal(false);
+            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2)  < 40 && !openModal) setOpenModal(true);
+            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2) >= 40 && openModal)  setOpenModal(false);
             
         }
 
@@ -174,7 +174,7 @@ export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gInde
                 <Html position={[0,2.5,0]} sprite transform occlude distanceFactor={15} center className="innerText bgGray" style={{width: countText("ガイドスライム")+2+'em'}} >
                     <p>ガイドスライム</p>
                 </Html>
-                {openModal ? <GuideModal setDest={setDest} openModal={openModal} setOpenModal={setOpenModal}/> : "w"}
+                {openModal ? <GuideModal dest={dest} setOpenModal={setOpenModal} /> : ""}
             </group>
         </>
     )

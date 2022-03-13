@@ -69,9 +69,11 @@ export const Player = ({playerPos, playerAngle, forward, back, left, right, cont
                     <planeBufferGeometry attach="geometry" args={[4,4]}/>
                     <meshStandardMaterial attach="material" map={texture} transparent={true}/>
                 </mesh >
+                {/*
                 <Html position={[0,4,0]} sprite transform occlude distanceFactor={15} center className="innerText bgGray" style={{width: countText("かじたに")+2+'em'}} >
-                    <p>かじたに</p>
+                    <p>なまえ</p>
                 </Html>
+                */}
             </group>
         </>
     )
