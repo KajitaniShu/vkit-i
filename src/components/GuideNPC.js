@@ -17,7 +17,7 @@ function countText(text){
     return length;
 }
 
-export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, guidePos, setGuidePos, dest, setDest, gIndex, setGIndex, controllable, setControllable, isBound, setIsBound}) => {
+export const GuideNPC = ({playerPos, playerAngle, guidePos, dest, setDest, gIndex, setGIndex, controllable, isBound, setIsBound}) => {
     
     const [lead,           setLead] = useState(false);  // 先導フラグ(キャラクターが近くに来るまで待つ用)
     const [textBox,     setTextBox] = useState("");     // 説明を表示するテキストボックス
@@ -42,20 +42,17 @@ export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, 
     // プレイヤーをガイドのところまで移動させる
     function playerToNPC(x, z, deltaTime){
         var speed = 10;
-        if(lead && (Math.abs(guidePos.x-playerPos.x)+Math.abs(guidePos.z-playerPos.z))<8) speed = 5;
+        if(lead && (Math.abs(guidePos.current.x-playerPos.current.x)+Math.abs(guidePos.current.z-playerPos.current.z))<8) speed = 5;
 
-        if      (leadPointX.current - playerPos.x >  1)  { playerPos.x+=deltaTime*speed; playerAngle = 180; }
-        else if (leadPointX.current - playerPos.x < -1)  { playerPos.x-=deltaTime*speed; playerAngle =  90; }
-        else if (leadPointZ.current - playerPos.z >  1)  { playerPos.z+=deltaTime*speed; playerAngle =   0; }
-        else if (leadPointZ.current - playerPos.z < -1)  { playerPos.z-=deltaTime*speed; playerAngle = 270; }
+        if      (leadPointX.current - playerPos.current.x >  1)  { playerPos.current.x+=deltaTime*speed; playerAngle.current = 180; }
+        else if (leadPointX.current - playerPos.current.x < -1)  { playerPos.current.x-=deltaTime*speed; playerAngle.current =  90; }
+        else if (leadPointZ.current - playerPos.current.z >  1)  { playerPos.current.z+=deltaTime*speed; playerAngle.current =   0; }
+        else if (leadPointZ.current - playerPos.current.z < -1)  { playerPos.current.z-=deltaTime*speed; playerAngle.current = 270; }
         else{
             leadPointX.current = x;
             leadPointZ.current = z;
             setLead(true);
         }
-
-        setPlayerPos(playerPos);
-        setPlayerAngle(playerAngle);
     }
 
     // スライムの位置座標を変更
@@ -73,28 +70,28 @@ export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, 
         if(!lead) speed = 0;
 
         // 目的地方向に移動
-        if(x - guidePos.x > 1){ // 目的地が右方向にある場合
-            guidePos.x+=deltaTime*speed;
+        if(x - guidePos.current.x > 1){ // 目的地が右方向にある場合
+            guidePos.current.x+=deltaTime*speed;
             srimeAngle.current = 180;
-            if(!controllable) playerToNPC(x, z, deltaTime);
+            if(!controllable.current) playerToNPC(x, z, deltaTime);
             return true; 
         }
-        else if (x - guidePos.x < -1) { // 目的地が左方向にある場合 
-            guidePos.x-=deltaTime*speed; 
+        else if (x - guidePos.current.x < -1) { // 目的地が左方向にある場合 
+            guidePos.current.x-=deltaTime*speed; 
             srimeAngle.current =  90;
-            if(!controllable) playerToNPC(x, z, deltaTime);
+            if(!controllable.current) playerToNPC(x, z, deltaTime);
             return true; 
         }
-        else if (z - guidePos.z >  1) { // 目的地が手前方向にある場合
-            guidePos.z+=deltaTime*speed; 
+        else if (z - guidePos.current.z >  1) { // 目的地が手前方向にある場合
+            guidePos.current.z+=deltaTime*speed; 
             srimeAngle.current =   0;
-            if(!controllable) playerToNPC(x, z, deltaTime);
+            if(!controllable.current) playerToNPC(x, z, deltaTime);
             return true; 
         }
-        else if (z - guidePos.z < -1) { // 目的地が奥方向にある場合
-            guidePos.z-=deltaTime*speed; 
+        else if (z - guidePos.current.z < -1) { // 目的地が奥方向にある場合
+            guidePos.current.z-=deltaTime*speed; 
             srimeAngle.current = 270;
-            if(!controllable) playerToNPC(x, z, deltaTime);
+            if(!controllable.current) playerToNPC(x, z, deltaTime);
             return true; 
         }
         else return false;
@@ -120,7 +117,7 @@ export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, 
 
             // 目的地に向かっているとき
             if(nextDest[1] !== 100){
-                if(controllable && gIndex === 0) setControllable(false);   // ガイド中はコントロール不可にする
+                if(controllable.current && gIndex === 0) controllable.current = false;   // ガイド中はコントロール不可にする
                 if(nextDest[1] === -100) {
                     setDest('none');                                       // 定位置  (y座標が-100)についたら目的地を'none'に戻す
                     srimeAngle.current =   0;                              // 手前を向く
@@ -136,7 +133,7 @@ export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, 
             // 目的地に到達したとき
             }else{
                 // コントロール可能にする
-                if(!controllable) setControllable(true);
+                if(!controllable.current) controllable.current = true;
                 
                 // 手前を向く
                 srimeAngle.current =   0;
@@ -155,15 +152,15 @@ export const GuideNPC = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, 
             }
         }else{
             // モーダルウィンドウを開く・閉じる
-            if(((playerPos.x-guidePos.x)**2+(playerPos.z-guidePos.z)**2) < 40 && !openModal) setOpenModal(true);
-            if(((playerPos.x-guidePos.x)**2+(playerPos.z-guidePos.z)**2) >= 40 && openModal) setOpenModal(false);
+            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2) < 40 && !openModal) setOpenModal(true);
+            if(((playerPos.current.x-guidePos.current.x)**2+(playerPos.current.z-guidePos.current.z)**2) >= 40 && openModal) setOpenModal(false);
             
         }
 
         // NPCのアニメーション
         animateNPC(deltaTime);
         // NPCの位置座標を更新
-        updateRefPos(guidePos);
+        updateRefPos(guidePos.current);
     });
     
     return (

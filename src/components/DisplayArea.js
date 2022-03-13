@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Draw3D } from './Draw3D';
 import { Draw2D } from './Draw2D';
 import { InfoButton } from './InfoButton';
@@ -9,12 +9,13 @@ import * as THREE from 'three'
 
 export const DisplayArea = ({itemList, setItemList}) => {
     const [     isMain,        setIsMain] = useState(true);
-    const [  playerPos,     setPlayerPos] = useState(new THREE.Vector3(20, 2, 150));
-    const [playerAngle,   setPlayerAngle] = useState(270);
-    const [controllable, setControllable] = useState(true); 
+    const controllable = useRef(true); 
+
+    const playerPos     = useRef(new THREE.Vector3(20, 2, 150));
+    const playerAngle   = useRef(270);
 
     // ガイドNPCの位置座標
-    const [guidePos,     setGuidePos] = useState(new THREE.Vector3(30, 2, 120));
+    const guidePos      = useRef(new THREE.Vector3(30, 2, 120));
     const [    dest,         setDest] = useState('none');
     const [  gIndex,       setGIndex] = useState(0);
 
@@ -34,18 +35,14 @@ export const DisplayArea = ({itemList, setItemList}) => {
             {isMain ?   <Draw3D 
                             className="main-contents" 
                             itemList={itemList} 
-                            playerPos={playerPos} 
-                            setPlayerPos={setPlayerPos} 
-                            playerAngle={playerAngle} 
-                            setPlayerAngle={setPlayerAngle} 
+                            playerPos={playerPos}
+                            playerAngle={playerAngle}
                             guidePos={guidePos}
-                            setGuidePos={setGuidePos}
                             dest={dest} 
                             setDest={setDest}
                             gIndex={gIndex} 
                             setGIndex={setGIndex}
                             controllable={controllable}
-                            setControllable={setControllable}
                             isMain={isMain}
                             isBound={isBound}
                             setIsBound={setIsBound}

@@ -15,11 +15,11 @@ import {Bounds, useBounds} from "@react-three/drei";
 
 
 Drei.softShadows()
-export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlayerAngle, guidePos, setGuidePos, dest, setDest, gIndex, setGIndex, controllable, setControllable, isMain, isBound, setIsBound}) => {
-    const [forward, setForward]     = useState(false);
-    const [back, setBack]           = useState(false);
-    const [left, setLeft]           = useState(false);
-    const [right, setRight]         = useState(false);
+export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos, dest, setDest, gIndex, setGIndex, controllable, isMain, isBound, setIsBound}) => {
+    const forward   = useRef(false);
+    const back      = useRef(false);
+    const left      = useRef(false);
+    const right     = useRef(false);
 
     const canvas = useRef();
     const key = {
@@ -42,30 +42,31 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
 
     function command(cmd){
         if(!isMain) {
-            setForward(false);
-            setBack(false);
-            setLeft(false);
-            setRight(false);
+            forward.current = false;
+            back.current    = false;
+            left.current    = false;
+            right.current   = false;
             return;
         }
         switch(cmd){
+            
             case "forward":
-                setForward(true);
+                forward.current = true;
                 break;
             case "back":
-                setBack(true);
+                back.current    = true;
                 break;
             case "left":
-                setLeft(true);
+                left.current    = true;
                 break;
             case "right":
-                setRight(true);
+                right.current   = true;
                 break;
             case "reset":
-                setForward(false);
-                setBack(false);
-                setLeft(false);
-                setRight(false);
+                forward.current = false;
+                back.current    = false;
+                left.current    = false;
+                right.current   = false;
             break;
         }
         
@@ -96,7 +97,7 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
         <React.Suspense centered fallback={
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}><CircularProgress /></Box>
         }>
-            <Canvas ref={canvas} dpr={[1, 2]} shadows className="relative"  camera={{
+            <Canvas ref={canvas} dpr={[1, 2]} className="relative"  camera={{
                 position: [200, 100, 400],
                 fov: 30,
                 aspect: window.innerWidth / window.innerHeight,
@@ -111,10 +112,8 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
                 <Car />
                 <Signboards />
                 <Player   
-                    playerPos={playerPos} 
-                    setPlayerPos={setPlayerPos}
-                    playerAngle={playerAngle} 
-                    setPlayerAngle={setPlayerAngle} 
+                    playerPos={playerPos}
+                    playerAngle={playerAngle}
                     forward={forward} 
                     back={back} 
                     left={left} 
@@ -126,9 +125,7 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
                 
                 <GuideNPC 
                     playerPos={playerPos}
-                    setPlayerPos={setPlayerPos}
-                    playerAngle={playerAngle} 
-                    setPlayerAngle={setPlayerAngle} 
+                    playerAngle={playerAngle}
                     guidePos={guidePos} 
                     setGuidePos={setGuidePos}
                     dest={dest}
@@ -136,10 +133,10 @@ export const Draw3D = ({itemList, playerPos, setPlayerPos, playerAngle, setPlaye
                     gIndex={gIndex} 
                     setGIndex={setGIndex}
                     controllable={controllable}
-                    setControllable={setControllable}
                     isBound={isBound}
                     setIsBound={setIsBound}
                 />
+                
                 <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound}/>
                 <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
                 

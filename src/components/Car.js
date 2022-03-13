@@ -13,34 +13,18 @@ export const Car = () => {
     // 運行ルートを作成
     const routes = useMemo(() => {
         const Points = [
-            new Vector3(-80,  0, 130),
-            new Vector3(  0,  0, 130),
-            new Vector3(  40, 0, 130),
-            new Vector3(  80, 0, 130),
-            new Vector3( 120, 0, 130),
-            new Vector3( 145, 0, 120),
-            new Vector3( 150, 0, 100),
-            new Vector3( 150, 0,  50),
-            new Vector3( 150, 0,   0),
-            new Vector3( 150, 0,  -50),
-            new Vector3( 150, 0, -110),
-            new Vector3( 150, 0, -160),
-            new Vector3( 150, 0, -200),
-            new Vector3( 145, 0, -215),
-            new Vector3( 110, 0, -220),
-            new Vector3(  80, 0, -215),
-            new Vector3(  22, 0, -170),
-            new Vector3( -30, 0, -120),
-            new Vector3( -50, 0, -100),
-            new Vector3( -90, 0,  -30),
-            new Vector3( -115,0,  40),
-            new Vector3(-115, 0,  90),
-            new Vector3( -95, 0,  125),
+            new Vector3(-125, 0,  120),
+            new Vector3( 142, 0,  120),
+            new Vector3( 142, 0, -210),
+            new Vector3(  60, 0, -210),
+            new Vector3( -90, 0,  -60),
+            new Vector3(-125, 0,   30)
         ]
         
         const curve = new CatmullRomCurve3(Points);
-        curve.curveType = "centripetal";
+        curve.curveType = "catmullrom";
         curve.closed = true;
+        curve.tension = 0.1;
         
         return curve;
     }, []);

@@ -13,7 +13,7 @@ function countText(text){
     return length;
 }
 
-export const Player = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, forward, back, left, right, controllable, guidePos, isBound}) => {
+export const Player = ({playerPos, playerAngle, forward, back, left, right, controllable, guidePos, isBound}) => {
     const pPos = useRef();                      // プレイヤーモデルの位置
     const clock     = new THREE.Clock();        // デルタタイム取得用
     var speed = 17;                             // プレイヤーの歩くスピード
@@ -34,30 +34,28 @@ export const Player = ({playerPos, setPlayerPos, playerAngle, setPlayerAngle, fo
 
         // プレイヤーの位置を更新
         if(controllable){
-            if(forward) { playerPos.z -= deltaTime*speed; playerAngle = 270}
-            if(back)    { playerPos.z += deltaTime*speed; playerAngle =   0}
-            if(left)    { playerPos.x -= deltaTime*speed; playerAngle =  90}
-            if(right)   { playerPos.x += deltaTime*speed; playerAngle = 180}
+            if(forward.current) { playerPos.current.z -= deltaTime*speed; playerAngle.current = 270}
+            if(back.current)    { playerPos.current.z += deltaTime*speed; playerAngle.current =   0}
+            if(left.current)    { playerPos.current.x -= deltaTime*speed; playerAngle.current =  90}
+            if(right.current)   { playerPos.current.x += deltaTime*speed; playerAngle.current = 180}
 
-            setPlayerPos(playerPos);
-            setPlayerAngle(playerAngle);
         }
 
         // 3Ｄ空間内のプレイヤーの位置を更新
-        pPos.current.position.x = playerPos.x;
-        pPos.current.position.y = playerPos.y;
-        pPos.current.position.z = playerPos.z;
+        pPos.current.position.x = playerPos.current.x;
+        pPos.current.position.y = playerPos.current.y;
+        pPos.current.position.z = playerPos.current.z;
 
         // 「教室を探す」昨日が使われてなければカメラの位置と注視点を更新
         if(isBound==='none'){
             camera.position.x = pPos.current.position.x;
             camera.position.y = pPos.current.position.y+50;
             camera.position.z = pPos.current.position.z+100;
-            camera.lookAt(playerPos.x, playerPos.y,  playerPos.z);
+            camera.lookAt(playerPos.current.x, playerPos.current.y,  playerPos.current.z);
         }
         
         // プレイヤーの足踏みモーション
-        texture.offset.y = 0.75 - (playerAngle / 90 ) * 0.25;
+        texture.offset.y = 0.75 - (playerAngle.current / 90 ) * 0.25;
         if(count >= 0.2){                 // 0.15毎に足踏み
             texture.offset.x = nextOffset(step= (step+1) % 4);
             count = 0;
