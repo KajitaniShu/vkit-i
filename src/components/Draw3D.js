@@ -12,22 +12,19 @@ import {GuideNPC} from './GuideNPC';
 import {GuideModal} from './GuideModal';
 import {RoomDetail} from './RoomDetail';
 import {Bounds, useBounds} from "@react-three/drei";
+import { Form } from './Form';
 
 
 Drei.softShadows()
-export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos, dest, gIndex, controllable, isMain, isBound, setIsBound, lead}) => {
-    const forward   = useRef(false);
-    const back      = useRef(false);
-    const left      = useRef(false);
-    const right     = useRef(false);
-
+export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
     const canvas = useRef();
+    const [isDebug, setIsDebug] = useState(false);
     const key = {
         'w':'forward',
         's': 'back',
         'a': 'left',
         'd': 'right',
-        'ctrl+1': 'debug',
+        'ctrl+d': 'debug',
 
         'ArrowUp'   : 'forward',
         'ArrowDown' : 'back',
@@ -42,32 +39,34 @@ export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos,
 
     function command(cmd){
         if(!isMain) {
-            forward.current = false;
-            back.current    = false;
-            left.current    = false;
-            right.current   = false;
+            player.current.forward = false;
+            player.current.back    = false;
+            player.current.left    = false;
+            player.current.right   = false;
             return;
         }
         switch(cmd){
             
             case "forward":
-                forward.current = true;
+                player.current.forward = true;
                 break;
             case "back":
-                back.current    = true;
+                player.current.back    = true;
                 break;
             case "left":
-                left.current    = true;
+                player.current.left    = true;
                 break;
             case "right":
-                right.current   = true;
+                player.current.right   = true;
                 break;
             case "reset":
-                forward.current = false;
-                back.current    = false;
-                left.current    = false;
-                right.current   = false;
-            break;
+                player.current.forward = false;
+                player.current.back    = false;
+                player.current.left    = false;
+                player.current.right   = false;
+                break;
+            case "debug":
+                setIsDebug(!isDebug);
         }
         
         
@@ -77,66 +76,107 @@ export const Draw3D = ({itemList, playerPos, playerAngle, guidePos, setGuidePos,
     ////////// キー操作 //////////
     // キーを押した時
     document.addEventListener('keyup', (event) => {
-        if (!isMain) return false;
+        if (!isMain || !player.current.controllable) return false;
         if(key[event.key]) command('reset');
         event.preventDefault();
     }, {passive:false});
 
     // キーから手を離したとき
     document.addEventListener('keydown', (event) => {
-        if (!isMain) return false;
+        if (!isMain || !player.current.controllable) return false;
         // 操作キーが押された場合
         if(key[event.key] && !(event.ctrlKey || event.metaKey)) command(key[event.key]);
-        // Ctrlも一緒に押していた場合
+        // Ctrl+D → debug mode
         else if (event.key == '1'  && (event.ctrlKey || event.metaKey)) command('debug');
         
         event.preventDefault();
     }, {passive:false});
+
+    ////////// タッチ入力 //////////
+    // 画面をタッチしたとき
+    function touchStart(){
+        if (!isMain || !player.current.controllable) return false;
+        if(event.touches.length > 1) return;
+        //this.player.recordStartPoint(event.touches[0].clientX, event.touches[0].clientY);
+        event.preventDefault();
+    }
+
+    // タッチした手を動かしたとき
+    function touchMove(){
+        if (!isMain || !player.current.controllable) return false;
+        if(event.touches.length > 1) return;
+        //this.player.touchMove(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+        event.preventDefault();
+    }
+
+    // 画面から手を離したとき
+    function touchEnd(){
+        command("reset");
+        event.preventDefault();
+    }
+
+    ////////// マウス操作 //////////
+    // マウスをクリックしたとき
+    function mouseDown(){
+        if (!isMain || !player.current.controllable) return false;
+        //if(this.controls.enableRotate) return;
+        //this.player.recordStartPoint(event.clientX, event.clientY);
+        //this.mouseFlag = true;
+        event.preventDefault();
+    }
+
+    // マウスをドラッグしたとき
+    function mouseMove(){
+        if (!isMain || !player.current.controllable) return false;
+        console.log("drag");
+        //if(this.controls.enableRotate) return;
+        //if(this.mouseFlag) this.player.touchMove(event.clientX, event.clientY);
+        event.preventDefault();
+    }
+
+    // マウスのボタンを離したとき
+    function mouseUp(){
+        //if(this.controls.enableRotate) return;
+        //this.player.command("reset");
+        //this.mouseFlag = false;
+        event.preventDefault();
+    }
     
     return (
         <React.Suspense centered fallback={
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}><CircularProgress /></Box>
         }>
-            <Canvas ref={canvas} dpr={[1, 2]} className="relative"  camera={{
+            <Canvas id="canvas" ref={canvas} dpr={[1, 2]} className="relative"  camera={{
                 position: [200, 100, 400],
                 fov: 30,
                 aspect: window.innerWidth / window.innerHeight,
                 near: 0.1,
                 far: 2000
             }}>
+                {isDebug ? <Drei.OrbitControls/> : <></>}
                 <Drei.Environment preset="city" />
                 <ambientLight intensity={0.5} />
                 <Bounds><Model3D isBound={isBound} /></Bounds>
-                
-                
                 <Car />
                 <Signboards />
                 <Player   
-                    playerPos={playerPos}
-                    playerAngle={playerAngle}
-                    forward={forward} 
-                    back={back} 
-                    left={left} 
-                    right={right}
-                    controllable={controllable}
-                    guidePos={guidePos} 
-                    isBound={isBound} 
+                    player={player}
+                    isBound={isBound}
+                    isDebug={isDebug}
                 />
-                
                 <GuideNPC 
-                    playerPos={playerPos}
-                    playerAngle={playerAngle}
-                    guidePos={guidePos}
-                    dest={dest}
-                    gIndex={gIndex}
-                    controllable={controllable}
-                    lead={lead}
+                    player={player}
+                    guideNPC={guideNPC}
                 />
                 
-                <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound}/>
+                <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound} player={player}/>
                 <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
-                
             </Canvas>
+            <Form 
+                    isBound={isBound}
+                    setIsBound={setIsBound}
+                    player={player}
+            />
         </React.Suspense>
     );
 };

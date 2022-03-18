@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import {roomNames} from './BldgData';
 
 
-export const RoomDetail = ({room, exp, setIsBound}) => {
+export const RoomDetail = ({room, exp, setIsBound, player}) => {
 
     function handleBack(){
+        player.current.controllable = true;
         setIsBound('none');
     }
 
