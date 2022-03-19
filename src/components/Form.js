@@ -19,11 +19,9 @@ const useStyles = makeStyles({
 });
 
 
-export const Form = ({isBound, setIsBound, player}) => {
+export const Form = ({isBound, setIsBound, player, setSnackOpen, snackMessage}) => {
     const [input, setInput] = useState('');
 
-    
-    
     const handleChange = (text) => {
         setInput(text);
     };
@@ -37,8 +35,12 @@ export const Form = ({isBound, setIsBound, player}) => {
     }
 
     const handleButton = () => {
-        console.log(input);
         if(input === '1101教室') setIsBound('lecture');
+        else {
+            // snackメッセージを表示
+            setSnackOpen(true);
+            snackMessage.current = '現在 ' + input + ' には対応していません.';
+        }
         setInput('');
 
     }

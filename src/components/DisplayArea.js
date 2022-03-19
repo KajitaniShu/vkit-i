@@ -4,6 +4,8 @@ import { Draw2D } from './Draw2D';
 import { InfoButton } from './InfoButton';
 import Box from '@mui/material/Box';
 import * as THREE from 'three'
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 
 export const DisplayArea = () => {

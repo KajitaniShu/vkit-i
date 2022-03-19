@@ -12,6 +12,10 @@ body {
   background-color: white;
 }
 
+canvas{
+  touch-action: none;
+}
+
 .editArea{
   width: 100vw;
   height: 100vh;

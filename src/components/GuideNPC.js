@@ -17,8 +17,7 @@ function countText(text){
     return length;
 }
 
-export const GuideNPC = ({player, guideNPC}) => {
-    
+export const GuideNPC = ({player, guideNPC, setSnackOpen, snackMessage}) => {
     const [textBox, setTextBox]     = useState("");     // 説明を表示するテキストボックス
     const [openModal, setOpenModal] = useState(false);  // 行先を表示するモーダルウィンドウが開いているか閉じているか
     const count         = useRef(0);                    // NPCの歩行アニメーション用(画像変更タイミングを測る用)
@@ -171,7 +170,7 @@ export const GuideNPC = ({player, guideNPC}) => {
                 <Html position={[0,2.5,0]} sprite transform occlude distanceFactor={15} center className="innerText bgGray" style={{width: countText("ガイドスライム")+2+'em'}} >
                     <p>ガイドスライム</p>
                 </Html>
-                {openModal ? <GuideModal guideNPC={guideNPC} setOpenModal={setOpenModal} /> : ""}
+                {openModal ? <GuideModal guideNPC={guideNPC} setOpenModal={setOpenModal} setSnackOpen={setSnackOpen} snackMessage={snackMessage} /> : ""}
             </group>
         </>
     )

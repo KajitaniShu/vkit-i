@@ -13,12 +13,19 @@ import {GuideModal} from './GuideModal';
 import {RoomDetail} from './RoomDetail';
 import {Bounds, useBounds} from "@react-three/drei";
 import { Form } from './Form';
+import { Snack } from './Snack';
+import { MouseControls } from './MouseControls';
+
 
 
 Drei.softShadows()
 export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
     const canvas = useRef();
     const [isDebug, setIsDebug] = useState(false);
+    const [snackOpen, setSnackOpen] = useState(false);
+    const snackMessage = useRef('');
+    
+
     const key = {
         'w':'forward',
         's': 'back',
@@ -126,12 +133,11 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
     }
 
     // マウスをドラッグしたとき
-    function mouseMove(){
-        if (!isMain || !player.current.controllable) return false;
-        console.log("drag");
+    function mouseMove(event){
+
+        console.log("drag : " + event.screenX, event.screenY);
         //if(this.controls.enableRotate) return;
         //if(this.mouseFlag) this.player.touchMove(event.clientX, event.clientY);
-        event.preventDefault();
     }
 
     // マウスのボタンを離したとき
@@ -146,36 +152,52 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
         <React.Suspense centered fallback={
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}><CircularProgress /></Box>
         }>
-            <Canvas id="canvas" ref={canvas} dpr={[1, 2]} className="relative"  camera={{
-                position: [200, 100, 400],
-                fov: 30,
-                aspect: window.innerWidth / window.innerHeight,
-                near: 0.1,
-                far: 2000
-            }}>
-                {isDebug ? <Drei.OrbitControls/> : <></>}
-                <Drei.Environment preset="city" />
-                <ambientLight intensity={0.5} />
-                <Bounds><Model3D isBound={isBound} /></Bounds>
-                <Car />
-                <Signboards />
-                <Player   
-                    player={player}
-                    isBound={isBound}
-                    isDebug={isDebug}
-                />
-                <GuideNPC 
-                    player={player}
-                    guideNPC={guideNPC}
-                />
-                
-                <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound} player={player}/>
-                <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
-            </Canvas>
+                <Canvas  
+                    ref={canvas} 
+                    dpr={[1, 2]} 
+                    id="canvas"
+                    className="relative"  
+                    camera={{
+                        position: [200, 100, 400],
+                        fov: 30,
+                        aspect: window.innerWidth / window.innerHeight,
+                        near: 0.1,
+                        far: 2000
+                    }}
+                >
+                    {isDebug ? <Drei.OrbitControls/> : <></>}
+                    <Drei.Environment preset="city" />
+                    <ambientLight intensity={0.5} />
+                    <Bounds><Model3D isBound={isBound} /></Bounds>
+                    <Car />
+                    <Signboards />
+                    <Player   
+                        player={player}
+                        isBound={isBound}
+                        isDebug={isDebug}
+                    />
+                    <GuideNPC 
+                        player={player}
+                        guideNPC={guideNPC}
+                        setSnackOpen={setSnackOpen}
+                        snackMessage={snackMessage}
+                    />
+                    
+                    <MouseControls player={player}/>
+                    <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound} player={player}/>
+                    <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
+                </Canvas>
             <Form 
                     isBound={isBound}
                     setIsBound={setIsBound}
                     player={player}
+                    setSnackOpen={setSnackOpen}
+                    snackMessage={snackMessage}
+            />
+            <Snack 
+                snackOpen={snackOpen}
+                setSnackOpen={setSnackOpen}
+                snackMessage={snackMessage}
             />
         </React.Suspense>
     );
