@@ -49,8 +49,8 @@ export const Player = ({player, isBound, isDebug}) => {
         // 「教室を探す」昨日が使われてなければカメラの位置と注視点を更新
         if(isBound==='none' && !isDebug){
             camera.position.x = pPos.current.position.x;
-            camera.position.y = pPos.current.position.y+70;
-            camera.position.z = pPos.current.position.z+130;
+            camera.position.y = pPos.current.position.y+60;
+            camera.position.z = pPos.current.position.z+120;
             camera.lookAt(player.current.pos.x, player.current.pos.y,  player.current.pos.z);
         }
         
@@ -67,7 +67,7 @@ export const Player = ({player, isBound, isDebug}) => {
             <group ref={pPos}>
                 <mesh position={[0,0,0]}>
                     <planeBufferGeometry attach="geometry" args={[4,4]}/>
-                    <meshStandardMaterial attach="material" map={texture} transparent={true}/>
+                    <meshBasicMaterial attach="material" map={texture} transparent={true}/>
                 </mesh >
                 {/*
                 <Html position={[0,4,0]} sprite transform occlude distanceFactor={15} center className="innerText bgGray" style={{width: countText("かじたに")+2+'em'}} >

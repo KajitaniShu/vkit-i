@@ -12,7 +12,7 @@ function countText(text){
 
 export const Comment = ({comment, height}) => {
     return (
-        <Html position={[0, height, 0]} transform occlude distanceFactor={20} center={true} className="innerText bgWhite commentBox" style={{width: "12em"}} >
+        <Html position={[0, height, 0]} transform occlude distanceFactor={25} center={true} className="innerText bgWhite commentBox" style={{width: "12em"}} >
             <p>{comment}</p>
         </Html>
     );

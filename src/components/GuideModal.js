@@ -3,12 +3,16 @@ import Box from '@mui/material/Box';
 import { Html } from "@react-three/drei"
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Pagination from '@mui/material/Pagination';
 import {bldgNames} from './BldgData';
 import {path} from './BldgData';
 
 
 export const GuideModal = ({guideNPC, setOpenModal, setSnackOpen, snackMessage}) => {
+
+    const [page, setPage] = React.useState(1);
 
     function handleDest(value){
         if(path[value] === undefined) {
@@ -22,9 +26,14 @@ export const GuideModal = ({guideNPC, setOpenModal, setSnackOpen, snackMessage})
         return;
     }
 
+    function handlePage(event, value){
+        setPage(value);
+        console.log((parseInt(value)-1)*4 + " ～ " + ((parseInt(value)-1)*4+3));
+    }
+
     return (
         <>
-        <Html position={[ 0,14, 0]} sprite transform occlude className="innerText bgWhite commentBox" distanceFactor={30} center>
+        <Html position={[ 0,16, 0]} sprite transform occlude className="innerText bgWhite commentBox" distanceFactor={32} center>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', p:1}}>
                 <Typography>どこに行く？</Typography>
             </Box>
@@ -32,23 +41,22 @@ export const GuideModal = ({guideNPC, setOpenModal, setSnackOpen, snackMessage})
                 sx={{
                 bgcolor: 'background.paper',
                 p: 2,
-                height: "10em",
+                height: "10.1em",
                 overflow: 'auto'
                 }}
             >
-                <ButtonGroup
-                orientation="vertical"
-                aria-label="vertical contained button group"
-                variant="text"
-            >
-                {bldgNames.map((value, key) => {
-                    return (
-                        <Button key={key} onClick={() => handleDest(value.name)}>{value.name}</Button>
-                    )
-                })}
-            </ButtonGroup>
+                <Stack spacing={0.15}>
+                    {bldgNames.slice((parseInt(page)-1)*4, ((parseInt(page)-1)*4+3)).map((value, key) => {
+                        return (
+                            <Button key={key} size="large" onClick={() => handleDest(value.name)}>{value.name}</Button>
+                        )
+                    })}
+                </Stack>
+                
             </Box>
-        
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', p:1}}>
+                <Pagination count={Math.round(bldgNames.length/4)+1} onChange={handlePage} />
+            </Box>
     </Html>
     
     </>

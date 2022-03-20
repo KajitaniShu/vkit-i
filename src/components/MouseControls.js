@@ -43,7 +43,7 @@ export const MouseControls = ({player}) => {
     return (
         <mesh {...bind()} rotation={[-Math.PI/2, 0, 0]}>
             <planeBufferGeometry  args={[1000,1000]}/>
-            <meshStandardMaterial transparent={false}/>
+            <meshBasicMaterial transparent={true} opacity={0} />
         </mesh>
     )
 }

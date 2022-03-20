@@ -167,7 +167,7 @@ export const GuideNPC = ({player, guideNPC, setSnackOpen, snackMessage}) => {
                     <meshStandardMaterial attach="material" map={texture} transparent={true}/>
                 </mesh >
                 {textBox !== "" ? <Comment comment={textBox} height={6}/> : ""}
-                <Html position={[0,2.5,0]} sprite transform occlude distanceFactor={15} center className="innerText bgGray" style={{width: countText("ガイドスライム")+2+'em'}} >
+                <Html position={[0,2.5,0]}  transform occlude distanceFactor={17} center className="innerText bgGray" style={{width: countText("ガイドスライム")+2+'em'}} >
                     <p>ガイドスライム</p>
                 </Html>
                 {openModal ? <GuideModal guideNPC={guideNPC} setOpenModal={setOpenModal} setSnackOpen={setSnackOpen} snackMessage={snackMessage} /> : ""}
