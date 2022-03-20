@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className="body">
-      <div className="editArea">
+      <div className="editArea" style = {{width:window.innerWidth, height:window.innerHeight}}>
       <DisplayArea/>
       </div>
     </div>

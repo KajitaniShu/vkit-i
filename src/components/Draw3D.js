@@ -156,7 +156,7 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
                     ref={canvas} 
                     dpr={[1, 2]} 
                     id="canvas"
-                    className="relative"  
+                    className="relative"
                     camera={{
                         position: [200, 100, 400],
                         fov: 30,

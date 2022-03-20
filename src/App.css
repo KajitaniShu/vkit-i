@@ -7,8 +7,6 @@
 body {
   font-family: 'Poppins', sans-serif;
   font-family: 'Roboto Condensed', sans-serif;
-  width: 100vw;
-  height: 100vh;
   background-color: white;
 }
 
@@ -17,10 +15,6 @@ canvas{
   overflow: hidden;
 }
 
-.editArea{
-  width: 100vw;
-  height: 100vh;
-}
 
 /*3D空間内のHTML要素*/
 .innerText{
