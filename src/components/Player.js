@@ -49,8 +49,8 @@ export const Player = ({player, isBound, isDebug}) => {
         // 「教室を探す」昨日が使われてなければカメラの位置と注視点を更新
         if(isBound==='none' && !isDebug){
             camera.position.x = pPos.current.position.x;
-            camera.position.y = pPos.current.position.y+50;
-            camera.position.z = pPos.current.position.z+100;
+            camera.position.y = pPos.current.position.y+70;
+            camera.position.z = pPos.current.position.z+130;
             camera.lookAt(player.current.pos.x, player.current.pos.y,  player.current.pos.z);
         }
         

@@ -53,7 +53,7 @@ export const Form = ({isBound, setIsBound, player, setSnackOpen, snackMessage}) 
                 justifyContent="flex-end"
                 alignItems="center"
                 
-                maxWidth="50%"
+                maxWidth="65%"
             >
                 <FormControl sx={{ m: 1 }} variant="standard">
                 <TextField
