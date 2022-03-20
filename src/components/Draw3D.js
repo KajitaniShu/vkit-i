@@ -186,6 +186,7 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
                     <MouseControls player={player}/>
                     <RoomDetail room={isBound} exp={"講義棟 1F"} setIsBound={setIsBound} player={player}/>
                     <Drei.ContactShadows position={[0, 0, 0]} opacity={0.2} width={1000} height={1000} blur={0.1} far={1} />
+                    <Drei.BakeShadows />
                 </Canvas>
             <Form 
                     isBound={isBound}
