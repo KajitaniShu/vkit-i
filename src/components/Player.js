@@ -24,7 +24,7 @@ export const Player = ({player, isBound, isDebug}) => {
     // プレイヤーのテクスチャを用意する
     const texture = new THREE.TextureLoader().load('./images/player1.png');
     texture.wrapS  = THREE.RepeatWrapping;
-    texture.repeat.set(0.33,0.25);
+    texture.repeat.set(0.33,0.24);
     texture.offset.x = 0.33;
 
     useFrame(({camera}) => {
@@ -35,10 +35,10 @@ export const Player = ({player, isBound, isDebug}) => {
 
         // プレイヤーの位置を更新
         if(player.current.controllable){
-            if(player.current.forward) { player.current.pos.z -= deltaTime*speed; player.current.angle = 270}
-            if(player.current.back)    { player.current.pos.z += deltaTime*speed; player.current.angle =   0}
-            if(player.current.left)    { player.current.pos.x -= deltaTime*speed; player.current.angle =  90}
-            if(player.current.right)   { player.current.pos.x += deltaTime*speed; player.current.angle = 180}
+            if(player.current.forward && player.current.pos.z >= -270) { player.current.pos.z -= deltaTime*speed; player.current.angle = 270}
+            if(player.current.back    && player.current.pos.z <=  200) { player.current.pos.z += deltaTime*speed; player.current.angle =   0}
+            if(player.current.left    && player.current.pos.x >= -200) { player.current.pos.x -= deltaTime*speed; player.current.angle =  90}
+            if(player.current.right   && player.current.pos.x <=  200) { player.current.pos.x += deltaTime*speed; player.current.angle = 180}
         }
 
         // 3Ｄ空間内のプレイヤーの位置を更新

@@ -28,25 +28,24 @@ export const GuideModal = ({guideNPC, setOpenModal, setSnackOpen, snackMessage})
 
     function handlePage(event, value){
         setPage(value);
-        console.log((parseInt(value)-1)*4 + " ～ " + ((parseInt(value)-1)*4+3));
     }
 
     return (
         <>
-        <Html position={[ 0,16, 0]} sprite transform occlude className="innerText bgWhite commentBox" distanceFactor={32} center>
+        <Html position={[ 0,18, 0]} sprite transform occlude className="innerText bgWhite commentBox" distanceFactor={32} center>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', p:1}}>
                 <Typography>どこに行く？</Typography>
             </Box>
             <Box
                 sx={{
                 bgcolor: 'background.paper',
-                p: 2,
-                height: "10.1em",
+                p: 1,
+                height: "12em",
                 overflow: 'auto'
                 }}
             >
-                <Stack spacing={0.15}>
-                    {bldgNames.slice((parseInt(page)-1)*4, ((parseInt(page)-1)*4+3)).map((value, key) => {
+                <Stack spacing={0}>
+                    {bldgNames.slice((parseInt(page)-1)*4, ((parseInt(page)-1)*4+4)).map((value, key) => {
                         return (
                             <Button key={key} size="large" onClick={() => handleDest(value.name)}>{value.name}</Button>
                         )
@@ -54,7 +53,7 @@ export const GuideModal = ({guideNPC, setOpenModal, setSnackOpen, snackMessage})
                 </Stack>
                 
             </Box>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', p:1}}>
+            <Box sx={{ pb:1}}>
                 <Pagination count={Math.round(bldgNames.length/4)+1} onChange={handlePage} />
             </Box>
     </Html>

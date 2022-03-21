@@ -44,7 +44,7 @@ canvas{
 .commentBox {
 	position: relative;
 	background: #ffffff;
-	border: 1px solid #212121;
+	border: 1.5px solid #212121;
 }
 .commentBox:after, .commentBox:before {
 	top: 100%;
@@ -60,12 +60,12 @@ canvas{
 .commentBox:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-top-color: #ffffff;
-	border-width: 3px;
-	margin-left: -3px;
+	border-width: 5px;
+	margin-left: -5px;
 }
 .commentBox:before {
 	border-color: rgba(33, 33, 33, 0);
 	border-top-color: #212121;
-	border-width: 4px;
-	margin-left: -4px;
+	border-width: 6px;
+	margin-left: -6px;
 }

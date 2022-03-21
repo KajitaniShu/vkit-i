@@ -13,6 +13,8 @@ import {GuideModal} from './GuideModal';
 import {RoomDetail} from './RoomDetail';
 import {Bounds, useBounds} from "@react-three/drei";
 import { Form } from './Form';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { Snack } from './Snack';
 import { MouseControls } from './MouseControls';
 
@@ -135,7 +137,7 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
     // マウスをドラッグしたとき
     function mouseMove(event){
 
-        console.log("drag : " + event.screenX, event.screenY);
+        
         //if(this.controls.enableRotate) return;
         //if(this.mouseFlag) this.player.touchMove(event.clientX, event.clientY);
     }
@@ -150,7 +152,12 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
     
     return (
         <React.Suspense centered fallback={
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}><CircularProgress /></Box>
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}>
+                <Stack spacing={2} sx={{alignItems: 'center'}}>
+                    <CircularProgress />
+                    <Typography variant="subtitle1">Loading...</Typography>
+                </Stack>
+            </Box>
         }>
                 <Canvas  
                     ref={canvas} 

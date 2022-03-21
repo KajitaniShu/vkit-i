@@ -46,8 +46,8 @@ export const Model3D = ({isBound}) => {
     const swimming_pool         = useRef();
     const workshop              = useRef();
     
-    if(activity.current !== undefined && isBound === 'activity') {bound.refresh(activity.current).fit(); console.log(isBound); }
-    if(activity.current !== undefined && isBound === 'lecture') {bound.refresh(lecture.current).fit(); console.log(isBound); }
+    if(activity.current !== undefined && isBound === 'activity') {bound.refresh(activity.current).fit();  }
+    if(activity.current !== undefined && isBound === 'lecture') {bound.refresh(lecture.current).fit();  }
 
     return (
         <Bounds>
