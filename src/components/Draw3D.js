@@ -155,7 +155,6 @@ export const Draw3D = ({player, guideNPC, isMain, isBound, setIsBound}) => {
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', pt:'47vh'}}>
                 <Stack spacing={2} sx={{alignItems: 'center'}}>
                     <CircularProgress />
-                    <Typography variant="subtitle1">Loading...</Typography>
                 </Stack>
             </Box>
         }>
