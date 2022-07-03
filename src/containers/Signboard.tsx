@@ -24,7 +24,7 @@ const bldgCenterPos = [
     {name: '総合研究棟',                    pos: new Vector3(-6.1,  3.5,  0.8)},
     {name: 'マイクロ化総合技術センター',    pos: new Vector3( 0.7,  1.4, -7)},
     {name: '課外活動共用施設',              pos: new Vector3( 10.3,  1.3, -9.3)},
-    {name: '体育館',                        pos: new Vector3( 10.4,  1.8, -17.3)},
+    {name: '体育館',                        pos: new Vector3( 10.4,  1.8, -17.5)},
     {name: 'ポルト棟',                      pos: new Vector3( 11.9,  1,  5)},
     {name: '共通教育研究棟',                pos: new Vector3( 2.7,  2.2,  5.8)},
     {name: '情報基盤センター',              pos: new Vector3(-2.2,   1.8,  3.8)},
