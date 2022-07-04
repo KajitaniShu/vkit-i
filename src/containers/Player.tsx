@@ -20,12 +20,13 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   box.current.position.set(player.current.position.x, player.current.position.y, player.current.position.z);
   const { camera } = useThree();
   const orbitControls = useRef(null);
-  if(orbitControls.current != null) orbitControls.current.object.position.set(player.current.position.x+10, player.current.position.y+8, player.current.position.z+5);
-
+  camera.position.set(player.current.position.x+10, player.current.position.y+8, player.current.position.z+5);
+  
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
   var _pos = new Vector3();
   const bind = useDrag(
     ({event}) => {
+      // @ts-ignore
       event.ray.intersectPlane(plane, _pos);
       if(box.current!= null) {
         box.current.position.x = _pos.x;
@@ -41,7 +42,9 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     player.current.position.x += speed * Math.cos(theta);
     player.current.position.z += speed * Math.sin(theta);
     player.current.rotation.y = -theta+Math.PI/2;
+    // @ts-ignore
     orbitControls.current.object.position.x += speed * Math.cos(theta);
+    // @ts-ignore
     orbitControls.current.object.position.z += speed * Math.sin(theta);
   }
 
@@ -69,8 +72,9 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       if(actions.Run?.isRunning)  {actions.Run?.fadeOut; actions.Run?.reset();}
       actions.Idle?.play();
     }
-    
+    // @ts-ignore
     orbitControls.current.target = new Vector3(player.current.position.x, player.current.position.y+1, player.current.position.z);
+    // @ts-ignore
     orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
     
   });
@@ -88,12 +92,15 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     />
       <Model 
         gltf={gltf}
+        // @ts-ignore
         ref={player}
       />
+      {/*  @ts-ignore */}
       <mesh ref={box}  position={[0, 0.25, 0]}>
         <cylinderGeometry args={[0.04, 0.04,0.03]} />
         <meshStandardMaterial transparent={true} opacity={0.0} />
       </mesh>
+      {/*  @ts-ignore */}
       <mesh rotation-x={Math.PI * -0.5} {...bind()}>
         <planeBufferGeometry args={[1000, 1000]} />
         <meshStandardMaterial transparent={true} opacity={0.0} />
