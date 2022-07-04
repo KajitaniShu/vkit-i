@@ -1,0 +1,10 @@
+{
+  "player": {
+    "model_path": "/knight.glb"
+  },
+  "posters": [
+    {
+      "model_path": "/kyutech_map.glb"
+    }
+  ]
+}

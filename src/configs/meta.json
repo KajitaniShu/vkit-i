@@ -1,0 +1,12 @@
+{
+  "detail": {
+    "title": "GYMLABO",
+    "description": "GYMLABOの３Ｄマップ",
+    "url": "http://localhost:3000/"
+  },
+  "path": {
+    "icon": "/gymlab.jpg",
+    "favicon": "/favicon.ico",
+    "thumbnail": "/test.png"
+  }
+}
