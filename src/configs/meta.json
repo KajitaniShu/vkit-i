@@ -1,7 +1,7 @@
 {
   "detail": {
-    "title": "GYMLABO",
-    "description": "GYMLABOの３Ｄマップ",
+    "title": "バーチャル九工大情報工学部",
+    "description": "九州工業大学 情報工学部のバーチャルキャンパスです．",
     "url": "http://localhost:3000"
   },
   "path": {
