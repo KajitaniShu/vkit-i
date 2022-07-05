@@ -1,4 +1,4 @@
-import { useRef, FC, useEffect, initializeTouchEvents } from 'react'
+import { useRef, FC, useEffect } from 'react'
 import { useFrame, useThree} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations  } from '@react-three/drei'
 import { Vector3, Plane} from 'three';
