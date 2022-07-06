@@ -6,5 +6,8 @@
     {
       "model_path": "/kyutech_map.glb"
     }
-  ]
+  ],
+  "board": {
+      "model_path": "/board.glb"
+  }
 }

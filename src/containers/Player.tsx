@@ -59,7 +59,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   }
 
   // delta をかけることによって速度がデバイスの処理速度に依存しない
-  useFrame((_, delta) => {
+  useFrame((event, delta) => {
     if(Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();
@@ -67,7 +67,6 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       if(theta != undefined) move(delta*speed, theta);
       if(actions.Idle?.isRunning) {actions.Idle?.fadeOut; actions.Idle?.reset();}
       actions.Run?.play();
-      console.log(player.current.position);
     }else{
       if(actions.Run?.isRunning)  {actions.Run?.fadeOut; actions.Run?.reset();}
       actions.Idle?.play();

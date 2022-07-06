@@ -18,7 +18,7 @@ const DrawCanvas: FC = ({ children }) => {
         }}
         camera={{ 
           position: [0, 20,0],
-          fov: 30,
+          fov: 45,
         }}
       >
         <ambientLight intensity={0.5}/>
