@@ -26,6 +26,7 @@ const Youtube = ({ modelPath}) => {
         <>
         <mesh scale={[0.19, 0.19, 0.19]} position={[2, 0, 0.5]}>
             <primitive
+            // @ts-ignore
             object={gltf.scene}
             />
         </mesh>
