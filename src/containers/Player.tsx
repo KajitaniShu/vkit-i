@@ -6,8 +6,18 @@ import { useDrag } from "@use-gesture/react";
 import Model from '@/components/molecules/Model';
 import PlayerProps from '@/types/interfaces/Player'
 
+
 const Player: FC<PlayerProps> = ({ modelPath }) => {
-  const gltf = useGLTF(modelPath)
+  const twoFing = useRef(false);
+  window.addEventListener('touchstart', function(e) {
+    if (e.targetTouches.length > 1) twoFing.current = true;
+  }, false);
+
+  window.addEventListener('touchend', function(e) {
+    twoFing.current = false;
+  }, false);
+
+  const gltf = useGLTF(modelPath);
   const scene = gltf.scene;
   const animations = gltf.animations;
   const { actions } = useAnimations(animations, scene);
@@ -26,9 +36,16 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   var _pos = new Vector3();
   const bind = useDrag(
     ({event}) => {
+
+      // 二本指になったら目的地をリセットし，立ち止まる
+      if(twoFing.current){  
+        box.current.position.x = player.current.position.x;
+        box.current.position.z = player.current.position.z;
+      }
+
       // @ts-ignore
-      event.ray.intersectPlane(plane, _pos);
-      if(box.current!= null) {
+      if(!twoFing.current) event.ray.intersectPlane(plane, _pos);
+      if(box.current!= null && !twoFing.current) {
         box.current.position.x = _pos.x;
         box.current.position.y = 0.1;
         box.current.position.z = _pos.z;
@@ -36,9 +53,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     }
   );
 
-  
-
   const move = (speed: number, theta: number) => {
+    if(twoFing.current) return;
     player.current.position.x += speed * Math.cos(theta);
     player.current.position.z += speed * Math.sin(theta);
     player.current.rotation.y = -theta+Math.PI/2;
@@ -59,8 +75,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   }
 
   // delta をかけることによって速度がデバイスの処理速度に依存しない
-  useFrame((event, delta) => {
-    if(Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
+  useFrame((_, delta) => {
+    if(!twoFing.current && Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();
       if(speed > 3.0) speed = 3.0;
@@ -75,7 +91,6 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     orbitControls.current.target = new Vector3(player.current.position.x, player.current.position.y+1, player.current.position.z);
     // @ts-ignore
     orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
-    
   });
   
   return (
@@ -86,7 +101,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       enablePan={false}
       dampingFactor={0.008}
       minDistance={4}
-      maxDistance={15}
+      maxDistance={18}
       rotateSpeed={0.4}
     />
       <Model 
