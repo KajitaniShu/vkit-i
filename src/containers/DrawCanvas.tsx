@@ -9,7 +9,6 @@ const DrawCanvas: FC = ({ children }) => {
   return (
     <>
       <Canvas
-        dpr={[1, 2]}
         style={{
           position: 'absolute',
           top: 0,

@@ -1,11 +1,11 @@
 import { useRef, FC, useEffect } from 'react'
-import { useFrame, useThree} from '@react-three/fiber';
+import { ThreeEvent, useFrame, useThree} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations  } from '@react-three/drei'
 import { Vector3, Plane} from 'three';
 import { useDrag } from "@use-gesture/react";
 import Model from '@/components/molecules/Model';
 import PlayerProps from '@/types/interfaces/Player'
-
+import { OrbitControls as OrbitControlsImpl } from "three-stdlib"; 
 
 const Player: FC<PlayerProps> = ({ modelPath }) => {
   const twoFing = useRef(false);
@@ -28,13 +28,15 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   player.current.rotation.set(0, Math.PI, 0);
   const box = useRef({position: new Vector3(0.0, 0.0, 0.0)});
   box.current.position.set(player.current.position.x, player.current.position.y, player.current.position.z);
-  const { camera } = useThree();
-  const orbitControls = useRef(null);
-  camera.position.set(player.current.position.x+10, player.current.position.y+8, player.current.position.z+5);
-  
+  const { camera, gl } = useThree();
+  const orbitControls = useRef<OrbitControlsImpl>(null!);
+
+  camera.position.set(2, 10, 20); 
+  // @ts-ignore
+  camera.aspect = document.body.clientWidth / document.body.clientHeight;
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
   var _pos = new Vector3();
-  const bind = useDrag(
+  const bind = useDrag<ThreeEvent<MouseEvent>>(
     ({event}) => {
 
       // 二本指になったら目的地をリセットし，立ち止まる
@@ -58,9 +60,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     player.current.position.x += speed * Math.cos(theta);
     player.current.position.z += speed * Math.sin(theta);
     player.current.rotation.y = -theta+Math.PI/2;
-    // @ts-ignore
     orbitControls.current.object.position.x += speed * Math.cos(theta);
-    // @ts-ignore
     orbitControls.current.object.position.z += speed * Math.sin(theta);
   }
 
@@ -87,10 +87,9 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       if(actions.Run?.isRunning)  {actions.Run?.fadeOut; actions.Run?.reset();}
       actions.Idle?.play();
     }
-    // @ts-ignore
     orbitControls.current.target = new Vector3(player.current.position.x, player.current.position.y+1, player.current.position.z);
-    // @ts-ignore
     orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
+    orbitControls.current.setPolarAngle(1);
   });
   
   return (
@@ -114,8 +113,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
         <cylinderGeometry args={[0.04, 0.04,0.03]} />
         <meshStandardMaterial transparent={true} opacity={0.0} />
       </mesh>
-      {/*  @ts-ignore */}
-      <mesh rotation-x={Math.PI * -0.5} {...bind()}>
+
+      <mesh rotation-x={Math.PI * -0.5} {...bind() as any}>
         <planeBufferGeometry args={[1000, 1000]} />
         <meshStandardMaterial transparent={true} opacity={0.0} />
       </mesh>
