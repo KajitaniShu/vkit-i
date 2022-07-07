@@ -18,9 +18,7 @@ const IndexPage: NextPage = () => (
       />
       <Signboards/>
 
-      <Youtube
-        modelPath={path.board.model_path}
-      />
+      <Youtube />
     </DrawCanvas>
   </>
 )
