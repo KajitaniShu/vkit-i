@@ -105,14 +105,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     />
       <Model 
         gltf={gltf}
-        // @ts-ignore
         ref={player}
       />
-      {/*  @ts-ignore */}
-      <mesh ref={box}  position={[0, 0.25, 0]}>
-        <cylinderGeometry args={[0.04, 0.04,0.03]} />
-        <meshStandardMaterial transparent={true} opacity={0.0} />
-      </mesh>
 
       <mesh rotation-x={Math.PI * -0.5} {...bind() as any}>
         <planeBufferGeometry args={[1000, 1000]} />
