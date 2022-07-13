@@ -11,22 +11,19 @@ import { Vector3 } from 'three'
 const IndexPage: NextPage = () => (
   <>
     <DrawCanvas>
-      <Poster
-        modelPath={path.posters[0].model_path}
-        position={new Vector3(path.posters[0].position[0], path.posters[0].position[1], path.posters[0].position[2])}
-        modal_header={path.posters[0].modal_header}
-        modal_image={path.posters[0].modal_image}
-        modal_message={path.posters[0].modal_message}
-        modal_url={path.posters[0].modal_url}
-      />
-      <Poster
-        modelPath={path.posters[1].model_path}
-        position={new Vector3(path.posters[1].position[0], path.posters[1].position[1], path.posters[1].position[2])}
-        modal_header={path.posters[0].modal_header}
-        modal_image={path.posters[0].modal_image}
-        modal_message={path.posters[0].modal_message}
-        modal_url={path.posters[0].modal_url}
-      />
+      {path.posters.map((value, key) => {
+        return (
+          <Poster
+            modelPath={value.model_path}
+            position={new Vector3(value.position[0], value.position[1], value.position[2])}
+            modal_header={value.modal_header}
+            modal_image={value.modal_image}
+            modal_message={value.modal_message}
+            modal_url={value.modal_url}
+          />
+        );
+      })}
+
       <Scene
         modelPath={path.scene[0].model_path}
       />

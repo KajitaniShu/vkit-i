@@ -6,18 +6,66 @@
     {
       "model_path": "/orange_man.glb",
       "position": [0.0,0.0,11.0],
-      "modal_header": "バーチャル九工大キャンパス!!!",
+      "modal_header": "ようこそ！",
       "modal_image": "/test.png",
-      "modal_message": "バーチャル九工大キャンパスへようこそ！",
-      "modal_url": "https://vkit-i.vercel.app/"
+      "modal_message": "バーチャル飯塚キャンパスへようこそ！オープンキャンパス2022の特設サイトは以下のボタンから移動できます。",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
       "model_path": "/orange_man2.glb",
-      "position": [10.0,0.0,1.0],
-      "modal_header": "バーチャル九工大キャンパス",
-      "modal_image": "/logo192.png",
-      "modal_message": "バーチャル九工大キャンパスへようこそ！", 
-      "modal_url": "https://vkit-i.vercel.app/"
+      "position": [0.0,0.0,-10.0],
+      "modal_header": "マイクロ科総合技術センター",
+      "modal_image": "/cms.png",
+      "modal_message": "マイクロ化総合技術センタ－は、半導体素子と微細加工デバイスの両方を開発可能な施設で、設計から製造・評価まで、一貫した開発が可能な、国内の大学でも全く稀有な施設です。九州工業大学情報工学部（飯塚キャンパス）内に設立されて以来、すでに四半世紀となりましたが、学内外の関係者の方、地域の皆様方からの支えにより、これまで施設・設備を維持することができ、今に至っております。",
+      "modal_url": "https://www.cms.kyutech.ac.jp/"
+    },
+    {
+      "model_path": "/orange_man3.glb",
+      "position": [13,0.0,4.5],
+      "modal_header": "キャリア支援室（ポルト棟）",
+      "modal_image": "/porto.png",
+      "modal_message": "キャリア支援室では、正課の教育プログラムではカバーし難い、就職活動支援、キャリア形成教育、インターンシップ推進事業、進路・就職相談対応などの事業を学科横断的に推進していきます。",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/career"
+    },
+    {
+      "model_path": "/orange_man4.glb",
+      "position": [-2.0,0.0,0.0],
+      "modal_header": "情報基盤センター",
+      "modal_image": "/ISC.jpeg",
+      "modal_message": "情報基盤センターは，多くのコンピュータや各種機器を備え，学内のユーザに情報・ネットワークに関する分野，ICT（Information and Communication Technology）を利用した分野を学習・研究する場を提供しています．情報基盤センターが管理運用している講義室は以下の通りであり，充実したネットワーク，電源コンセント環境を整備しています．またVPN接続により，外部から遠隔で利用することもできます．",
+      "modal_url": "https://www.isc.kyutech.ac.jp/"
+    },
+    {
+      "model_path": "/orange_man5.glb",
+      "position": [-8.0,0.0,4.0],
+      "modal_header": "インキュベーション施設",
+      "modal_image": "/CCR.jpeg",
+      "modal_message": "インキュベーション施設は、研究成果を主体的に社会へと還元する企業活動を支援するために開設されました。ここでは通常の研究よりもその成果の産業化により近い段階の実用化研究が行われています。",
+      "modal_url": "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html"
+    },
+    {
+      "model_path": "/orange_man6.glb",
+      "position": [12.5,0.0,-4.0],
+      "modal_header": "ラーニングアゴラ棟",
+      "modal_image": "/agora.jpeg",
+      "modal_message": "アゴラ（広場、市場）でいろいろな店を出したり多彩なイベントを行うイメージで、グループワークや自習などの学習に加え、国際交流、学科、講演会、市民講座なども行えるような多目的空間として飯塚キャンパスに整備されました。施設内は、無線LANや音響設備も完備してあり、学生活動の拠点として活用されることが期待されています。", 
+      "modal_url": "https://www.gce.kyutech.ac.jp/campus/agora/"
+    },
+    {
+      "model_path": "/orange_man7.glb",
+      "position": [4.5,0.0,-4.5],
+      "modal_header": "福利棟",
+      "modal_image": "/test.png",
+      "modal_message": "飯塚キャンパスの福利棟には食堂に加えて、文具、書籍、旅行、サービスなどを取り扱ったショップがあります。",
+      "modal_url": "https://kyushu.seikyou.ne.jp/kyutech/"
+    },
+    {
+      "model_path": "/orange_man8.glb",
+      "position": [9.0,0.0,9.0],
+      "modal_header": "図書館",
+      "modal_image": "/test.png",
+      "modal_message": "図書館では、図書の閲覧・貸出に加えて、自習スペースやラーニングコモンズでの学習、個別ブースや40インチ大型TV（同時視聴3人まで）での映画鑑賞（BS/ブルーレイディスク利用可能）などが行えます。",
+      "modal_url": "https://www.lib.kyutech.ac.jp/library/"
     }
   ],
   "scene": [
