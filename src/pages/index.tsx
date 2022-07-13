@@ -13,7 +13,19 @@ const IndexPage: NextPage = () => (
     <DrawCanvas>
       <Poster
         modelPath={path.posters[0].model_path}
-        position={new Vector3(1.0, 0.0, 1.0)}
+        position={new Vector3(path.posters[0].position[0], path.posters[0].position[1], path.posters[0].position[2])}
+        modal_header={path.posters[0].modal_header}
+        modal_image={path.posters[0].modal_image}
+        modal_message={path.posters[0].modal_message}
+        modal_url={path.posters[0].modal_url}
+      />
+      <Poster
+        modelPath={path.posters[1].model_path}
+        position={new Vector3(path.posters[1].position[0], path.posters[1].position[1], path.posters[1].position[2])}
+        modal_header={path.posters[0].modal_header}
+        modal_image={path.posters[0].modal_image}
+        modal_message={path.posters[0].modal_message}
+        modal_url={path.posters[0].modal_url}
       />
       <Scene
         modelPath={path.scene[0].model_path}

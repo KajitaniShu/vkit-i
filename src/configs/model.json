@@ -4,7 +4,20 @@
   },
   "posters": [
     {
-      "model_path": "/orange_man.glb"
+      "model_path": "/orange_man.glb",
+      "position": [0.0,0.0,11.0],
+      "modal_header": "バーチャル九工大キャンパス!!!",
+      "modal_image": "/test.png",
+      "modal_message": "バーチャル九工大キャンパスへようこそ！",
+      "modal_url": "https://vkit-i.vercel.app/"
+    },
+    {
+      "model_path": "/orange_man2.glb",
+      "position": [10.0,0.0,1.0],
+      "modal_header": "バーチャル九工大キャンパス",
+      "modal_image": "/logo192.png",
+      "modal_message": "バーチャル九工大キャンパスへようこそ！", 
+      "modal_url": "https://vkit-i.vercel.app/"
     }
   ],
   "scene": [
