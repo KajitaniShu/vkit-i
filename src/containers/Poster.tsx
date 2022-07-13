@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useDisclosure } from '@chakra-ui/react'
 import PosterProps from '@/types/interfaces/Poster'
-import OnClickModel from '@/components/molecules/OnClickModel'
+import PosterModel from '@/components/molecules/PosterModel'
 import PosterModal from '@/components/organisms/PosterModal'
 import ChakraWrapper from '@/components/atoms/ChakraWrapper'
 
@@ -12,7 +12,7 @@ const Poster: FC<PosterProps> = ({ modelPath }) => {
 
   return (
     <>
-      <OnClickModel 
+      <PosterModel 
         onClick={onOpen}
         gltf={gltf}
       />

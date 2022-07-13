@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { forwardRef } from '@chakra-ui/react'
-import ModelProps from '@/types/interfaces/Model'
+import PlayerModelProps from '@/types/interfaces/PlayerModel'
 
-const Model: FC<ModelProps> = forwardRef(({ gltf }, ref) => (
+const PlayerModel: FC<PlayerModelProps> = forwardRef(({ gltf }, ref) => (
   <mesh scale={[0.3, 0.3, 0.3]} ref={ref} rotation={[0, Math.PI, 0]}>
     <primitive
       object={gltf.scene}
@@ -10,4 +10,4 @@ const Model: FC<ModelProps> = forwardRef(({ gltf }, ref) => (
   </mesh>
 ))
 
-export default Model
+export default PlayerModel

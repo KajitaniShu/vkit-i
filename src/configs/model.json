@@ -4,6 +4,11 @@
   },
   "posters": [
     {
+      "model_path": "/orange_man.glb"
+    }
+  ],
+  "scene": [
+    {
       "model_path": "/kyutech_map.glb"
     }
   ],

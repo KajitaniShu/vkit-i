@@ -17,7 +17,7 @@ const PosterModal: FC<PosterModalProps> = ({ isOpen, onClose }) => (
   <>
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent style={{zIndex:10000}}>
         <ModalHeader>GYMLABO</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
