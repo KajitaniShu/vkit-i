@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import PosterModelProps from '@/types/interfaces/PosterModel'
 
-const PosterModel: FC<PosterModelProps> = ({ onClick, gltf }) => (
+const PosterModel: FC<PosterModelProps> = ({ onClick, gltf, position }) => (
   <mesh onClick={onClick}>
     <primitive
       object={gltf.scene}
-      position={[1, 0, 1]}
+      position={position}
       scale={[1, 1, 1]}
     />
   </mesh>

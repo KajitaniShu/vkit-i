@@ -6,7 +6,7 @@ import PosterModel from '@/components/molecules/PosterModel'
 import PosterModal from '@/components/organisms/PosterModal'
 import ChakraWrapper from '@/components/atoms/ChakraWrapper'
 
-const Poster: FC<PosterProps> = ({ modelPath }) => {
+const Poster: FC<PosterProps> = ({ modelPath, position }) => {
   const gltf = useGLTF(modelPath)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -15,6 +15,7 @@ const Poster: FC<PosterProps> = ({ modelPath }) => {
       <PosterModel 
         onClick={onOpen}
         gltf={gltf}
+        position={position}
       />
       <ChakraWrapper>
         <PosterModal
