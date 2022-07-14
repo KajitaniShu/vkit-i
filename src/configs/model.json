@@ -12,6 +12,14 @@
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
+      "model_path": "/knight2.glb",
+      "position": [1.0,0.0,1.0],
+      "modal_header": "学科・研究室紹介",
+      "modal_image": "/test.png",
+      "modal_message": "各学科と各研究室の研究内容を動画で見ることができます。",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab"
+    },
+    {
       "model_path": "/orange_man2.glb",
       "position": [0.0,0.0,-10.0],
       "modal_header": "マイクロ科総合技術センター",
