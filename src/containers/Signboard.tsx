@@ -1,19 +1,6 @@
 import React from 'react'
 import { Html } from "@react-three/drei"
 import { Vector3 } from 'three';
-import ChakraWrapper from '@/components/atoms/ChakraWrapper'
-import {
-    HStack,
-    Tag,
-    TagLabel,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-  } from '@chakra-ui/react'
 
 const bldgCenterPos = [
     // 各施設のマップ上での位置
@@ -33,13 +20,9 @@ const bldgCenterPos = [
     {name: '福利棟',                    pos: new Vector3(  6.4, 1.2, -4.2)},
     {name: '実習棟',                    pos: new Vector3( -2.6, 1.0, -7.0)},
     {name: 'MILAiS',                   pos: new Vector3(11.95, 0.7, 2.3)},
-    {name: 'スチューデント・レジデンス',    pos: new Vector3( -8.9, 2.0, -20.8)},
-    {name: 'tap me!',                  pos: new Vector3(  0.0,  0.1, 11.5)}
-    
+    {name: 'スチューデント・レジデンス',    pos: new Vector3( -8.9, 2.0, -20.8)}
 ]
 
-
-// 文字数をカウント (半角に対応)
 function countText(text: String){
     var length = 0.0;
     for(var i=0; i < text.length; i++) {
@@ -50,18 +33,26 @@ function countText(text: String){
 
 const Signboards = () => {
     return (
-            <>
-        {bldgCenterPos.map((value, key) => {
-            return (
-                <Html zIndexRange={[40, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{width: countText(value.name)+2+'em'}} >
-                        <div style={{backgroundColor:"#343434", textAlign: "center", padding: "0.1em", borderRadius:"5px", userSelect: "none"}}>
-                            <p style={{color:"white"}}> {value.name} </p>
+        <>
+            {bldgCenterPos.map((value, key) => {
+                return (
+                    <Html sprite={true} zIndexRange={[40, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
+                        <div style={{ backgroundColor: "#343434", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
+                            <p style={{ color: "white" }}> {value.name} </p>
                         </div>
-                </Html>
-            );
-        })}
+                    </Html>
+                );
+            })}
         </>
     );
 }
-
+            {bldgCenterPos.map((value, key) => {
+                return (
+                    <Html zIndexRange={[40, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
+                        <div style={{ backgroundColor: "#343434", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
+                            <p style={{ color: "white" }}> {value.name} </p>
+                        </div>
+                    </Html>
+                );
+            })}
 export default Signboards

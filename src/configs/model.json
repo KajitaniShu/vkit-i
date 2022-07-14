@@ -6,9 +6,25 @@
     {
       "model_path": "/orange_man.glb",
       "position": [0.0,0.0,11.0],
-      "modal_header": "バーチャル飯塚キャンパスへようこそ！",
+      "modal_header": "tap me!",
       "modal_image": "/test.png",
-      "modal_message": "画面をタップすると、その方向にカメラが向いてアバターが移動します。マップ上のキャラクターをタップすると隣の施設について教えてくれます。青いボタンから関連サイトへ移動できます(新しいタブが開きます)。",
+      "modal_message": "マップ上のおじさんをタップすると施設を紹介してくれます。「webサイトを開く」を押すと関連サイトへ移動します(新しいタブが開きます)。",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
+    },
+    {
+      "model_path": "/knight3.glb",
+      "position": [-1.5,0.0,11.0],
+      "modal_header": "操作方法",
+      "modal_image": "/test.png",
+      "modal_message": "画面をタップすると、その方向にカメラが向いてキャラクターが移動します。",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
+    },
+    {
+      "model_path": "/knight4.glb",
+      "position": [4.5,0.0,-14],
+      "modal_header": "製作者",
+      "modal_image": "/test.png",
+      "modal_message": "このバーチャル飯塚キャンパスは本学物理情報工学科の学生が作成しました。",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
@@ -21,7 +37,7 @@
     },
     {
       "model_path": "/orange_man2.glb",
-      "position": [0.0,0.0,-10.0],
+      "position": [0.0,0.0,-9.0],
       "modal_header": "マイクロ科総合技術センター",
       "modal_image": "/cms.png",
       "modal_message": "マイクロ化総合技術センタ－は、半導体素子と微細加工デバイスの両方を開発可能な施設で、設計から製造・評価まで、一貫した開発が可能な、国内の大学でも全く稀有な施設です。九州工業大学情報工学部（飯塚キャンパス）内に設立されて以来、すでに四半世紀となりましたが、学内外の関係者の方、地域の皆様方からの支えにより、これまで施設・設備を維持することができ、今に至っております。",
