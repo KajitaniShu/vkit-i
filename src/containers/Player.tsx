@@ -1,14 +1,16 @@
-import { useRef, FC, useEffect } from 'react'
+import { useRef, FC } from 'react'
 import { ThreeEvent, useFrame, useThree} from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations  } from '@react-three/drei'
+import { OrbitControls, useGLTF, useAnimations, Html  } from '@react-three/drei'
 import { Vector3, Plane} from 'three';
 import { useDrag } from "@use-gesture/react";
-import Model from '@/components/molecules/Model';
+import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib"; 
 
 const Player: FC<PlayerProps> = ({ modelPath }) => {
   const twoFing = useRef(false);
+
+
   window.addEventListener('touchstart', function(e) {
     if (e.targetTouches.length > 1) twoFing.current = true;
   }, false);
@@ -91,6 +93,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
     orbitControls.current.setPolarAngle(1);
   });
+
+
   
   return (
     <>
@@ -103,16 +107,10 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       maxDistance={18}
       rotateSpeed={0.4}
     />
-      <Model 
+      <PlayerModel 
         gltf={gltf}
-        // @ts-ignore
         ref={player}
       />
-      {/*  @ts-ignore */}
-      <mesh ref={box}  position={[0, 0.25, 0]}>
-        <cylinderGeometry args={[0.04, 0.04,0.03]} />
-        <meshStandardMaterial transparent={true} opacity={0.0} />
-      </mesh>
 
       <mesh rotation-x={Math.PI * -0.5} {...bind() as any}>
         <planeBufferGeometry args={[1000, 1000]} />

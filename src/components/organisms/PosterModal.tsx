@@ -13,21 +13,22 @@ import {
 } from '@chakra-ui/react'
 import PosterModalProps from '@/types/interfaces/PosterModal'
 
-const PosterModal: FC<PosterModalProps> = ({ isOpen, onClose }) => (
+const PosterModal: FC<PosterModalProps> = ({ isOpen, onClose , modal_header, modal_image, modal_message, modal_url}) => (
   <>
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>GYMLABO</ModalHeader>
+      <ModalContent style={{zIndex:1000}}>
+        <ModalHeader>{modal_header}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Box boxSize='sm'>
-            <Image src='/gymlab.jpg' />
+            <Image src={modal_image} />
+            <p>{modal_message}</p>
           </Box>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme='blue' mr={3} onClick={onClose}>
-            閉じる
+          <Button as={"a"} href={modal_url} target={'_blank'} colorScheme='blue' mr={3} onClick={onClose}>
+            webサイトを開く
           </Button>
         </ModalFooter>
       </ModalContent>

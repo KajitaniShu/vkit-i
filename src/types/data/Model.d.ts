@@ -1,4 +1,4 @@
-import Model from '@/types/interfaces/Model'
+import Model from '@/types/interfaces/PlayerModel'
 
 declare module '*/model.json' {
     const value: ModelProps

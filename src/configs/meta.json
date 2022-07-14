@@ -5,7 +5,7 @@
     "url": "http://localhost:3000"
   },
   "path": {
-    "icon": "/gymlab.jpg",
+    "icon": "/test.png",
     "favicon": "/favicon.ico",
     "thumbnail": "/test.png"
   }

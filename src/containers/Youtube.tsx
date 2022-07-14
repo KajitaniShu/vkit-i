@@ -25,8 +25,8 @@ const Youtube = () => {
 
     return (
         <>
-            <Html position={[1.8, 2, 10.27]} transform occlude distanceFactor={1.4} center={true} >
-                <YouTube  opts={opts} onReady={onPlayerReady} />
+            <Html zIndexRange={[100, 50]} position={[1.8, 2, 10.27]} transform occlude distanceFactor={1.4} center={true} >
+                <YouTube  opts={opts} onReady={onPlayerReady} style={{zIndex:0}}/>
             </Html>
         </>
     );
