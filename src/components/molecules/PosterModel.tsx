@@ -6,7 +6,7 @@ const PosterModel: FC<PosterModelProps> = ({ onClick, gltf, position }) => (
     <primitive
       object={gltf.scene}
       position={position}
-      scale={[1, 1, 1]}
+      scale={[0.5, 0.5, 0.5]}
     />
   </mesh>
 )
