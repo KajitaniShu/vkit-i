@@ -6,9 +6,9 @@
     {
       "model_path": "/orange_man.glb",
       "position": [0.0,0.0,11.0],
-      "modal_header": "ようこそ！",
+      "modal_header": "バーチャル飯塚キャンパスへようこそ！",
       "modal_image": "/test.png",
-      "modal_message": "バーチャル飯塚キャンパスへようこそ！オープンキャンパス2022の特設サイトは以下のボタンから移動できます。",
+      "modal_message": "画面をタップすると、その方向にカメラが向いてアバターが移動します。マップ上のキャラクターをタップすると隣の施設について教えてくれます。青いボタンから関連サイトへ移動できます(新しいタブが開きます)。",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
@@ -16,7 +16,7 @@
       "position": [1.0,0.0,1.0],
       "modal_header": "学科・研究室紹介",
       "modal_image": "/test.png",
-      "modal_message": "各学科と各研究室の研究内容を動画で見ることができます。",
+      "modal_message": "各学科と研究室についての紹介動画を見ることができます。",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab"
     },
     {

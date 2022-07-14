@@ -1,6 +1,6 @@
 import { useRef, FC } from 'react'
 import { ThreeEvent, useFrame, useThree} from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations, Html  } from '@react-three/drei'
+import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei'
 import { Vector3, Plane} from 'three';
 import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
@@ -26,7 +26,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   
   
   const player = useRef({position: new Vector3(0.0, 0.0, 0.0), rotation: new Vector3(0.0, 0.0, 0.0)});
-  player.current.position.set(2, 0, 14);
+  player.current.position.set(0, 0, 14);
   player.current.rotation.set(0, Math.PI, 0);
   const box = useRef({position: new Vector3(0.0, 0.0, 0.0)});
   box.current.position.set(player.current.position.x, player.current.position.y, player.current.position.z);
