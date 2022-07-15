@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import PosterModelProps from '@/types/interfaces/PosterModel'
+import NeighborModal from '@/types/interfaces/NeighborModal'
 
-const PosterModel: FC<PosterModelProps> = ({ onClick, gltf, position }) => (
-  <mesh onClick={onClick}>
+const PosterModel: FC<NeighborModal> = ({ ref, gltf, position }) => (
+  <mesh>
     <primitive
       object={gltf.scene}
       position={position}

@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import PosterModelProps from '@/types/interfaces/PosterModel'
+import YoutubeModelProps from '@/types/interfaces/YoutubeModel'
 
-const PosterModel: FC<PosterModelProps> = ({ onClick, gltf, position }) => (
+const YoutubeModel: FC<YoutubeModelProps> = ({ onClick, gltf, position }) => (
   <mesh onClick={onClick}>
     <primitive
       object={gltf.scene}
@@ -11,4 +11,4 @@ const PosterModel: FC<PosterModelProps> = ({ onClick, gltf, position }) => (
   </mesh>
 )
 
-export default PosterModel
+export default YoutubeModel

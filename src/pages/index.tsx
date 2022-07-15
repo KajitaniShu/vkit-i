@@ -12,32 +12,6 @@ import YoutubePoster from '@/containers/YoutubePoster'
 const IndexPage: NextPage = () => (
   <>
     <DrawCanvas>
-      {path.posters.map((value, key) => {
-        return (
-          <Poster
-            modelPath={value.model_path}
-            position={new Vector3(value.position[0], value.position[1], value.position[2])}
-            modal_header={value.modal_header}
-            modal_image={value.modal_image}
-            modal_message={value.modal_message}
-            modal_url={value.modal_url}
-          />
-        );
-      })}
-
-      {path.youtube_posters.map((value, key) => {
-        return (
-          <YoutubePoster
-            modelPath={value.model_path}
-            position={new Vector3(value.position[0], value.position[1], value.position[2])}
-            modal_header={value.modal_header}
-            modal_message={value.modal_message}
-            modal_url={value.modal_url}
-            ids={value.ids}
-          />
-        );
-      })}
-
       <Scene
         modelPath={path.scene[0].model_path}
       />

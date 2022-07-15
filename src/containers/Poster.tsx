@@ -1,4 +1,5 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { useFrame} from '@react-three/fiber';
 import { Html, useAnimations, useGLTF } from '@react-three/drei'
 import { useDisclosure } from '@chakra-ui/react'
 import PosterProps from '@/types/interfaces/Poster'
@@ -6,16 +7,28 @@ import PosterModel from '@/components/molecules/PosterModel'
 import PosterModal from '@/components/organisms/PosterModal'
 import ChakraWrapper from '@/components/atoms/ChakraWrapper'
 
-const Poster: FC<PosterProps> = ({ modelPath, position, modal_header, modal_image, modal_message, modal_url }) => {
+const Poster: FC<PosterProps> = ({ playerRef, modelPath, position, modal_header, modal_image, modal_message, modal_url }) => {
   const gltf = useGLTF(modelPath)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [opend, setOpend] = useState(false);
 
   const { scene, animations } = useGLTF(modelPath);
   const { actions } = useAnimations(animations, scene);
+
   useEffect(() => {
     //console.log(actions);
     actions.Idle?.play();
   }, [actions, scene]);
+
+  useFrame(() => {
+    
+    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 1.5) {
+      if(!isOpen && !opend) onOpen(true);
+      if(!opend) setOpend(true);
+    }else{
+      if(opend) setOpend(false);
+    }
+  });
 
 function countText(text: String){
     var length = 0.0;

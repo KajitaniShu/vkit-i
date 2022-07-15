@@ -6,6 +6,9 @@ import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib"; 
+import Poster from '@/containers/Poster'
+import YoutubePoster from '@/containers/YoutubePoster'
+import path from '@/configs/model.json'
 
 const Player: FC<PlayerProps> = ({ modelPath }) => {
   const twoFing = useRef(false);
@@ -116,6 +119,34 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
         <planeBufferGeometry args={[1000, 1000]} />
         <meshStandardMaterial transparent={true} opacity={0.0} />
       </mesh>
+
+      {path.posters.map((value, key) => {
+        return (
+          <Poster
+            playerRef={player}
+            modelPath={value.model_path}
+            position={new Vector3(value.position[0], value.position[1], value.position[2])}
+            modal_header={value.modal_header}
+            modal_image={value.modal_image}
+            modal_message={value.modal_message}
+            modal_url={value.modal_url}
+          />
+        );
+      })}
+
+      {path.youtube_posters.map((value, key) => {
+        return (
+          <YoutubePoster
+            playerRef={player}
+            modelPath={value.model_path}
+            position={new Vector3(value.position[0], value.position[1], value.position[2])}
+            modal_header={value.modal_header}
+            modal_message={value.modal_message}
+            modal_url={value.modal_url}
+            ids={value.ids}
+          />
+        );
+      })}
     </>
   )
 }
