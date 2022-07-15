@@ -21,8 +21,8 @@ const Poster: FC<PosterProps> = ({ playerRef, modelPath, position, modal_header,
   }, [actions, scene]);
 
   useFrame(() => {
-    
-    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 1.5) {
+    // @ts-ignore
+    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 1.5) {// @ts-ignore
       if(!isOpen && !opend) onOpen(true);
       if(!opend) setOpend(true);
     }else{
