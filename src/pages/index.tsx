@@ -7,6 +7,7 @@ import Player from '@/containers/Player'
 import Signboards from '@/containers/Signboard'
 import Youtube from '@/containers/Youtube'
 import { Vector3 } from 'three'
+import YoutubePoster from '@/containers/YoutubePoster'
 
 const IndexPage: NextPage = () => (
   <>
@@ -20,6 +21,19 @@ const IndexPage: NextPage = () => (
             modal_image={value.modal_image}
             modal_message={value.modal_message}
             modal_url={value.modal_url}
+          />
+        );
+      })}
+
+      {path.youtube_posters.map((value, key) => {
+        return (
+          <YoutubePoster
+            modelPath={value.model_path}
+            position={new Vector3(value.position[0], value.position[1], value.position[2])}
+            modal_header={value.modal_header}
+            modal_message={value.modal_message}
+            modal_url={value.modal_url}
+            ids={value.ids}
           />
         );
       })}

@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import {
   Image,
-  Box,
   Button,
   Modal,
   ModalOverlay,
@@ -10,6 +9,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Text
 } from '@chakra-ui/react'
 import PosterModalProps from '@/types/interfaces/PosterModal'
 
@@ -21,14 +21,12 @@ const PosterModal: FC<PosterModalProps> = ({ isOpen, onClose , modal_header, mod
         <ModalHeader>{modal_header}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Box boxSize='sm'>
             <Image src={modal_image} />
-            <p>{modal_message}</p>
-          </Box>
+            <Text>{modal_message}</Text>
         </ModalBody>
         <ModalFooter>
           <Button as={"a"} href={modal_url} target={'_blank'} colorScheme='blue' mr={3} onClick={onClose}>
-            webサイトを開く
+            <Text>webサイトを開く</Text>
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -3,7 +3,6 @@ import { Html } from "@react-three/drei"
 
 import YouTube, { YouTubeProps } from 'react-youtube';
 
-// @ts-ignore
 const Youtube = () => {
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         event.target.mute();
@@ -18,7 +17,8 @@ const Youtube = () => {
         width: '640',
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
-            loop: 1
+            loop: 1,
+            rel: 0
         },
         controls: 0
     };

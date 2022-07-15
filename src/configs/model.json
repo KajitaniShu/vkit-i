@@ -2,6 +2,84 @@
   "player": {
     "model_path": "/knight.glb"
   },
+  "youtube_posters": [
+    {
+      "model_path": "/knight5.glb",
+      "position": [4.0,0.0,-14],
+      "modal_header": "知能情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ai",
+      "ids":[
+        "3PQzBzcyYqM",
+        "bixh6GojnT8",
+        "8o6Xd63zj2U",
+        "uAtrLr98RJI",
+        "IiD1o8SoMOo",
+        "ByNMitz0fQo",
+        "4kQY__Jp7qQ"
+      ]
+    },
+    {
+      "model_path": "/knight6.glb",
+      "position": [1.0,0.0,-14],
+      "modal_header": "情報・通信工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#csn",
+      "ids":[
+        "sIokStG7CA8",
+        "sMNShvr9sSo",
+        "Ot8Z_YLLonI",
+        "b6cozAFiM-o",
+        "qA4dpZxN5dM",
+        "ToyqjXR5_d8",
+        "JAtbk27z0pQ"
+      ]
+    },
+    {
+      "model_path": "/knight7.glb",
+      "position": [-2.0,0.0,-14],
+      "modal_header": "知的システム工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ics",
+      "ids":[
+        "98592HZdRPc",
+        "qid68Nar04s",
+        "wu37jXn9YrI",
+        "RJgAyeOhU3Y",
+        "Z-YdNYxFDLY",
+        "IDX1IMFtB8Y",
+        "HE-AhdC8OeE"
+      ]
+    },
+    {
+      "model_path": "/knight8.glb",
+      "position": [-5.0,0.0,-14],
+      "modal_header": "物理情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#phys",
+      "ids":[
+        "Yxb7YdWIvCo",
+        "WcgpjixtAoI",
+        "AQZKpp15HYc",
+        "9VkvBO1CXw0",
+        "7Gq6b1pW_lM"
+      ]
+    },
+    {
+      "model_path": "/knight9.glb",
+      "position": [-8.0,0.0,-14],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ]
+    }
+  ],
   "posters": [
     {
       "model_path": "/orange_man.glb",
@@ -13,27 +91,19 @@
     },
     {
       "model_path": "/knight3.glb",
-      "position": [-1.5,0.0,11.0],
+      "position": [-1.0,0.0,11.0],
       "modal_header": "操作方法",
       "modal_image": "/test.png",
-      "modal_message": "画面をタップすると、その方向にカメラが向いてキャラクターが移動します。",
+      "modal_message": "画面をタップすると、その方向にカメラが向いてキャラクターが移動します。（壁をすり抜けながら移動します。）ピンチイン・ピンチアウト（PCなら上下スクロール）でカメラとキャラクターの位置を調整できます。",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
       "model_path": "/knight4.glb",
-      "position": [4.5,0.0,-14],
-      "modal_header": "製作者",
+      "position": [-10,0.0,-9],
+      "modal_header": "製作チーム",
       "modal_image": "/test.png",
       "modal_message": "このバーチャル飯塚キャンパスは本学物理情報工学科の学生が作成しました。",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
-    },
-    {
-      "model_path": "/knight2.glb",
-      "position": [1.0,0.0,1.0],
-      "modal_header": "学科・研究室紹介",
-      "modal_image": "/test.png",
-      "modal_message": "各学科と研究室についての紹介動画を見ることができます。",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab"
+      "modal_url": "https://sites.google.com/view/v-kit"
     },
     {
       "model_path": "/orange_man2.glb",
@@ -53,17 +123,17 @@
     },
     {
       "model_path": "/orange_man4.glb",
-      "position": [-2.0,0.0,0.0],
+      "position": [1.0,0.0,1.0],
       "modal_header": "情報基盤センター",
-      "modal_image": "/ISC.jpeg",
+      "modal_image": "/ISC.png",
       "modal_message": "情報基盤センターは，多くのコンピュータや各種機器を備え，学内のユーザに情報・ネットワークに関する分野，ICT（Information and Communication Technology）を利用した分野を学習・研究する場を提供しています．情報基盤センターが管理運用している講義室は以下の通りであり，充実したネットワーク，電源コンセント環境を整備しています．またVPN接続により，外部から遠隔で利用することもできます．",
       "modal_url": "https://www.isc.kyutech.ac.jp/"
     },
     {
       "model_path": "/orange_man5.glb",
-      "position": [-8.0,0.0,4.0],
+      "position": [-6.0,0.0,6.0],
       "modal_header": "インキュベーション施設",
-      "modal_image": "/CCR.jpeg",
+      "modal_image": "/CCR.png",
       "modal_message": "インキュベーション施設は、研究成果を主体的に社会へと還元する企業活動を支援するために開設されました。ここでは通常の研究よりもその成果の産業化により近い段階の実用化研究が行われています。",
       "modal_url": "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html"
     },
@@ -71,7 +141,7 @@
       "model_path": "/orange_man6.glb",
       "position": [12.5,0.0,-4.0],
       "modal_header": "ラーニングアゴラ棟",
-      "modal_image": "/agora.jpeg",
+      "modal_image": "/agora.png",
       "modal_message": "アゴラ（広場、市場）でいろいろな店を出したり多彩なイベントを行うイメージで、グループワークや自習などの学習に加え、国際交流、学科、講演会、市民講座なども行えるような多目的空間として飯塚キャンパスに整備されました。施設内は、無線LANや音響設備も完備してあり、学生活動の拠点として活用されることが期待されています。", 
       "modal_url": "https://www.gce.kyutech.ac.jp/campus/agora/"
     },
@@ -79,7 +149,7 @@
       "model_path": "/orange_man7.glb",
       "position": [4.5,0.0,-4.5],
       "modal_header": "福利棟",
-      "modal_image": "/test.png",
+      "modal_image": "/shop.png",
       "modal_message": "飯塚キャンパスの福利棟には食堂に加えて、文具、書籍、旅行、サービスなどを取り扱ったショップがあります。",
       "modal_url": "https://kyushu.seikyou.ne.jp/kyutech/"
     },
