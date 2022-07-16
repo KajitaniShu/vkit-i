@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react'
 import YoutubeModalProps from '@/types/interfaces/YoutubeModal'
 import YouTube, { YouTubeProps } from 'react-youtube';
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
