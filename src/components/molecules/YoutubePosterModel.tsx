@@ -6,7 +6,7 @@ const YoutubePosterModel: FC<YoutubePosterModelProps> = ({ onClick, gltf, positi
     <primitive
       object={gltf.scene}
       position={position}
-      scale={[0.5, 0.5, 0.5]}
+      scale={[0.3, 0.3, 0.3]}
     />
   </mesh>
 )

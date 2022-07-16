@@ -5,7 +5,7 @@
   "youtube_posters": [
     {
       "model_path": "/knight5.glb",
-      "position": [4.0,0.0,-14],
+      "position": [-10.0,0.0,9.0],
       "modal_header": "知能情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ai",
@@ -37,7 +37,7 @@
     },
     {
       "model_path": "/knight7.glb",
-      "position": [-2.0,0.0,-14],
+      "position": [17.0,0.0, -2],
       "modal_header": "知的システム工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ics",
@@ -53,7 +53,7 @@
     },
     {
       "model_path": "/knight8.glb",
-      "position": [-5.0,0.0,-14],
+      "position": [13.0,0.0, -10],
       "modal_header": "物理情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#phys",
@@ -67,7 +67,7 @@
     },
     {
       "model_path": "/knight9.glb",
-      "position": [-8.0,0.0,-14],
+      "position": [-10,0.5,2],
       "modal_header": "生命化学情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
@@ -149,7 +149,7 @@
       "model_path": "/star1.glb",
       "position": [9.0,0.5,9.0],
       "modal_header": "図書館",
-      "modal_image": "/test.png",
+      "modal_image": "/library.jpg",
       "modal_message": "図書館では、図書の閲覧・貸出に加えて、自習スペースやラーニングコモンズでの学習、個別ブースや40インチ大型TV（同時視聴3人まで）での映画鑑賞（BS/ブルーレイディスク利用可能）などが行えます。",
       "modal_url": "https://www.lib.kyutech.ac.jp/library/"
     }

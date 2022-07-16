@@ -46,7 +46,7 @@ function countText(text: String){
         position={position}
       />
 
-      <Html sprite={true} zIndexRange={[40, 0]} position={[position.x, position.y+1.3, position.z]} transform occlude distanceFactor={4} center={true} style={{ width: countText(modal_header) + 2 + 'em' }} >
+      <Html sprite={true} zIndexRange={[40, 0]} position={[position.x, position.y+0.8, position.z]} transform occlude distanceFactor={4} center={true} style={{ width: countText(modal_header) + 2 + 'em' }} >
         <div style={{ backgroundColor: "white", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
           <p style={{ color: "#343434" }}> {modal_header} </p>
         </div>
