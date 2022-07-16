@@ -15,7 +15,10 @@ import {
   Flex
 } from '@chakra-ui/react'
 import YoutubeModalProps from '@/types/interfaces/YoutubeModal'
+//@ts-ignore
 import YouTube, { YouTubeProps } from 'react-youtube';
+//@ts-ignore
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -53,9 +56,13 @@ const YoutubeModal: FC<YoutubeModalProps> = ({ isOpen, onClose , modal_header, m
         <ModalCloseButton />
         <ModalBody>
         <Slider {...settings}>
+                {/* @ts-ignore */}
                 <div><YouTube  opts={opts} onReady={onPlayerReady} key={1} style={{zIndex:0}}/></div>
+                {/* @ts-ignore */}
                 <div><YouTube  opts={opts} onReady={onPlayerReady} key={2} style={{zIndex:0}}/></div>
+                {/* @ts-ignore */}
                 <div><YouTube  opts={opts} onReady={onPlayerReady} key={3} style={{zIndex:0}}/></div>
+                {/* @ts-ignore */}
                 <div><YouTube  opts={opts} onReady={onPlayerReady} key={4} style={{zIndex:0}}/></div>
         </Slider>
         </ModalBody>
