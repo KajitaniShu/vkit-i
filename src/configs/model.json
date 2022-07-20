@@ -53,7 +53,7 @@
     },
     {
       "model_path": "/knight8.glb",
-      "position": [13.0,0.0, -10],
+      "position": [13.0,0.0, 10],
       "modal_header": "物理情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#phys",
@@ -91,7 +91,7 @@
     },
     {
       "model_path": "/flag_teamBlue.glb",
-      "position": [-10,0.5,-9],
+      "position": [18.0,0.0, 8],
       "modal_header": "製作チーム",
       "modal_image": "/test.png",
       "modal_message": "このバーチャル飯塚キャンパスは本学物理情報工学科の学生が作成しました。",

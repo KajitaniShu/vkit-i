@@ -62,11 +62,16 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
 
   const move = (speed: number, theta: number) => {
     if(twoFing.current) return;
-    player.current.position.x += speed * Math.cos(theta);
-    player.current.position.z += speed * Math.sin(theta);
+    if(player.current.position.x + speed * Math.cos(theta) < 25.0 && player.current.position.x + speed * Math.cos(theta) > -18.0){
+      player.current.position.x += speed * Math.cos(theta);
+      orbitControls.current.object.position.x += speed * Math.cos(theta);
+    }
+
+    if(player.current.position.z + speed * Math.sin(theta) < 15.0 && player.current.position.z + speed * Math.sin(theta) > -26.0){
+      player.current.position.z += speed * Math.sin(theta);
+      orbitControls.current.object.position.z += speed * Math.sin(theta);
+    }
     player.current.rotation.y = -theta+Math.PI/2;
-    orbitControls.current.object.position.x += speed * Math.cos(theta);
-    orbitControls.current.object.position.z += speed * Math.sin(theta);
   }
 
   const calcDirection = (): [number, number]  => {

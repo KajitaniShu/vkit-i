@@ -13,7 +13,8 @@ const DrawCanvas: FC = ({ children }) => {
           position: 'absolute',
           top: 0,
           width: '100vw',
-          height: '100vh'
+          height: '100vh',
+          backgroundColor:'#B2C8DF'
         }}
         camera={{ 
           position: [0, 20,0],
