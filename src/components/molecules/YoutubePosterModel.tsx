@@ -13,7 +13,7 @@ const YoutubePosterModel: FC<YoutubePosterModelProps> = ({ onClick, gltf, positi
       />
     </mesh>
     {/* @ts-ignore */}
-    <Circle args={[1, 16]} rotation={[-Math.PI/2, 0, 0]}  position={[position.x, position.y-0.02, position.z]}>
+    <Circle args={[1, 16]} rotation={[-Math.PI/2, 0, 0]}  position={[position.x, position.y-0.04, position.z]}>
       <meshStandardMaterial color="orange" />
     </Circle>
   </>

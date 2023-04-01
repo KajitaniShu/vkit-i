@@ -1,5 +1,5 @@
 import React from 'react'
-import { Html, useGLTF } from "@react-three/drei"
+import { Html, useGLTF, Image } from "@react-three/drei"
 import YouTube, { YouTubeProps } from 'react-youtube';
 import SceneModel from '@/components/molecules/SceneModel'
 import { Vector3 } from 'three';

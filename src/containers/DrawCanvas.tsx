@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sky, Stage, Preload, useProgress, ContactShadows } from '@react-three/drei'
+import { OrbitControls, Grid, Sky, Stage, Preload, useProgress, ContactShadows } from '@react-three/drei'
 import Loader from '@/components/atoms/Loader'
 
 const DrawCanvas: FC = ({ children }) => {
@@ -31,6 +31,8 @@ const DrawCanvas: FC = ({ children }) => {
           {children}
         </Suspense>
         <Preload all />
+        {/* @ts-ignore */}
+        <Grid cellColor="#aaa" position={[0, -0.02, 0]} args={[500, 500]} />
         {/* @ts-ignore */}
         <ContactShadows frames={1} opacity={3} scale={10} blur={0.2} far={10}  width={6} height={6} color="#000000" />
       </Canvas> 
