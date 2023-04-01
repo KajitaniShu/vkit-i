@@ -4,7 +4,7 @@
   },
   "youtube_posters": [
     {
-      "model_path": "/knight5.glb",
+      "model_path": "/digitalBillboard.glb",
       "position": [-10.0,0.0,9.0],
       "modal_header": "知能情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "model_path": "/knight6.glb",
+      "model_path": "/digitalBillboard.glb",
       "position": [1.0,0.0,-14],
       "modal_header": "情報・通信工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "model_path": "/knight7.glb",
+      "model_path": "/digitalBillboard.glb",
       "position": [17.0,0.0, -2],
       "modal_header": "知的システム工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "model_path": "/knight8.glb",
+      "model_path": "/digitalBillboard.glb",
       "position": [13.0,0.0, 10],
       "modal_header": "物理情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -66,8 +66,8 @@
       ]
     },
     {
-      "model_path": "/knight9.glb",
-      "position": [-10,0.5,2],
+      "model_path": "/digitalBillboard.glb",
+      "position": [-10,0.0,2],
       "modal_header": "生命化学情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",

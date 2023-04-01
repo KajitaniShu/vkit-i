@@ -24,11 +24,14 @@ const Youtube = () => {
     };
 
     return (
-        <>
-            <Html zIndexRange={[100, 50]} position={[1.8, 2, 10.27]} transform occlude distanceFactor={1.4} center={true} >
+        
+        <mesh position={[1.8, 2, 8]} scale={[1.4, 1, 0.05]}>
+        <boxBufferGeometry >
+            <Html position={[0, 0, 1]} scale={[0.2, 0.2, 0.2]} transform  >
                 <YouTube  opts={opts} onReady={onPlayerReady} style={{zIndex:0}}/>
             </Html>
-        </>
+        </boxBufferGeometry>
+        </mesh>
     );
 }
 

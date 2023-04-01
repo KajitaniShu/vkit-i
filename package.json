@@ -15,7 +15,7 @@
     "@chakra-ui/react": "1.8.8",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@react-three/drei": "^9.2.0",
+    "@react-three/drei": "^9.61.3",
     "@react-three/fiber": "^8.0.10",
     "firebase-admin": "^10.2.0",
     "framer-motion": "^6",
@@ -25,7 +25,8 @@
     "react-hook-form": "^7.31.1",
     "react-responsive-carousel": "^3.2.23",
     "react-youtube": "^9.0.3",
-    "three": "^0.139.2"
+    "three": "^0.139.2",
+    "three-csm": "^3.2.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.4",

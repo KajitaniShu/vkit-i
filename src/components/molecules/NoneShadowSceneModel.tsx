@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import SceneModelProps from '@/types/interfaces/SceneModel'
 
-const SceneModel: FC<SceneModelProps> = ({ gltf, position, scale }) => (
+const NoneShadowSceneModel: FC<SceneModelProps> = ({ gltf, position, scale }) => (
   <group>
     <mesh castShadow>
       <primitive 
-        object={gltf.scene.clone()}
+        object={gltf.scene}
         position={position}
         scale={scale}
       />
@@ -13,4 +13,4 @@ const SceneModel: FC<SceneModelProps> = ({ gltf, position, scale }) => (
   </group>
 )
 
-export default SceneModel
+export default NoneShadowSceneModel

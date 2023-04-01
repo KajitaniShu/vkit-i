@@ -1,5 +1,5 @@
 import { useRef, FC } from 'react'
-import { ThreeEvent, useFrame, useThree} from '@react-three/fiber';
+import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei'
 import { Vector3, Plane} from 'three';
 import { useDrag } from "@use-gesture/react";
@@ -84,7 +84,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     return [theta, speed*2];
   }
 
-  // delta をかけることによって速度がデバイスの処理速度に依存しない
+  
   useFrame((_, delta) => {
     if(!twoFing.current && Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
       var theta : number, speed: number;
@@ -98,7 +98,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       actions.Idle?.play();
     }
     orbitControls.current.target = new Vector3(player.current.position.x, player.current.position.y+1, player.current.position.z);
-    orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
+    //orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
     orbitControls.current.setPolarAngle(1);
   });
 
@@ -120,9 +120,9 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
         ref={player}
       />
 
-      <mesh rotation-x={Math.PI * -0.5} {...bind() as any}>
-        <planeBufferGeometry args={[1000, 1000]} />
-        <meshStandardMaterial transparent={true} opacity={0.0} />
+      <mesh castShadow rotation={[-Math.PI/2, 0, 0]} {...bind() as any}>
+            <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
+            <meshStandardMaterial attach="material" transparent opacity={0.8} />
       </mesh>
 
       {path.posters.map((value, key) => {
