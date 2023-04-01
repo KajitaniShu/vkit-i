@@ -125,7 +125,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
             <meshStandardMaterial attach="material" transparent opacity={0.8} />
       </mesh>
 
-      {path.posters.map((value, key) => {
+      {/*path.posters.map((value, key) => {
         return (
           <Poster
             playerRef={player}
@@ -137,7 +137,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
             modal_url={value.modal_url}
           />
         );
-      })}
+      })*/}
 
       {path.youtube_posters.map((value, key) => {
         return (

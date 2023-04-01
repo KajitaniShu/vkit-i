@@ -1,7 +1,8 @@
 import React from 'react'
-import { Html } from "@react-three/drei"
-
+import { Html, useGLTF } from "@react-three/drei"
 import YouTube, { YouTubeProps } from 'react-youtube';
+import SceneModel from '@/components/molecules/SceneModel'
+import { Vector3 } from 'three';
 
 const Youtube = () => {
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -22,16 +23,19 @@ const Youtube = () => {
         },
         controls: 0
     };
-
+    const gltf = useGLTF("./board.glb");
     return (
-        
-        <mesh position={[1.8, 2, 8]} scale={[1.4, 1, 0.05]}>
-        <boxBufferGeometry >
-            <Html position={[0, 0, 1]} scale={[0.2, 0.2, 0.2]} transform  >
+        <>
+        <SceneModel 
+            // @ts-ignore
+            gltf={gltf} position={[-3, 0, 10.7]} scale={new Vector3(0.23, 0.23, 0.23)}
+        />
+        <mesh position={[-3, 0, 10.7]} scale={[1, 1.07, 1]}>
+            <Html position={[0, 1.2, 0.02]} scale={[0.15, 0.15, 0.15]} transform  occlude>
                 <YouTube  opts={opts} onReady={onPlayerReady} style={{zIndex:0}}/>
             </Html>
-        </boxBufferGeometry>
         </mesh>
+        </>
     );
 }
 

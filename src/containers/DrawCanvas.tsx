@@ -32,7 +32,7 @@ const DrawCanvas: FC = ({ children }) => {
         </Suspense>
         <Preload all />
         {/* @ts-ignore */}
-        <ContactShadows frames={1} opacity={3} scale={10} blur={0.2} far={10}  width={5} height={5} color="#000000" />
+        <ContactShadows frames={1} opacity={3} scale={10} blur={0.2} far={10}  width={6} height={6} color="#000000" />
       </Canvas> 
     </>
   )

@@ -4,7 +4,7 @@
   },
   "youtube_posters": [
     {
-      "model_path": "/digitalBillboard.glb",
+      "model_path": "/character_barbarian.gltf",
       "position": [-10.0,0.0,9.0],
       "modal_header": "知能情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "model_path": "/digitalBillboard.glb",
+      "model_path": "/character_knight.gltf",
       "position": [1.0,0.0,-14],
       "modal_header": "情報・通信工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "model_path": "/digitalBillboard.glb",
+      "model_path": "/character_mage.gltf",
       "position": [17.0,0.0, -2],
       "modal_header": "知的システム工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -52,8 +52,8 @@
       ]
     },
     {
-      "model_path": "/digitalBillboard.glb",
-      "position": [13.0,0.0, 10],
+      "model_path": "/character_rogue.gltf",
+      "position": [17.0,0.0, 10],
       "modal_header": "物理情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#phys",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "model_path": "/digitalBillboard.glb",
+      "model_path": "/character_duck.gltf",
       "position": [-10,0.0,2],
       "modal_header": "生命化学情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
@@ -82,7 +82,7 @@
   ],
   "posters": [
     {
-      "model_path": "/flag_teamRed1.glb",
+      "model_path": "/knight.glb",
       "position": [0.0,0.0,12.0],
       "modal_header": "操作方法",
       "modal_image": "/test.png",
@@ -90,7 +90,7 @@
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022"
     },
     {
-      "model_path": "/flag_teamBlue.glb",
+      "model_path": "/knight.glb",
       "position": [18.0,0.0, 8],
       "modal_header": "製作チーム",
       "modal_image": "/test.png",
@@ -98,7 +98,7 @@
       "modal_url": "https://sites.google.com/view/v-kit"
     },
     {
-      "model_path": "/diamond_teamBlue1.glb",
+      "model_path": "/knight.glb",
       "position": [0.0,0.5,-9.0],
       "modal_header": "マイクロ科総合技術センター",
       "modal_image": "/cms.png",
@@ -106,7 +106,7 @@
       "modal_url": "https://www.cms.kyutech.ac.jp/"
     },
     {
-      "model_path": "/heart_teamRed1.glb",
+      "model_path": "/knight.glb",
       "position": [13,0.5,4.5],
       "modal_header": "キャリア支援室（ポルト棟）",
       "modal_image": "/porto.png",
@@ -114,7 +114,7 @@
       "modal_url": "https://www.iizuka.kyutech.ac.jp/career"
     },
     {
-      "model_path": "/diamond_teamBlue3.glb",
+      "model_path": "/knight.glb",
       "position": [1.0,0.5,1.0],
       "modal_header": "情報基盤センター",
       "modal_image": "/ISC.png",
@@ -122,7 +122,7 @@
       "modal_url": "https://www.isc.kyutech.ac.jp/"
     },
     {
-      "model_path": "/star3.glb",
+      "model_path": "/knight.glb",
       "position": [-6.0,0.5,6.0],
       "modal_header": "インキュベーション施設",
       "modal_image": "/CCR.png",
@@ -130,7 +130,7 @@
       "modal_url": "http://www.ccr.kyutech.ac.jp/f_venture/incubation.html"
     },
     {
-      "model_path": "/star2.glb",
+      "model_path": "/knight.glb",
       "position": [12.5,0.5,-4.0],
       "modal_header": "ラーニングアゴラ棟",
       "modal_image": "/agora.png",
@@ -138,7 +138,7 @@
       "modal_url": "https://www.gce.kyutech.ac.jp/campus/agora/"
     },
     {
-      "model_path": "/heart_teamRed1.glb",
+      "model_path": "/knight.glb",
       "position": [4.5,0.5,-4.5],
       "modal_header": "福利棟",
       "modal_image": "/shop.png",
@@ -146,7 +146,7 @@
       "modal_url": "https://kyushu.seikyou.ne.jp/kyutech/"
     },
     {
-      "model_path": "/star1.glb",
+      "model_path": "/knight.glb",
       "position": [9.0,0.5,9.0],
       "modal_header": "図書館",
       "modal_image": "/library.jpg",

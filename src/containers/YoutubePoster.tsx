@@ -46,11 +46,6 @@ function countText(text: String){
         position={position}
       />
 
-      <Html sprite={true} zIndexRange={[40, 0]} position={[position.x, position.y+1, position.z]} transform occlude distanceFactor={4} center={true} style={{ width: countText(modal_header) + 2 + 'em' }} >
-        <div style={{ backgroundColor: "green", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
-          <h3 style={{ color: "white"}}> {modal_header} </h3>
-        </div>
-      </Html>
 
       <ChakraWrapper>
         <YoutubePosterModal
