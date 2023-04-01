@@ -9,6 +9,7 @@ import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import Poster from '@/containers/Poster'
 import YoutubePoster from '@/containers/YoutubePoster'
 import path from '@/configs/model.json'
+import Youtube from '@/containers/Youtube'
 
 const Player: FC<PlayerProps> = ({ modelPath }) => {
   const twoFing = useRef(false);
@@ -121,8 +122,8 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       />
 
       <mesh castShadow rotation={[-Math.PI/2, 0, 0]} {...bind() as any}>
-            <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
-            <meshStandardMaterial attach="material" transparent opacity={0.8} />
+        <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
+        <meshStandardMaterial attach="material" transparent opacity={0.8} />
       </mesh>
 
       {/*path.posters.map((value, key) => {
@@ -152,6 +153,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
           />
         );
       })}
+      <Youtube playerRef={player}/>
     </>
   )
 }

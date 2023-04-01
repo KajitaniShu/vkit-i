@@ -6,7 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.css";
 
 // @ts-ignore
-const IntroYoutube = () => {
+const IntroYoutube = (ref) => {
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         event.target.mute();
         event.target.cueVideoById({

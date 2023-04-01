@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { FC, useEffect } from 'react'
 import { Html, useGLTF, Image } from "@react-three/drei"
+import { useFrame} from '@react-three/fiber';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import SceneModel from '@/components/molecules/SceneModel'
+import YoutubeProps from '@/types/interfaces/YoutubeProps'
 import { Vector3 } from 'three';
 
-const Youtube = () => {
+const Youtube: FC<YoutubeProps> = ({playerRef}) => {
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         event.target.mute();
         event.target.cueVideoById({
-            'videoId': "LuB4VaScsHo"});
+            'videoId': "36IO1k4Z6yg"});
         event.target.playVideo();
     }
 
-
+    
     const opts: YouTubeProps['opts'] = {
         height: '390',
         width: '640',

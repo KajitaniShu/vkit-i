@@ -4,7 +4,6 @@ import Scene from '@/containers/Scene'
 import DrawCanvas from '@/containers/DrawCanvas'
 import Player from '@/containers/Player'
 import Signboards from '@/containers/Signboard'
-import Youtube from '@/containers/Youtube'
 import DigitalBillboard from '@/containers/DigitalBillboard'
 
 const IndexPage: NextPage = () => (
@@ -17,8 +16,6 @@ const IndexPage: NextPage = () => (
         modelPath={path.player.model_path}
       />
       <Signboards/>
-
-      <Youtube />
     </DrawCanvas>
   </>
 )

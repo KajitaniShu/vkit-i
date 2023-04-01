@@ -24,7 +24,6 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, modelPath, position,
     if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 1.5) {// @ts-ignore
       if(!isOpen && !opend) onOpen(true);
       if(!opend) setOpend(true);
-      console.log(modal_header)
     }else{
       if(opend) setOpend(false);
     }
