@@ -115,7 +115,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
       actions.Idle?.play();
     }
 
-    cameraControlsRef.current?.setTarget(player.current.position.x, player.current.position.y+1, player.current.position.z);
+    cameraControlsRef.current?.setTarget(player.current.position.x, player.current.position.y+1, player.current.position.z, true);
     //orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
     //orbitControls.current.setPolarAngle(1);
   });
@@ -125,12 +125,9 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
   return (
     <>
     <CameraControls
-      smoothTime={10}
       ref={cameraControlsRef}
       minDistance={4}
       maxDistance={20}
-      minPolarAngle={Math.PI/3}
-      maxPolarAngle={Math.PI/2}
       enabled={true}
       verticalDragToForward={false}
       dollyToCursor={false}

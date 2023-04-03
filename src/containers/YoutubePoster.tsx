@@ -21,7 +21,7 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
 
   useFrame(() => {
     // @ts-ignore
-    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 1.5) {
+    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 0.7) {
       if(!isOpen && !opend) {
         // @ts-ignore
         onOpen(true);
@@ -30,7 +30,7 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
           // @ts-ignore
           locked.current = true;
           // @ts-ignore
-          cameraControlsRef.current?.setTarget(meshRef.current?.position.x, meshRef.current?.position.y, meshRef.current?.position.z);
+          cameraControlsRef.current?.setTarget(meshRef.current?.position.x, meshRef.current?.position.y, meshRef.current?.position.z, true);
           // @ts-ignore
           cameraControlsRef.current?.saveState();
         }
@@ -61,12 +61,20 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
       // @ts-ignore
       locked.current = false;
       // @ts-ignore
-      cameraControlsRef.current?.reset();
+      cameraControlsRef.current?.reset(true);
     }
   }
 
   return (
     <>
+      {/*
+      <Html zIndexRange={[40, 0]} position={position} transform occlude distanceFactor={4} center={true} style={{ width: countText(modal_header + "の情報を知りたい？") + 2 + 'em' }} >
+        <div style={{ backgroundColor: "#343434", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
+          <p style={{ color: "white" }}> {modal_header}の情報を知りたい？ </p>
+        </div>
+      </Html>
+      */}
+      
       <mesh>
         <primitive
           ref={meshRef}
@@ -79,7 +87,7 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
 
       <ChakraWrapper>
         <YoutubePosterModal
-          isOpen={isOpen}
+          isOpen={false}
           onClose={close}
           modal_header={modal_header}
           modal_message={modal_message}
