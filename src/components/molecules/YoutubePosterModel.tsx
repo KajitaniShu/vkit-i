@@ -3,10 +3,11 @@ import YoutubePosterModelProps from '@/types/interfaces/YoutubePosterModel'
 import { Circle, Html, Image } from '@react-three/drei'
 import { MeshBasicMaterial, Vector3 } from 'three'
 
-const YoutubePosterModel: FC<YoutubePosterModelProps> = ({ onClick, gltf, position }) => (
+const YoutubePosterModel: FC<YoutubePosterModelProps> = ({ onClick, gltf, position, ref }) => (
   <>
     <mesh onClick={onClick}>
       <primitive
+        ref={ref}
         object={gltf.scene.clone()}
         position={position}
         scale={[0.3, 0.3, 0.3]}
