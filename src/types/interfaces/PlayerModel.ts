@@ -3,7 +3,7 @@ import { GLTF } from 'three-stdlib'
 
 type PlayerModelProps = {
   gltf: GLTF
-  ref: React.Ref<any>
+  ref: any
 }
 
 export default PlayerModelProps

@@ -1,13 +1,13 @@
-import { FC, Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import { FC, Suspense, useState } from 'react'
+import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, Grid, Sky, Stage, Preload, useProgress, ContactShadows, Environment, SoftShadows } from '@react-three/drei'
 import Loader from '@/components/atoms/Loader'
 import { Spinner, ChakraProvider } from '@chakra-ui/react'
 
 
-const DrawCanvas: FC = ({ children }) => {
-  const { progress } = useProgress()
 
+const DrawCanvas: FC = ({ children }) => {
+  const { progress } = useProgress();
   return (
       <Canvas
         style={{

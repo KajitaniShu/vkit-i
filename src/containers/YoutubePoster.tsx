@@ -1,49 +1,94 @@
 import { FC, useEffect, useState, useRef } from 'react'
 import { useFrame} from '@react-three/fiber';
 import { Html, useAnimations, useGLTF, CameraControls, Circle } from '@react-three/drei'
-import { useDisclosure } from '@chakra-ui/react'
 import YoutubePosterProps from '@/types/interfaces/YoutubePoster'
 import YoutubePosterModal from '@/components/organisms/YoutubePosterModal'
-import ChakraWrapper from '@/components/atoms/ChakraWrapper'
 import { Mesh } from "three"
+import { 
+  Button,
+  MantineProvider, 
+  ColorSchemeProvider, 
+  ColorScheme, 
+  Header,
+  Container,
+  Group,
+  Title,
+  Modal,
+  ActionIcon,
+  ScrollArea,
+  Table,
+  Tooltip,
+  Badge,
+  Text,
+  Paper
+} from '@mantine/core';
 
-const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, locked, modelPath, position, modal_header, modal_message, modal_url, ids }) => {
+import { useDisclosure } from '@mantine/hooks';
+import { 
+  IconInfoSmall 
+} from '@tabler/icons-react';
+
+
+const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, locked, modelPath, position, modal_header, messages, modal_message, modal_url, btnInfo, ids }) => {
   const gltf = useGLTF(modelPath)
   const meshRef = useRef<Mesh>(null!);
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [opend, setOpend] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [msgOpen, setMsgOpen] = useState(false);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const { scene, animations } = useGLTF(modelPath);
   const { actions } = useAnimations(animations, scene);
+
+  // メッセージの切り替え用
+  const [messageIdx, setMessageIdx] = useState<number>(0);
+  let timer: number = 0.0;  
+
   useEffect(() => {
     actions.Idle?.play();
   }, [actions, scene]);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     // @ts-ignore
-    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 0.7) {
-      if(!isOpen && !opend) {
+    if(Math.abs(playerRef.current.position.x - position.x) + Math.abs(playerRef.current.position.z - position.z) < 0.7) {    // キャラクターが話しかける圏内に入った
+      // @ts-ignore
+      if(!isOpen && locked.current != null && cameraControlsRef.current != null && btnInfo.current != null) {
         // @ts-ignore
-        onOpen(true);
+        locked.current = true;
         // @ts-ignore
-        if(locked.current != null && cameraControlsRef.current != null) {
-          // @ts-ignore
-          locked.current = true;
-          // @ts-ignore
-          cameraControlsRef.current?.setTarget(meshRef.current?.position.x, meshRef.current?.position.y, meshRef.current?.position.z, true);
-          // @ts-ignore
-          cameraControlsRef.current?.saveState();
-        }
+        cameraControlsRef.current?.setTarget(meshRef.current?.position.x, meshRef.current?.position.y, meshRef.current?.position.z, true);
+        // @ts-ignore
+        cameraControlsRef.current?.saveState();
 
         // @ts-ignore
         if(cameraControlsRef != null) cameraControlsRef.current.fitToBox(meshRef.current, true);
+        setIsOpen(true);
+        setMsgOpen(true);
       }
-      if(!opend) setOpend(true);
+
+      if(messageIdx >= messages.length) {  // 話が終わった
+        // @ts-ignore
+        btnInfo.current.open = false
+        setMsgOpen(false);
+        // @ts-ignore
+        if(locked.current != null && cameraControlsRef.current != null) {
+          // @ts-ignore
+          locked.current = false;
+          // @ts-ignore
+          cameraControlsRef.current?.reset(true);
+        }
+  
+        setMessageIdx(0);
+      }
+      else{     // 話し中
+        if(timer > 3) {
+          setMessageIdx(messageIdx+1);  // timer > 1.5 で次のメッセージを表示
+          timer = 0.0;
+        }
+        timer += delta;
+      }
     }else{
-      if(opend) {
-        setOpend(false);
-      }
+      if(isOpen) setIsOpen(false);
     }
+    
   });
 
   function countText(text: String){
@@ -53,18 +98,7 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
       }
       return length;
   }
-
-  function close(){
-    onClose();
-    // @ts-ignore
-    if(locked.current != null && cameraControlsRef.current != null) {
-      // @ts-ignore
-      locked.current = false;
-      // @ts-ignore
-      cameraControlsRef.current?.reset(true);
-    }
-  }
-
+  
   return (
     <>
       {/*
@@ -74,6 +108,19 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
         </div>
       </Html>
       */}
+
+      
+      {/* @ts-ignore */}
+      <Html zIndexRange={[4, 2]} position={[position.x, 1, position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
+        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          {msgOpen && 
+          <Paper shadow="xs" radius="md" p="md" style={{textAlign: "center"}}>
+            <Text>{messages[messageIdx]}</Text>
+          </Paper>
+          }
+        </MantineProvider>
+      </Html>
+        
       
       <mesh>
         <primitive
@@ -84,17 +131,18 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
         />
       </mesh>
 
-
+{/*
       <ChakraWrapper>
         <YoutubePosterModal
-          isOpen={false}
-          onClose={close}
+          opened={false}
+          onClose={handleClose}
           modal_header={modal_header}
           modal_message={modal_message}
           modal_url={modal_url}
           ids={ids}
         />
       </ChakraWrapper>
+    */}
     </>
   )
 }

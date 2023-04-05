@@ -18,7 +18,7 @@ const Youtube: FC<YoutubeProps> = ({playerRef}) => {
             gltf={gltf} position={[-3, 0, 10.7]} scale={new Vector3(0.23, 0.23, 0.23)}
         />
         <mesh position={[-3, 0, 10.7]} scale={[1, 1.07, 1]}>
-            <Html position={[0, 1.2, 0.02]} scale={[0.15, 0.15, 0.15]} transform  occlude>
+            <Html zIndexRange={[2, 0]} position={[0, 1.2, 0.02]} scale={[0.15, 0.15, 0.15]} transform  occlude>
                 <ReactPlayer 
                     loop={true}
                     controls={false}

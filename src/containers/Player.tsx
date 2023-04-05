@@ -11,7 +11,7 @@ import YoutubePoster from '@/containers/YoutubePoster'
 import path from '@/configs/model.json'
 import Youtube from '@/containers/Youtube'
 
-const Player: FC<PlayerProps> = ({ modelPath }) => {
+const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
   const twoFing = useRef(false);
   const locked = useRef<boolean>(false);
 
@@ -116,7 +116,7 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
     }
 
     cameraControlsRef.current?.setTarget(player.current.position.x, player.current.position.y+1, player.current.position.z, true);
-    //orbitControls.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
+    //cameraControlsRef.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
     //orbitControls.current.setPolarAngle(1);
   });
 
@@ -162,8 +162,10 @@ const Player: FC<PlayerProps> = ({ modelPath }) => {
           <YoutubePoster
             playerRef={player}
             cameraControlsRef={cameraControlsRef}
+            btnInfo={btnInfo}
             locked={locked}
             modelPath={value.model_path}
+            messages={value.messages}
             position={new Vector3(value.position[0], value.position[1], value.position[2])}
             modal_header={value.modal_header}
             modal_message={value.modal_message}

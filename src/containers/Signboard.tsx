@@ -36,7 +36,7 @@ const Signboards = () => {
         <>
             {bldgCenterPos.map((value, key) => {
                 return (
-                    <Html sprite={true} zIndexRange={[40, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
+                    <Html sprite={true} zIndexRange={[1, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
                         <div style={{ backgroundColor: "#343434", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
                             <p style={{ color: "white" }}> {value.name} </p>
                         </div>
@@ -45,16 +45,5 @@ const Signboards = () => {
             })}
         </>
     );
-}
-{
-    bldgCenterPos.map((value, key) => {
-        return (
-            <Html zIndexRange={[40, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
-                <div style={{ backgroundColor: "#343434", textAlign: "center", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
-                    <p style={{ color: "white" }}> {value.name} </p>
-                </div>
-            </Html>
-        );
-    })
 }
 export default Signboards

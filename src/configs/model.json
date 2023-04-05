@@ -5,7 +5,7 @@
   "youtube_posters": [
     {
       "model_path": "/character_barbarian.gltf",
-      "position": [-10.0,0.0,9.0],
+      "position": [-1.7,0.0,11.0],
       "modal_header": "知能情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ai",
@@ -17,27 +17,36 @@
         "IiD1o8SoMOo",
         "ByNMitz0fQo",
         "4kQY__Jp7qQ"
+      ],
+      "messages": [
+        "おじいさんも、現代の教育については詳しくないけれど",
+        "九工大は文部科学省認定されたMDASHプログラムっていうのをやっているみたいだよ",
+        "充実した学習環境や学習支援システムが整っており、学生の主体的な学習をサポートしているようだ",
+        "現代社会に必要なスキルを身につけたい学生にはおすすめだね",
+        "詳しくは隣の動画で見ることができるみたいだから再生ボタンを押してみるといい"
       ]
     },
     {
       "model_path": "/character_knight.gltf",
-      "position": [1.0,0.0,-14],
+      "position": [2.0,0.0,0.5],
       "modal_header": "情報・通信工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#csn",
       "ids":[
-        "sIokStG7CA8",
-        "sMNShvr9sSo",
-        "Ot8Z_YLLonI",
         "b6cozAFiM-o",
         "qA4dpZxN5dM",
         "ToyqjXR5_d8",
         "JAtbk27z0pQ"
+      ],
+      "messages": [
+        "この後ろにある大きな建物は研究棟だ",
+        "飯塚キャンパスのほぼすべての研究室はここに入ってる",
+        "特に最近改修工事が進んでいるからピカピカさ"
       ]
     },
     {
       "model_path": "/character_mage.gltf",
-      "position": [17.0,0.0, -2],
+      "position": [13.0,0.0, 6],
       "modal_header": "知的システム工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ics",
@@ -49,11 +58,17 @@
         "Z-YdNYxFDLY",
         "IDX1IMFtB8Y",
         "HE-AhdC8OeE"
+      ],
+      "messages": [
+        "ポルト棟は最近できたばかりのお洒落な建物よ",
+        "1階はコワーキングスペース等が利用できて，二階にはキャリア支援室があるわ",
+        "魔女としては、魔法の力で素晴らしいキャリアを築いてほしいけれど",
+        "もちろん魔法の力なしでも、ここで相談すれば素晴らしいキャリアを築くことができるはずよ"
       ]
     },
     {
       "model_path": "/character_rogue.gltf",
-      "position": [17.0,0.0, 10],
+      "position": [9.7,0, 0],
       "modal_header": "物理情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#phys",
@@ -63,11 +78,16 @@
         "AQZKpp15HYc",
         "9VkvBO1CXw0",
         "7Gq6b1pW_lM"
+      ],
+      "messages": [
+        "ここは講義棟で，学部生の授業はだいたいここで行われるのよ",
+        "最近新しくなったみたいで、落ち着いた雰囲気の中で勉強ができると思うわ",
+        "授業に集中して、将来の夢や目標に向かって頑張ってね"
       ]
     },
     {
       "model_path": "/character_duck.gltf",
-      "position": [-10,0.0,2],
+      "position": [12,0.0,-4],
       "modal_header": "生命化学情報工学科",
       "modal_message": "学科と各研究室について動画で紹介します！",
       "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
@@ -77,6 +97,11 @@
         "pT08WBxNNog",
         "XAVYoqAZwZ4",
         "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "アゴラってのは自由なスペースだから、自習したりおしゃべりをしたりするのに最適な場所だ",
+        "それに、イベントもたまにここで開催されるんだ",
+        "席数も結構あるから友達と過ごすのもいいし、一人でゆっくり過ごすのもいいぜ"
       ]
     }
   ],
