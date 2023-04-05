@@ -126,8 +126,8 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
     <>
     <CameraControls
       ref={cameraControlsRef}
-      minDistance={4}
-      maxDistance={20}
+      minDistance={7}
+      maxDistance={35}
       enabled={true}
       verticalDragToForward={false}
       dollyToCursor={false}
