@@ -11,17 +11,25 @@ import {
   ActionIcon,
   ScrollArea,
   Table,
-  Text
+  Text,
+  Menu,
+  rem,
+  Avatar,
+  useMantineTheme
 } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
 import { 
-  IconInfoSmall 
+  IconInfoSmall,
+  IconHandClick,
+  IconUsers
 } from '@tabler/icons-react';
 
 const Head: FC = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const theme = useMantineTheme();
+  const [modalType, setModalType] = useState('none');
 
   return (
     <>
@@ -39,19 +47,41 @@ const Head: FC = () => {
           borderBottom: 0
         }}
       >
-            <Group position="right" noWrap pt="sm">
-            <ActionIcon size="sm" radius="xl" variant="outline" onClick={open}>
-              <IconInfoSmall size="1.725rem" />
-            </ActionIcon>
-            </Group>
+        <Group position="right" noWrap pt="sm">
+        <Menu width={150} shadow="md" position="left-start">
+          <Menu.Target>
+              <ActionIcon size="sm" radius="xl" variant="light">
+                <IconInfoSmall size="1.725rem" />
+              </ActionIcon>
+          </Menu.Target>
+
+          <Menu.Dropdown>
+            <Menu.Item
+              onClick={() => {open(); setModalType('operation');}}
+              icon={<IconHandClick color={theme.colors.blue[6]} size={rem(14)} />}
+            >
+              <Text size="xs" weight={700}  color="dimmed" >操作方法</Text>
+            </Menu.Item>
+
+            <Menu.Item
+              onClick={() => {open(); setModalType('developer');}}
+              icon={<IconUsers size={rem(14)} color={theme.colors.violet[6]} />}
+            >
+              <Text size="xs" weight={700}  color="dimmed">開発者</Text>
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+        </Group>
       </Header>
       <Modal
+        size="md"
         centered
         opened={opened}
-        onClose={close}
-        title="操作方法"
+        onClose={()=> {close(); }}
+        title={modalType === "operation" ? "操作方法" : "開発者"}
         scrollAreaComponent={ScrollArea.Autosize}
       >
+        {modalType === "operation" ?
         <Table highlightOnHover withColumnBorders withBorder>
           <thead>
             <tr>
@@ -78,9 +108,91 @@ const Head: FC = () => {
           </tr>
           </tbody>
           
-        </Table>
+          </Table>
+          
+        :
+        <Table highlightOnHover withColumnBorders>
+          <tr>
+            <td>
+              <Group spacing="sm" >
+                <Avatar size={40} src={"./avatars/1.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>梶谷 柊</Text>
+                  <Text fz="xs" c="dimmed">情報創成工学専攻 M2 (物理情報工学科)</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/2.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>冨岡 莉生</Text>
+                  <Text fz="xs" c="dimmed">学際情報工学専攻 D1 (システム創成情報工学科)</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/3.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>井上 快斗</Text>
+                  <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/4.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>高津 太一</Text>
+                  <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/5.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>根崎 翔</Text>
+                  <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/6.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>南 歩希</Text>
+                  <Text fz="xs" c="dimmed">応用科学科</Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Group spacing="sm">
+                <Avatar size={40} src={"./avatars/7.png"} radius={40} />
+                <div>
+                  <Text fz="sm" fw={500}>糸園 朔</Text>
+                  <Text fz="xs" c="dimmed"></Text>
+                </div>
+              </Group>
+            </td>
+          </tr>
+          </Table>
+        }
+        <Text mt="md" size="xs" color="dimmed">所属は2023年時点でのもの．カッコ内は学部生の時の所属学科．</Text>
       </Modal>
-
     </MantineProvider>
     </>
   )

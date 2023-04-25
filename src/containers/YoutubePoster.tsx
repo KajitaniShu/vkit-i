@@ -79,8 +79,8 @@ const YoutubePoster: FC<YoutubePosterProps> = ({ playerRef, cameraControlsRef, l
         setMessageIdx(0);
       }
       else{     // 話し中
-        if(timer > 3) {
-          setMessageIdx(messageIdx+1);  // timer > 1.5 で次のメッセージを表示
+        if(timer > 4.5) {               // timer > 6 で次のメッセージを表示
+          setMessageIdx(messageIdx+1);  
           timer = 0.0;
         }
         timer += delta;
