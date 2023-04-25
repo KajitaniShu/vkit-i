@@ -130,7 +130,7 @@ const Head: FC = () => {
                 <Avatar size={40} src={"./avatars/2.png"} radius={40} />
                 <div>
                   <Text fz="sm" fw={500}>冨岡 莉生</Text>
-                  <Text fz="xs" c="dimmed">学際情報工学専攻 D1 (システム創成情報工学科)</Text>
+                  <Text fz="xs" c="dimmed">情報創成工学専攻 D1 (システム創成情報工学科)</Text>
                 </div>
               </Group>
             </td>
