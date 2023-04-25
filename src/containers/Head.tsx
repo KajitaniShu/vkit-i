@@ -174,7 +174,7 @@ const Head: FC = () => {
                 <Avatar size={40} src={"./avatars/6.png"} radius={40} />
                 <div>
                   <Text fz="sm" fw={500}>南 歩希</Text>
-                  <Text fz="xs" c="dimmed">応用科学科</Text>
+                  <Text fz="xs" c="dimmed">工学部 応用化学科 B4</Text>
                 </div>
               </Group>
             </td>
@@ -192,7 +192,7 @@ const Head: FC = () => {
           </tr>
           </Table>
           
-        <Text mt="md" size="xs" color="dimmed">所属は2023年時点でのもの．カッコ内は学部生の時の所属学科．</Text>
+        <Text mt="md" size="xs" color="dimmed">所属は2023年時点のもの．カッコ内は学部生の時の所属学科．</Text>
         </>
         }
       </Modal>
