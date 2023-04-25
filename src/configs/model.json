@@ -101,7 +101,139 @@
       "messages": [
         "アゴラってのは自由なスペースだから、自習したりおしゃべりをしたりするのに最適な場所だ",
         "それに、イベントもたまにここで開催されるんだ",
-        "席数も結構あるから友達と過ごすのもいいし、一人でゆっくり過ごすのもいいぜ"
+        "席数も結構あるから友達と過ごすのもいいし、一人でゆっくりするのもいいぜ"
+      ]
+    },
+    {
+      "model_path": "/character_duck.gltf",
+      "position": [0.3, 0, 9],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "この左にある研究管理棟は、充実した大学生活を過ごすために欠かせない場所だ！",
+        "ここには事務的な手続きや履修の相談に対応してくれる専門スタッフがいるんだ",
+        "2階には保健センターがあって、体調不良や健康に関する相談ができる",
+        "とにかく大学生活で困ったときはまずここで相談してみるといいぜ"
+      ]
+    },
+    {
+      "model_path": "/character_knight.gltf",
+      "position": [6.4, 0, 10],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "ここの図書館には本屋にあるIT系の専門書なら大抵揃っているぞ",
+        "もしほしい本が見つからなくても申請さえすれば買ってくれることもある",
+        "他の施設に比べて静かだから一人で集中したいときに利用するのもいいな"
+      ]
+    },
+    {
+      "model_path": "/character_barbarian.gltf",
+      "position": [13.6, 0, 2.4],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "MILAiSでは英語のグループワークなど、自由な発想を引き出すような授業が行われておるそうだ",
+        "授業次第で空間の広さも机の組み合わせ方も変えられるみたいだよ",
+        "今の世代の教育システムには驚かされるばかりじゃのう..."
+      ]
+    },
+    {
+      "model_path": "/character_mage.gltf",
+      "position": [3, 0, -8.2],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "この左にある建物は マイクロ化総合技術センター よ",
+        "半導体素子を実際にここで開発したりできるとんでもない施設なの",
+        "あんなに細かい加工ができるなんてまさに魔法よ"
+      ]
+    },
+    {
+      "model_path": "/character_rogue.gltf",
+      "position": [4.8, 0, -5.2],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "右にある建物は 福利棟 よ",
+        "食堂や売店・ATMなんかも揃ってるわ",
+        "それに留学生と日本の学生が交流できる グローバルコミュニケーションラウンジ っていうところもあるの",
+        "とにかく勉強や研究に疲れたときは 福利棟 に行ってみてね"
+      ]
+    },{
+      "model_path": "/character_knight.gltf",
+      "position": [-6, 0, 4.7],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "起業を考えていたり，創業したばかりの学生起業家はこの施設が使えるんだ",
+        "実際に学生起業をした知り合いがいるが，かなり立派なオフィスだったぜ"
+      ]
+    },{
+      "model_path": "/character_rogue.gltf",
+      "position": [0.6, 0, 2.3],
+      "modal_header": "生命化学情報工学科",
+      "modal_message": "学科と各研究室について動画で紹介します！",
+      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
+      "ids":[
+        "SZcagal0RPs",
+        "9Tc0wp0xQ5U",
+        "pT08WBxNNog",
+        "XAVYoqAZwZ4",
+        "I9gDiPDMY6U"
+      ],
+      "messages": [
+        "左側に見える施設は 情報基盤センター よ",
+        "九工大では自分のPCを使う機会が多いんだけど",
+        "パスワードやソフトの不具合などで困ったときはここにお世話になるかもしれないわね"
       ]
     }
   ],

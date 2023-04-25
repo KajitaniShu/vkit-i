@@ -103,6 +103,7 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
 
   
   useFrame((_, delta) => {
+    console.log(player.current.position.x, player.current.position.y, player.current.position.z);
     if(!twoFing.current && Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();
