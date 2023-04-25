@@ -111,6 +111,7 @@ const Head: FC = () => {
           </Table>
           
         :
+        <>
         <Table highlightOnHover withColumnBorders>
           <tr>
             <td>
@@ -190,8 +191,10 @@ const Head: FC = () => {
             </td>
           </tr>
           </Table>
-        }
+          
         <Text mt="md" size="xs" color="dimmed">所属は2023年時点でのもの．カッコ内は学部生の時の所属学科．</Text>
+        </>
+        }
       </Modal>
     </MantineProvider>
     </>
