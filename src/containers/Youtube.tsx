@@ -19,6 +19,7 @@ const Youtube: FC<YoutubeProps> = ({playerRef}) => {
         />
         <mesh position={[-3, 0, 10.7]} scale={[1, 1.07, 1]}>
             <Html zIndexRange={[2, 0]} position={[0, 1.2, 0.02]} scale={[0.15, 0.15, 0.15]} transform  occlude>
+                {/* @ts-ignore */}
                 <ReactPlayer 
                     loop={true}
                     controls={false}

@@ -11,6 +11,7 @@ import FooterButton from '@/containers/FooterButton'
 import { Vector3 } from 'three'
 import { CameraControls } from '@react-three/drei'
 import { Mesh } from 'three'
+import { Animationcharacters } from '@/containers/Animationcharacters'
 
 const IndexPage: NextPage = () => {
   const btnInfo = useRef<any>({open: false, info: "none"}); 
@@ -25,6 +26,7 @@ const IndexPage: NextPage = () => {
           btnInfo={btnInfo}
           modelPath={path.player.model_path}
         />
+        <Animationcharacters url={"avatars/Professor_Miyano.vrm"}/>
         <Signboards/>
       </DrawCanvas>
       <FooterButton btnInfo={btnInfo} />

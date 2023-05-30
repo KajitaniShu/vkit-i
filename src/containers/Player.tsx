@@ -31,10 +31,10 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
   const kyutech_map = useGLTF("./kyutech_map.glb").scene;
   kyutech_map.scale.set(0.1, 0.1, 0.1);
   
-  const player = useRef({position: new Vector3(0.0, 0.0, 0.0), rotation: new Vector3(0.0, 0.0, 0.0)});
+  const player = useRef({position: new Vector3(0.0, 0.0, 14.0), rotation: new Vector3(0.0, 0.0, 0.0)});
   player.current.position.set(0, 0, 14);
   player.current.rotation.set(0, Math.PI, 0);
-  const box = useRef({position: new Vector3(0.0, 0.0, 0.0)});
+  const box = useRef({position: new Vector3(0.0, 0.0, 14.0)});
   box.current.position.set(player.current.position.x, player.current.position.y, player.current.position.z);
   const { camera, gl } = useThree();
   const cameraControlsRef = useRef<CameraControls>(null!);
@@ -135,7 +135,7 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
       dollyToCursor={false}
       infinityDolly={false}
     />
-      <PlayerModel 
+      <PlayerModel // @ts-ignore
         gltf={gltf}
         ref={player}
       />

@@ -41,7 +41,7 @@ function countText(text: String){
   return (
     <>
       <PosterModel 
-        onClick={onOpen}
+        onClick={onOpen} // @ts-ignore
         gltf={gltf}
         position={position}
       />

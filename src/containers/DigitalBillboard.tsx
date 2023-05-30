@@ -41,7 +41,7 @@ const DigitalBillboard = () => {
         <>
             {billboardPos.map((value, key) => {
                 return (
-                    <SceneModel 
+                    <SceneModel // @ts-ignore
                         gltf={gltf} position={value.pos} scale={new Vector3(0.2, 0.2, 0.2)}
                     />
                 );

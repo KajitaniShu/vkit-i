@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import SceneModelProps from '@/types/interfaces/SceneModel'
+import { RigidBody } from "@react-three/rapier";
 
 const SceneModel: FC<SceneModelProps> = ({ gltf, position, scale }) => (
   <group>
