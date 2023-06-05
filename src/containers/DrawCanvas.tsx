@@ -9,7 +9,8 @@ import { Physics, } from "@react-three/rapier";
 const DrawCanvas: FC = ({ children }) => {
   const { progress } = useProgress();
   return (
-      <Canvas
+    
+    <Canvas
         style={{
           position: 'absolute',
           top: 0,
@@ -18,7 +19,7 @@ const DrawCanvas: FC = ({ children }) => {
           backgroundColor:'white'
         }}
         camera={{ 
-          position: [0, 20,0],
+          position: [1, 3, 4],
           fov: 45,
         }}
       >
@@ -28,11 +29,12 @@ const DrawCanvas: FC = ({ children }) => {
           intensity={0.6}
           castShadow
         />
-        <Suspense fallback={<Loader progress={progress}/>}>
-          <Physics debug>
+          <Physics debug gravity={[0,0,0]} 
+          interpolate={false} 
+          colliders={false}>
             {children}
           </Physics>
-        </Suspense>
+        
         <SoftShadows />
         <Preload all />
         {/* @ts-ignore */}

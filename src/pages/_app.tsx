@@ -7,12 +7,10 @@ import { ChakraProvider } from '@chakra-ui/react'
 const App: FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <ChakraProvider>
-      <AuthProvider>
         <Layout>
           {/* @ts-ignore */}
           <Component {...pageProps} />
         </Layout>
-      </AuthProvider>
     </ChakraProvider> 
   </>
 )

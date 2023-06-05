@@ -4,29 +4,6 @@
   },
   "youtube_posters": [
     {
-      "model_path": "/character_barbarian.gltf",
-      "position": [-1.7,0.0,11.0],
-      "modal_header": "知能情報工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#ai",
-      "ids":[
-        "3PQzBzcyYqM",
-        "bixh6GojnT8",
-        "8o6Xd63zj2U",
-        "uAtrLr98RJI",
-        "IiD1o8SoMOo",
-        "ByNMitz0fQo",
-        "4kQY__Jp7qQ"
-      ],
-      "messages": [
-        "おじいさんも、現代の教育については詳しくないけれど",
-        "九工大は文部科学省認定されたMDASHプログラムっていうのをやっているみたいだよ",
-        "充実した学習環境や学習支援システムが整っており、学生の主体的な学習をサポートしているようだ",
-        "現代社会に必要なスキルを身につけたい学生にはおすすめだね",
-        "詳しくは隣の動画で見ることができるみたいだから再生ボタンを押してみるといい"
-      ]
-    },
-    {
       "model_path": "/character_knight.gltf",
       "position": [2.0,0.0,0.5],
       "modal_header": "情報・通信工学科",
@@ -105,64 +82,6 @@
       ]
     },
     {
-      "model_path": "/character_duck.gltf",
-      "position": [0.3, 0, 9],
-      "modal_header": "生命化学情報工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
-      "ids":[
-        "SZcagal0RPs",
-        "9Tc0wp0xQ5U",
-        "pT08WBxNNog",
-        "XAVYoqAZwZ4",
-        "I9gDiPDMY6U"
-      ],
-      "messages": [
-        "この左にある研究管理棟は、充実した大学生活を過ごすために欠かせない場所だ！",
-        "ここには事務的な手続きや履修の相談に対応してくれる専門スタッフがいるんだ",
-        "2階には保健センターがあって、体調不良や健康に関する相談ができる",
-        "とにかく大学生活で困ったときはまずここで相談してみるといいぜ"
-      ]
-    },
-    {
-      "model_path": "/character_knight.gltf",
-      "position": [6.4, 0, 10],
-      "modal_header": "生命化学情報工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
-      "ids":[
-        "SZcagal0RPs",
-        "9Tc0wp0xQ5U",
-        "pT08WBxNNog",
-        "XAVYoqAZwZ4",
-        "I9gDiPDMY6U"
-      ],
-      "messages": [
-        "ここの図書館には本屋にあるIT系の専門書なら大抵揃っているぞ",
-        "もしほしい本が見つからなくても申請さえすれば買ってくれることもある",
-        "他の施設に比べて静かだから一人で集中したいときに利用するのもいいな"
-      ]
-    },
-    {
-      "model_path": "/character_barbarian.gltf",
-      "position": [13.6, 0, 2.4],
-      "modal_header": "生命化学情報工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
-      "ids":[
-        "SZcagal0RPs",
-        "9Tc0wp0xQ5U",
-        "pT08WBxNNog",
-        "XAVYoqAZwZ4",
-        "I9gDiPDMY6U"
-      ],
-      "messages": [
-        "MILAiSでは英語のグループワークなど、自由な発想を引き出すような授業が行われておるそうだ",
-        "授業次第で空間の広さも机の組み合わせ方も変えられるみたいだよ",
-        "今の世代の教育システムには驚かされるばかりじゃのう..."
-      ]
-    },
-    {
       "model_path": "/character_mage.gltf",
       "position": [3, 0, -8.2],
       "modal_header": "生命化学情報工学科",
@@ -234,6 +153,41 @@
         "左側に見える施設は 情報基盤センター よ",
         "九工大では自分のPCを使う機会が多いんだけど",
         "パスワードやソフトの不具合などで困ったときはここにお世話になるかもしれないわね"
+      ]
+    }
+  ],
+  "professors": [
+    {
+      "model_path": "/avatars/Professor_Miyano.vrm",
+      "animation_path": "/avatars/greet.fbx",
+      "rotation": [0, 0, 0],
+      "position": [-1.5,0.0,-3.0],
+      "messages": [
+        "テスト①",
+        "テスト②",
+        "テスト③"
+      ]
+
+    },
+    {
+      "model_path": "/avatars/Professor_Saito.vrm",
+      "animation_path": "/avatars/greet.fbx",
+      "position": [6.4, 0, -4],
+      "rotation": [0, 0, 0],
+      "messages": [
+        "テスト①",
+        "テスト②",
+        "テスト③"
+      ]
+    },{
+      "model_path": "/avatars/Professor_Eto.vrm",
+      "animation_path": "/avatars/greet.fbx",
+      "position": [0.3, 0, -5],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "テスト①",
+        "テスト②",
+        "テスト③"
       ]
     }
   ],
@@ -317,6 +271,7 @@
     }
   ],
   "board": {
-      "model_path": "/board.glb"
+      "model_path": "/board.glb",
+      "video_path": "/video/mdash.mp4"
   }
 }

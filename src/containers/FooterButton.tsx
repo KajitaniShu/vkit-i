@@ -27,16 +27,14 @@ import {
   IconInfoSmall 
 } from '@tabler/icons-react';
 
-const FooterButton: FC<FooterButtonProps> = ({btnInfo}) => {
+const FooterButton: FC<FooterButtonProps> = ({opened, close}) => {
   const { height, width } = useViewportSize();
-  const [opened, { open, close }] = useDisclosure(false);
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   
   return (
     <>
       {/* @ts-ignore */}
-      {btnInfo && btnInfo.current?.open &&
-      
+      {opened && 
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <Center
             style={{
@@ -59,8 +57,7 @@ const FooterButton: FC<FooterButtonProps> = ({btnInfo}) => {
                   position: 'relative',
                 }}
               >
-                <Button variant="filled" color="gray">またあとで</Button>
-                <Button variant="filled" color="yellow">もっと聞く</Button>
+                <Button variant="filled" onClick={close}>またあとで</Button>
               </Group>
             </Container>
             

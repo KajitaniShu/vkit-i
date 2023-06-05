@@ -1,20 +1,19 @@
 import { useRef, FC } from 'react'
 import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations, CameraControls } from '@react-three/drei'
-import { Vector3, Plane} from 'three';
+import { Vector3, Plane, Mesh } from 'three';
 import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
-import { OrbitControls as OrbitControlsImpl } from "three-stdlib"; 
 import Poster from '@/containers/Poster'
-import YoutubePoster from '@/containers/YoutubePoster'
 import path from '@/configs/model.json'
-import Youtube from '@/containers/Youtube'
+import { Physics, RigidBody, CapsuleCollider, RapierRigidBody } from "@react-three/rapier";
+import { IconCloudPause } from '@tabler/icons-react';
 
-const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
+
+const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   const twoFing = useRef(false);
-  const locked = useRef<boolean>(false);
-
+  const rb = useRef<RapierRigidBody>(null);
 
   window.addEventListener('touchstart', function(e) {
     if (e.targetTouches.length > 1) twoFing.current = true;
@@ -28,27 +27,20 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
   const scene = gltf.scene;
   const animations = gltf.animations;
   const { actions } = useAnimations(animations, scene);
-  const kyutech_map = useGLTF("./kyutech_map.glb").scene;
-  kyutech_map.scale.set(0.1, 0.1, 0.1);
   
-  const player = useRef({position: new Vector3(0.0, 0.0, 14.0), rotation: new Vector3(0.0, 0.0, 0.0)});
-  player.current.position.set(0, 0, 14);
-  player.current.rotation.set(0, Math.PI, 0);
-  const box = useRef({position: new Vector3(0.0, 0.0, 14.0)});
-  box.current.position.set(player.current.position.x, player.current.position.y, player.current.position.z);
+  const player = useRef<Mesh>();
+  const collider = useRef({position: new Vector3(0.0, 0.0, 0.0), rotation: new Vector3(0.0, 0.0, 0.0)});
+  const box = useRef({position: new Vector3(0.0, 0.0, 0.0)});
   const { camera, gl } = useThree();
-  const cameraControlsRef = useRef<CameraControls>(null!);
 
-  // CameraControlsの設定
-  if(cameraControlsRef.current != null) {
-    cameraControlsRef.current.mouseButtons.left = 0;
+  // CameraControlsの設定 
+  // @ts-ignore
+  if(cameraControlsRef?.current != null) {  // @ts-ignore
+    cameraControlsRef.current.mouseButtons.left = 0;  // @ts-ignore
     cameraControlsRef.current.touches.one = 0;
   }
   
-  camera.position.set(2, 10, 20); 
-  cameraControlsRef.current?.setPosition(2, 10, 20);
-  // @ts-ignore
-  camera.aspect = document.body.clientWidth / document.body.clientHeight;
+  cameraControlsRef.current?.setPosition(1, 3, 4);
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
   var _pos = new Vector3();
   const bind = useDrag<ThreeEvent<MouseEvent>>(
@@ -71,21 +63,27 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
   );
 
   const move = (speed: number, theta: number) => {
-    if(twoFing.current) return;
+    if(twoFing.current) return; // @ts-ignore
     if(locked.current) return;
     
-
     if(player.current.position.x + speed * Math.cos(theta) < 25.0 && player.current.position.x + speed * Math.cos(theta) > -18.0){
-      player.current.position.x += speed * Math.cos(theta);
+      // キャラクター移動
+      rb.current?.setTranslation(new Vector3(rb.current?.translation().x + speed * Math.cos(theta), rb.current?.translation().y, rb.current?.translation().z) , true);
       const previous = new Vector3();
+
+      // カメラ移動
+      // @ts-ignore
       cameraControlsRef.current?.getPosition(previous);
+      // @ts-ignore
       cameraControlsRef.current?.setPosition(previous.x + speed * Math.cos(theta), previous.y, previous.z, true);
     }
 
     if(player.current.position.z + speed * Math.sin(theta) < 15.0 && player.current.position.z + speed * Math.sin(theta) > -26.0){
-      player.current.position.z += speed * Math.sin(theta);
+      rb.current?.setTranslation(new Vector3(rb.current?.translation().x, rb.current?.translation().y, rb.current?.translation().z +  speed * Math.sin(theta)) , true);
       const previous = new Vector3();
+      // @ts-ignore
       cameraControlsRef.current?.getPosition(previous);
+      // @ts-ignore
       cameraControlsRef.current?.setPosition(previous.x, previous.y, previous.z + speed * Math.sin(theta), true);
     }
     player.current.rotation.y = -theta+Math.PI/2;
@@ -93,18 +91,21 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
 
   const calcDirection = (): [number, number]  => {
     const _box = new Vector3(box.current.position.x, box.current.position.y, box.current.position.z);
-    const _player = new Vector3(player.current.position.x, player.current.position.y, player.current.position.z);
+    const _player = rb.current?.translation();
     var speed: number = 0.0;
     var theta: number = 0.0;
+    // @ts-ignore
     speed =  Math.sqrt(Math.pow(_box.z - _player.z, 2) + Math.pow(_box.x - _player.x, 2));
+    // @ts-ignore
     theta = Math.atan2(_box.z - _player.z, _box.x - _player.x);
     return [theta, speed*2];
   }
+  
 
   
   useFrame((_, delta) => {
-    console.log(player.current.position.x, player.current.position.y, player.current.position.z);
-    if(!twoFing.current && Math.abs(box.current.position.x - player.current.position.x) + Math.abs(box.current.position.z - player.current.position.z) > 0.2){
+    // @ts-ignore
+    if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();
       if(speed > 3.0) speed = 3.0;
@@ -115,10 +116,10 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
       if(actions.Run?.isRunning)  {actions.Run?.fadeOut; actions.Run?.reset();}
       actions.Idle?.play();
     }
-
-    cameraControlsRef.current?.setTarget(player.current.position.x, player.current.position.y+1, player.current.position.z, true);
-    //cameraControlsRef.current.setAzimuthalAngle( player.current.rotation.y+Math.PI );
-    //orbitControls.current.setPolarAngle(1);
+    // @ts-ignore
+    if(rb.current.isSleeping() && actions.Run?.isRunning) {actions.Run?.fadeOut; actions.Run?.reset();}
+    // @ts-ignore
+    cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
   });
 
 
@@ -135,48 +136,18 @@ const Player: FC<PlayerProps> = ({ modelPath, btnInfo }) => {
       dollyToCursor={false}
       infinityDolly={false}
     />
+    <RigidBody ref={rb} lockRotations={true} enabledTranslations={[true, false, true]}>
       <PlayerModel // @ts-ignore
         gltf={gltf}
         ref={player}
       />
+      <CapsuleCollider position={[0, 0.28, 0]} args={[0.14, 0.2]} />
+    </RigidBody>
 
-      <mesh castShadow rotation={[-Math.PI/2, 0, 0]} {...bind() as any}>
-        <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
-        <meshStandardMaterial attach="material" transparent opacity={0} />
-      </mesh>
-
-      {/*path.posters.map((value, key) => {
-        return (
-          <Poster
-            playerRef={player}
-            modelPath={value.model_path}
-            position={new Vector3(value.position[0], value.position[1], value.position[2])}
-            modal_header={value.modal_header}
-            modal_image={value.modal_image}
-            modal_message={value.modal_message}
-            modal_url={value.modal_url}
-          />
-        );
-      })*/}
-
-      {path.youtube_posters.map((value, key) => {
-        return (
-          <YoutubePoster
-            playerRef={player}
-            cameraControlsRef={cameraControlsRef}
-            btnInfo={btnInfo}
-            locked={locked}
-            modelPath={value.model_path}
-            messages={value.messages}
-            position={new Vector3(value.position[0], value.position[1], value.position[2])}
-            modal_header={value.modal_header}
-            modal_message={value.modal_message}
-            modal_url={value.modal_url}
-            ids={value.ids}
-          />
-        );
-      })}
-      <Youtube playerRef={player}/>
+    <mesh castShadow rotation={[-Math.PI/2, 0, 0]} {...bind() as any}>
+      <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
+      <meshStandardMaterial attach="material" transparent opacity={0} />
+    </mesh>
     </>
   )
 }

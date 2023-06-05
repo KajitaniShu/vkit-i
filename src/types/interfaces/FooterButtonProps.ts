@@ -1,7 +1,8 @@
 import { Vector3 } from "three"
 
 type FooterButtonProps = {
-  btnInfo: React.Ref<any>
+  opened: any,
+  close: any
 }
 
 export default FooterButtonProps
