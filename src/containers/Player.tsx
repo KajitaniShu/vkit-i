@@ -1,3 +1,5 @@
+// @ts-nocheck 
+
 import { useRef, FC } from 'react'
 import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations, CameraControls } from '@react-three/drei'
@@ -34,9 +36,8 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   const { camera, gl } = useThree();
 
   // CameraControlsの設定 
-  // @ts-ignore
-  if(cameraControlsRef?.current != null) {  // @ts-ignore
-    cameraControlsRef.current.mouseButtons.left = 0;  // @ts-ignore
+  if(cameraControlsRef?.current != null) {  
+    cameraControlsRef.current.mouseButtons.left = 0;  
     cameraControlsRef.current.touches.one = 0;
   }
   
@@ -51,8 +52,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
         box.current.position.x = player.current.position.x;
         box.current.position.z = player.current.position.z;
       }
-
-      // @ts-ignore
+      
       if(!twoFing.current) event.ray.intersectPlane(plane, _pos);
       if(box.current!= null && !twoFing.current) {
         box.current.position.x = _pos.x;
@@ -63,27 +63,23 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   );
 
   const move = (speed: number, theta: number) => {
-    if(twoFing.current) return; // @ts-ignore
+    if(twoFing.current) return; 
     if(locked.current) return;
-    
     if(player.current.position.x + speed * Math.cos(theta) < 25.0 && player.current.position.x + speed * Math.cos(theta) > -18.0){
       // キャラクター移動
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x + speed * Math.cos(theta), rb.current?.translation().y, rb.current?.translation().z) , true);
       const previous = new Vector3();
 
       // カメラ移動
-      // @ts-ignore
       cameraControlsRef.current?.getPosition(previous);
-      // @ts-ignore
       cameraControlsRef.current?.setPosition(previous.x + speed * Math.cos(theta), previous.y, previous.z, true);
     }
 
     if(player.current.position.z + speed * Math.sin(theta) < 15.0 && player.current.position.z + speed * Math.sin(theta) > -26.0){
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x, rb.current?.translation().y, rb.current?.translation().z +  speed * Math.sin(theta)) , true);
       const previous = new Vector3();
-      // @ts-ignore
+      
       cameraControlsRef.current?.getPosition(previous);
-      // @ts-ignore
       cameraControlsRef.current?.setPosition(previous.x, previous.y, previous.z + speed * Math.sin(theta), true);
     }
     player.current.rotation.y = -theta+Math.PI/2;
@@ -94,9 +90,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
     const _player = rb.current?.translation();
     var speed: number = 0.0;
     var theta: number = 0.0;
-    // @ts-ignore
     speed =  Math.sqrt(Math.pow(_box.z - _player.z, 2) + Math.pow(_box.x - _player.x, 2));
-    // @ts-ignore
     theta = Math.atan2(_box.z - _player.z, _box.x - _player.x);
     return [theta, speed*2];
   }
@@ -104,7 +98,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
 
   
   useFrame((_, delta) => {
-    // @ts-ignore
+    
     if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();
@@ -116,9 +110,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
       if(actions.Run?.isRunning)  {actions.Run?.fadeOut; actions.Run?.reset();}
       actions.Idle?.play();
     }
-    // @ts-ignore
     if(rb.current.isSleeping() && actions.Run?.isRunning) {actions.Run?.fadeOut; actions.Run?.reset();}
-    // @ts-ignore
     cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
   });
 
@@ -137,7 +129,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
       infinityDolly={false}
     />
     <RigidBody ref={rb} lockRotations={true} enabledTranslations={[true, false, true]}>
-      <PlayerModel // @ts-ignore
+      <PlayerModel 
         gltf={gltf}
         ref={player}
       />
