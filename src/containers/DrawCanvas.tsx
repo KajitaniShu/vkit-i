@@ -40,7 +40,7 @@ const DrawCanvas: FC = ({ children }) => {
         {/* @ts-ignore */}
         <Grid cellColor="#ddd" cellThickness={0.7} sectionThickness={0.7} sectionColor="#fff" followCamera={true} fadeDistance={25} fadeStrength={1} position={[0, -0.02, 0]} args={[500, 500]} />
         {/* @ts-ignore */}
-        <ContactShadows  opacity={0.6} scale={10} blur={0.2} far={10}  width={6} height={6} color="#000000" />
+        <ContactShadows frames={1} opacity={0.6} scale={10} blur={0.2} far={10} width={5} height={5} color="#000000"/>
         <Environment preset="city" />
       </Canvas> 
   )

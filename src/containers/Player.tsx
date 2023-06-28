@@ -2,15 +2,12 @@
 
 import { useRef, FC } from 'react'
 import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations, CameraControls } from '@react-three/drei'
+import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei'
 import { Vector3, Plane, Mesh } from 'three';
 import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
-import Poster from '@/containers/Poster'
-import path from '@/configs/model.json'
 import { Physics, RigidBody, CapsuleCollider, RapierRigidBody } from "@react-three/rapier";
-import { IconCloudPause } from '@tabler/icons-react';
 
 
 const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
@@ -41,7 +38,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
     cameraControlsRef.current.touches.one = 0;
   }
   
-  cameraControlsRef.current?.setPosition(1, 3, 4);
+  cameraControlsRef.current?.setPosition(1, 5, 7);
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
   var _pos = new Vector3();
   const bind = useDrag<ThreeEvent<MouseEvent>>(
@@ -115,19 +112,8 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   });
 
 
-  
   return (
     <>
-    <CameraControls
-      ref={cameraControlsRef}
-      minDistance={4}
-      distance={10}
-      maxDistance={35}
-      enabled={true}
-      verticalDragToForward={false}
-      dollyToCursor={false}
-      infinityDolly={false}
-    />
     <RigidBody ref={rb} lockRotations={true} enabledTranslations={[true, false, true]}>
       <PlayerModel 
         gltf={gltf}
@@ -136,7 +122,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
       <CapsuleCollider position={[0, 0.28, 0]} args={[0.14, 0.2]} />
     </RigidBody>
 
-    <mesh castShadow rotation={[-Math.PI/2, 0, 0]} {...bind() as any}>
+    <mesh castShadow rotation={[-Math.PI/2, 0, 0]} position-y={-1} {...bind() as any}>
       <planeBufferGeometry attach="geometry" args={[1000, 1000]}/>
       <meshStandardMaterial attach="material" transparent opacity={0} />
     </mesh>

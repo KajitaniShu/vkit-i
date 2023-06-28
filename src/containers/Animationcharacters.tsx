@@ -12,50 +12,54 @@ import {
   Paper
 } from '@mantine/core';
 
-export function Animationcharacters({modelPath, position, rotation, messages, cameraControlsRef, locked}: any) {
-  const [vrm, setVrm] = useState<GLTF>()
+
+export function Animationcharacters({model, animationPath, position, rotation, messages, cameraControlsRef, locked}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [messageIdx, setMessageIdx] = useState<number>(0);  // メッセージの切り替え用
   const mesh = useRef<Mesh>();
 
   let timer: number = 0.0;
-  const loader = new GLTFLoader();
-  loader.crossOrigin = 'anonymous'
-  loader.register( ( parser ) => {
-		return new VRMLoaderPlugin( parser, { autoUpdateHumanBones: true } );
-	} );
-  let currentMixer: any = undefined;
-  let currentVRM: any = undefined;
   const clock = new Clock();
+  let mixer: any;
 
   function animate() {
     requestAnimationFrame( animate );
     const deltaTime = clock.getDelta();
-    // if animation is loaded
-    if ( currentMixer ) {
-      // update the animation
-      currentMixer.update( deltaTime );
+    if ( mixer ) {
+      mixer.update( deltaTime );
     }
-    if ( currentVRM ) {
-      currentVRM.update( deltaTime );
+    if ( model ) {
+      model.update( deltaTime );
     }
   }
 
-  function initTalk(){
+  function initTalk(e: any){
     // @ts-ignore
     if(!isOpen && locked.current != null && cameraControlsRef.current != null) {
       // @ts-ignore
       locked.current = true;
       // @ts-ignore
       cameraControlsRef.current?.saveState();
-
+console.log(e.rigidBodyObject.position.x)
       // @ts-ignore
-      if(cameraControlsRef != null) cameraControlsRef.current.fitToBox(mesh.current, true);
+      if(cameraControlsRef != null) cameraControlsRef.current.setLookAt(e.rigidBodyObject.position.x, e.rigidBodyObject.position.y+3, e.rigidBodyObject.position.z+4, e.rigidBodyObject.position.x, e.rigidBodyObject.position.y, e.rigidBodyObject.position.z, true);
       setIsOpen(true);
     }
   }
 
+  useEffect(() => {
+    mixer = new AnimationMixer(model.scene);
+    loadMixamoAnimation( animationPath, model).then( ( clip ) => {
+      mixer.clipAction(clip).play();
+      mixer.timeScale = 0.6;
+    } );
+
+    animate();
+  }, []);
+
+  
   useFrame((_, delta) => {
+    mixer?.update(delta);
     if(isOpen){
       if(messageIdx >= messages.length) {  // 話が終わった または 閉じるボタンを押した
         // @ts-ignore
@@ -78,39 +82,6 @@ export function Animationcharacters({modelPath, position, rotation, messages, ca
     }
   });
 
-  useEffect(() => {
-    if(!vrm){
-      loader.load(
-        modelPath,
-        // called when the resource is loaded
-        ( gltf ) => {
-          // calling these functions greatly improves the performance
-          VRMUtils.removeUnnecessaryVertices( gltf.scene );
-          VRMUtils.removeUnnecessaryJoints( gltf.scene );
-  
-          currentVRM = gltf.userData.vrm as VRM;
-          setVrm(gltf.userData.vrm);
-          
-          currentMixer = new AnimationMixer(gltf.userData.vrm.scene);
-          
-          // Load animation
-          loadMixamoAnimation( "/avatars/greet.fbx", currentVRM ).then( ( clip ) => {
-            currentMixer.clipAction(clip).play();
-            currentMixer.timeScale = 1.0;
-          } );
-          animate()
-          
-        },
-  
-        // called while loading is progressing
-        ( progress ) => {},
-  
-        // called when loading has errors
-        ( error ) => console.error( error )
-      );
-    }
-  });
-
   return(
     
     <> 
@@ -124,7 +95,7 @@ export function Animationcharacters({modelPath, position, rotation, messages, ca
           }
         </MantineProvider>
     </Html>
-    {vrm ?
+    
       <RigidBody
         type="fixed"
         colliders={false}
@@ -132,16 +103,17 @@ export function Animationcharacters({modelPath, position, rotation, messages, ca
         <BallCollider 
           position={[position[0], position[1]+0.5, position[2]]} args={[0.5]} 
           sensor
-          onIntersectionEnter={() => initTalk()} /> {/* @ts-ignore */}
-        <mesh scale={[1.2, 1.2, 1.2]} rotation={rotation} position={position} ref={mesh} castShadow>
-          <primitive
-            object={vrm.scene}
-          />
-        </mesh>
+          onIntersectionEnter={(e) => initTalk(e)} /> {/* @ts-ignore */}
+          <mesh scale={[1.2, 1.2, 1.2]} rotation={rotation} position={position} ref={mesh} castShadow>
+            {model ?
+              <primitive
+                object={model.scene}
+              />
+              :
+              <></>
+            }
+          </mesh>
       </RigidBody>
-      :
-      <></>
-    }
     </>
   )
 }
