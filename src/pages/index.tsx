@@ -7,8 +7,8 @@ import Player from '@/containers/Player'
 import Signboards from '@/containers/Signboard'
 import Head from '@/containers/Head'
 import FooterButton from '@/containers/FooterButton'
-import { CameraControls } from '@react-three/drei'
-import { Animationcharacters } from '@/containers/Animationcharacters'
+import { CameraControls, Preload, AdaptiveDpr, Text } from '@react-three/drei'
+import Animationcharacters from '@/containers/Animationcharacters'
 import VideoBoard from '@/containers/VideoBoard'
 import { 
   useDisclosure,
@@ -25,7 +25,7 @@ const IndexPage: NextPage = () => {
   cameraControlsRef.current?.setPosition(1, 3, 4);
   const locked = useRef<boolean>(false);
   const [opened, { open, close }] = useDisclosure();
-  const {characters, loading, load, characterModels} = useCharacterModel();
+  const {characters, loading, progress, load, characterModels} = useCharacterModel();
 
   const loadModel = async () => {
     await load(path.professors);
@@ -38,10 +38,10 @@ const IndexPage: NextPage = () => {
   return (
     <>
       <Head />
-      <FooterButton opened={opened} close={close} />
       {!loading ?
 
         <DrawCanvas>
+          <Preload all />
           <Scene
             modelPath={path.scene[0].model_path}
           />
@@ -60,7 +60,7 @@ const IndexPage: NextPage = () => {
             locked={locked}
             modelPath={path.player.model_path}
           />
-          
+          <AdaptiveDpr pixelated />
           <VideoBoard video_path={path.board.video_path}/>
           {characterModels && characterModels.length > 0 && characterModels.map((value: any, key: any) => {
             return (
@@ -75,11 +75,10 @@ const IndexPage: NextPage = () => {
               />
             );
           })}
-          
           <Signboards/>
         </DrawCanvas>
       :
-        <Loading/>
+        <Loading progress={progress} />
       }
     </>
   )

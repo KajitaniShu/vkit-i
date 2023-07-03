@@ -14,8 +14,9 @@ const useCharacterModel = () => {
   const loadingManager = new LoadingManager();
   const characters: any[] = [];
   const animations: any[] = [];
+  let   progress = 0.0;
 
-  loadingManager.onProgress = function(url, loaded) { console.log(url, loaded) }
+  loadingManager.onProgress = function(url, loaded, total) { progress = loaded / total }
   loadingManager.onStart    = function() { setLoading(true); }
   loadingManager.onLoad     = function() { setLoaded(false); setLoading(false); }
 
@@ -55,6 +56,6 @@ const useCharacterModel = () => {
   };
 
   // データをオブジェクト型で返す
-  return { error, setError, loading, characters, characterModels, load };
+  return { error, setError, loading, characters, characterModels, progress,load };
 };
 export default useCharacterModel;

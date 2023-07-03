@@ -29,7 +29,7 @@ const DrawCanvas: FC = ({ children }) => {
           intensity={0.6}
           castShadow
         />
-          <Physics debug gravity={[0,0,0]} 
+          <Physics gravity={[0,0,0]} 
           interpolate={false} 
           colliders={false}>
             {children}

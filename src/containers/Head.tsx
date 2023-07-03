@@ -33,7 +33,6 @@ const Head: FC = () => {
 
   return (
     <>
-      <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
       <Header 
         height={50} 
         px="md" 
@@ -196,7 +195,6 @@ const Head: FC = () => {
         </>
         }
       </Modal>
-    </MantineProvider>
     </>
   )
 }

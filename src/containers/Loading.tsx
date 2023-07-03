@@ -3,7 +3,7 @@ import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
 import { useViewportSize  } from '@mantine/hooks';
 
 
-export function Loading() {
+export function Loading(progress : number) {
   const { width, height } = useViewportSize();
   return (
     <Flex
@@ -16,7 +16,7 @@ export function Loading() {
     >
       
       <Loader size="lg" variant="bars" />
-      <Text color="gray">読み込み中</Text>
+      <Text color="gray">読み込み中...</Text>
     </Flex>
   );
 }

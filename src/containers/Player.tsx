@@ -1,6 +1,6 @@
 // @ts-nocheck 
 
-import { useRef, FC } from 'react'
+import { useRef, FC, useState } from 'react'
 import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei'
 import { Vector3, Plane, Mesh } from 'three';
@@ -8,6 +8,7 @@ import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
 import { Physics, RigidBody, CapsuleCollider, RapierRigidBody } from "@react-three/rapier";
+import TargetMark from '@/components/molecules/TargetMark'
 
 
 const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
@@ -53,7 +54,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
       if(!twoFing.current) event.ray.intersectPlane(plane, _pos);
       if(box.current!= null && !twoFing.current) {
         box.current.position.x = _pos.x;
-        box.current.position.y = 0.1;
+        box.current.position.y = -0.1;
         box.current.position.z = _pos.z;
       }
     }
@@ -95,7 +96,6 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
 
   
   useFrame((_, delta) => {
-    
     if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
       var theta : number, speed: number;
       [theta, speed] = calcDirection();

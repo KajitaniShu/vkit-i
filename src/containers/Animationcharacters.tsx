@@ -13,7 +13,7 @@ import {
 } from '@mantine/core';
 
 
-export function Animationcharacters({model, animationPath, position, rotation, messages, cameraControlsRef, locked}: any) {
+const Animationcharacters = React.memo(function Animationcharacters({model, animationPath, position, rotation, messages, cameraControlsRef, locked}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [messageIdx, setMessageIdx] = useState<number>(0);  // メッセージの切り替え用
   const mesh = useRef<Mesh>();
@@ -40,7 +40,7 @@ export function Animationcharacters({model, animationPath, position, rotation, m
       locked.current = true;
       // @ts-ignore
       cameraControlsRef.current?.saveState();
-console.log(e.rigidBodyObject.position.x)
+      
       // @ts-ignore
       if(cameraControlsRef != null) cameraControlsRef.current.setLookAt(e.rigidBodyObject.position.x, e.rigidBodyObject.position.y+3, e.rigidBodyObject.position.z+4, e.rigidBodyObject.position.x, e.rigidBodyObject.position.y, e.rigidBodyObject.position.z, true);
       setIsOpen(true);
@@ -116,4 +116,6 @@ console.log(e.rigidBodyObject.position.x)
       </RigidBody>
     </>
   )
-}
+})
+
+export default Animationcharacters
