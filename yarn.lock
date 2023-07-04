@@ -2365,6 +2365,13 @@
   dependencies:
     "@mantine/utils" "6.0.14"
 
+"@mantine/nprogress@^6.0.15":
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-6.0.15.tgz#50374d78e7ab851671f595a2572e9205ce91fa4b"
+  integrity sha512-SHmRq3t0iy1FsZ0E4vdlR/EHsQHeo9dt3920KJqvTUyJLIk8DY8cIDK36qav56V49Ocef4uIEUR+G/foTa2EgQ==
+  dependencies:
+    "@mantine/utils" "6.0.15"
+
 "@mantine/styles@6.0.14":
   version "6.0.14"
   resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-6.0.14.tgz#5fd930abfceef8ffd7a98c30c87b7ebcf3845147"
@@ -2377,6 +2384,11 @@
   version "6.0.14"
   resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.14.tgz#cafa8b22cc077398bb2c4b8c1eae31490438f2a8"
   integrity sha512-se+3IXJsNj4wnLMlqc7LiBe74m+JLQJ5o3wEcDtFzaJEtEt1rtw/1q3xKuROkH3xEiauhxQgzsc4gj/AslHy2A==
+
+"@mantine/utils@6.0.15":
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.15.tgz#d4144221f9406aece12b979bed5888da50d86771"
+  integrity sha512-iVaobFQTCQWG6SRi3im0/nONKCtGRPobG7bXn9GiIT96E4t7uTPglQpo/ZktDrF1XCL8CO/HoQmks4A2iXuMFw==
 
 "@mediapipe/tasks-vision@0.10.2-rc2":
   version "0.10.2-rc2"

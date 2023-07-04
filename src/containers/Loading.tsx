@@ -3,7 +3,7 @@ import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
 import { useViewportSize  } from '@mantine/hooks';
 
 
-export function Loading(progress : number) {
+export function Loading(progress : any) {
   const { width, height } = useViewportSize();
   return (
     <Flex

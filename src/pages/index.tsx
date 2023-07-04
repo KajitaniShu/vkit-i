@@ -7,16 +7,20 @@ import Player from '@/containers/Player'
 import Signboards from '@/containers/Signboard'
 import Head from '@/containers/Head'
 import FooterButton from '@/containers/FooterButton'
-import { CameraControls, Preload, AdaptiveDpr, Text } from '@react-three/drei'
+import { CameraControls, Preload, AdaptiveDpr } from '@react-three/drei'
 import Animationcharacters from '@/containers/Animationcharacters'
+//import NonAnimationcharacters from '@/containers/NonAnimationcharacters'
 import VideoBoard from '@/containers/VideoBoard'
 import { 
   useDisclosure,
+  useViewportSize
 } from '@mantine/hooks';
+import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
 import useCharacterModel from '@/hooks/useCharacterModel'
-import {Loading} from '@/containers/Loading'
+import { NavigationProgress } from '@mantine/nprogress';
 
 const IndexPage: NextPage = () => {
+  const { width, height } = useViewportSize();
   const cameraControlsRef = useRef<CameraControls>(null!);
   if(cameraControlsRef?.current != null) {  // @ts-ignore
     cameraControlsRef.current.mouseButtons.left = 0;  // @ts-ignore
@@ -25,10 +29,10 @@ const IndexPage: NextPage = () => {
   cameraControlsRef.current?.setPosition(1, 3, 4);
   const locked = useRef<boolean>(false);
   const [opened, { open, close }] = useDisclosure();
-  const {characters, loading, progress, load, characterModels} = useCharacterModel();
+  const {characters, loading, progress, load, characterModels, manModel} = useCharacterModel();
 
   const loadModel = async () => {
-    await load(path.professors);
+    await load(path.professors, path.students_man);
   }
 
   useEffect(() => {
@@ -62,6 +66,8 @@ const IndexPage: NextPage = () => {
           />
           <AdaptiveDpr pixelated />
           <VideoBoard video_path={path.board.video_path}/>
+
+          {/* 教授キャラクター(クローンが使えないパターン) */}
           {characterModels && characterModels.length > 0 && characterModels.map((value: any, key: any) => {
             return (
               <Animationcharacters
@@ -75,10 +81,43 @@ const IndexPage: NextPage = () => {
               />
             );
           })}
+
+          {/* 学生キャラクター(クローンが使えるパターン) */}
+          {/*
+            manModel && path.students_man.property.map((value: any, key: any) => {
+              return (
+                <NonAnimationcharacters
+                  model={manModel}
+                  animationPath={value.animation_path}
+                  position={value.position}
+                  rotation={value.rotation}
+                  messages={value.messages}
+                  cameraControlsRef={cameraControlsRef}
+                  locked={locked}
+                />
+              );
+            })
+          */}
+
           <Signboards/>
         </DrawCanvas>
       :
-        <Loading progress={progress} />
+      <>
+        <NavigationProgress />
+        <Flex
+          h={height}
+          gap="md"
+          justify="center"
+          align="center"
+          direction="column"
+          wrap="nowrap"
+        >
+          
+          <Loader size="lg" variant="bars" />
+          <Text>{progress}%</Text>
+          <Text color="gray">読み込み中...</Text>
+        </Flex>
+        </>
       }
     </>
   )

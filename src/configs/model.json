@@ -168,6 +168,35 @@
       ]
     }
   ],
+  "students_man": 
+  {
+    "model_path": "/avatars/man.vrm",
+    "property": [
+      {
+        "position": [0,0.0,-1.0],
+        "rotation": [0, 3.14, 0],
+        "animation_path": "/avatars/ArmGesture.fbx",
+        "messages": [
+          "MDASHプログラムは、数理、データサイエンス、AIの応用能力を育てる教育プログラムです。",
+          "幅広い科目と演習を通じて、専門技術者の育成を目指します。",
+          "横のモニターで詳しく説明しているので見てみてください。"
+        ]
+      },
+      {
+        "position": [0,0.0,2.0],
+        "rotation": [0, 3.14, 0],
+        "animation_path": "/avatars/ArmGesture.fbx",
+        "messages": [
+          "MDASHプログラムは、数理、データサイエンス、AIの応用能力を育てる教育プログラムです。",
+          "幅広い科目と演習を通じて、専門技術者の育成を目指します。",
+          "横のモニターで詳しく説明しているので見てみてください。"
+        ]
+      }
+    ]
+    
+
+  }
+  ,
   "posters": [
     {
       "model_path": "/knight.glb",

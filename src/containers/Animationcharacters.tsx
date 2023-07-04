@@ -18,19 +18,26 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
   const [messageIdx, setMessageIdx] = useState<number>(0);  // メッセージの切り替え用
   const mesh = useRef<Mesh>();
 
-  let timer: number = 0.0;
+  let timer = 0.0;
   const clock = new Clock();
   let mixer: any;
+  let frame = 0;
+  let tmpDelta = 0.0;
 
   function animate() {
-    requestAnimationFrame( animate );
-    const deltaTime = clock.getDelta();
-    if ( mixer ) {
-      mixer.update( deltaTime );
-    }
-    if ( model ) {
-      model.update( deltaTime );
-    }
+    // 3回に一回だけアニメーションを更新
+    requestAnimationFrame(animate);
+    frame++;
+    tmpDelta += clock.getDelta();
+    if(frame < 3) return;
+    
+    if ( mixer ) mixer.update(tmpDelta * 1.5);
+    if ( model ) model.update(tmpDelta * 1.5);
+    
+    // デルタタイムとframeを初期化
+    tmpDelta = 0.0;
+    frame = 0;
+
   }
 
   function initTalk(e: any){
@@ -53,13 +60,11 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
       mixer.clipAction(clip).play();
       mixer.timeScale = 0.6;
     } );
-
     animate();
   }, []);
 
   
   useFrame((_, delta) => {
-    mixer?.update(delta);
     if(isOpen){
       if(messageIdx >= messages.length) {  // 話が終わった または 閉じるボタンを押した
         // @ts-ignore
@@ -95,7 +100,7 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
           }
         </MantineProvider>
     </Html>
-    
+    5
       <RigidBody
         type="fixed"
         colliders={false}
