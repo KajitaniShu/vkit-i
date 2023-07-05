@@ -41,7 +41,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   
   cameraControlsRef.current?.setPosition(1, 5, 7);
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
-  var _pos = new Vector3();
+  let _pos = new Vector3();
   const bind = useDrag<ThreeEvent<MouseEvent>>(
     ({event}) => {
 
@@ -86,8 +86,8 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   const calcDirection = (): [number, number]  => {
     const _box = new Vector3(box.current.position.x, box.current.position.y, box.current.position.z);
     const _player = rb.current?.translation();
-    var speed: number = 0.0;
-    var theta: number = 0.0;
+    let speed: number = 0.0;
+    let theta: number = 0.0;
     speed =  Math.sqrt(Math.pow(_box.z - _player.z, 2) + Math.pow(_box.x - _player.x, 2));
     theta = Math.atan2(_box.z - _player.z, _box.x - _player.x);
     return [theta, speed*2];
@@ -97,7 +97,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
   
   useFrame((_, delta) => {
     if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
-      var theta : number, speed: number;
+      let theta : number, speed: number;
       [theta, speed] = calcDirection();
       if(speed > 3.0) speed = 3.0;
       if(theta != undefined) move(delta*speed, theta);

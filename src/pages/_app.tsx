@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { AppProps } from 'next/app'
-import AuthProvider from '@/containers/AuthProvider'
 import Layout from '@/components/molecules/Layout'
 import { MantineProvider } from '@mantine/core';
 

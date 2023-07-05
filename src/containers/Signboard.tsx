@@ -23,9 +23,9 @@ const bldgCenterPos = [
     { name: 'スチューデント・レジデンス', pos: new Vector3(-8.9, 2.0, -34.8) }
 ]
 
-function countText(text: String) {
-    var length = 0.0;
-    for (var i = 0; i < text.length; i++) {
+function countText(text: string) {
+    let length = 0.0;
+    for (let i = 0; i < text.length; i++) {
         text[i].match(/[ -~]/) ? length += 0.5 : length += 1.0;
     }
     return length;

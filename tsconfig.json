@@ -20,5 +20,5 @@
     "incremental": true,
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts"],
-  "exclude": ["node_modules", "temp", "src/utils/add_admin.js"]
+  "exclude": ["node_modules", "temp", ]
 }

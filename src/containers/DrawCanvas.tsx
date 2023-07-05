@@ -1,8 +1,6 @@
 import { FC, Suspense, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, Grid, Sky, Stage, Preload, useProgress, ContactShadows, Environment, SoftShadows, TorusKnot } from '@react-three/drei'
-import Loader from '@/components/atoms/Loader'
-import { Spinner, ChakraProvider } from '@chakra-ui/react'
 import { Physics, } from "@react-three/rapier";
 
 

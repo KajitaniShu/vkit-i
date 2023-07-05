@@ -71,6 +71,7 @@ const IndexPage: NextPage = () => {
           {characterModels && characterModels.length > 0 && characterModels.map((value: any, key: any) => {
             return (
               <Animationcharacters
+                key={key}
                 model={value.models}
                 animationPath={value.animation_path}
                 position={value.position}
@@ -87,6 +88,7 @@ const IndexPage: NextPage = () => {
             manModel && path.students_man.property.map((value: any, key: any) => {
               return (
                 <NonAnimationcharacters
+                  key={key}
                   model={manModel}
                   animationPath={value.animation_path}
                   position={value.position}
