@@ -2,21 +2,24 @@ import React, {useState, useEffect, useRef } from 'react'
 import { useFrame } from 'react-three-fiber'
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { VRMLoaderPlugin, VRMUtils, VRM } from '@pixiv/three-vrm'
-import THREE, { Scene, Group, AnimationMixer, Clock, Mesh } from 'three'
+import THREE, { Scene, AnimationMixer, Clock, Mesh, Vector3 } from 'three'
 import { Html, useGLTF, useAnimations } from '@react-three/drei'
 import { loadMixamoAnimation } from '@/containers/loadMixamoAnimation'
 import { Physics, RigidBody, BallCollider } from "@react-three/rapier";
 import { 
-  MantineProvider,
+  ActionIcon,
   Text,
-  Paper
+  Paper,
+  Group
 } from '@mantine/core';
+import { IconSquareRoundedX } from '@tabler/icons-react';
 
 
 const Animationcharacters = React.memo(function Animationcharacters({model, animationPath, position, rotation, messages, cameraControlsRef, locked}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [messageIdx, setMessageIdx] = useState<number>(0);  // メッセージの切り替え用
   const mesh = useRef<Mesh>();
+  const _position = new Vector3(position[0], position[1]+0.5, position[2]);
 
   let timer = 0.0;
   const clock = new Clock();
@@ -25,11 +28,17 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
   let tmpDelta = 0.0;
 
   function animate() {
-    // 3回に一回だけアニメーションを更新
     requestAnimationFrame(animate);
+    const distance = _position.distanceTo(cameraControlsRef.current?._target);  // カメラのターゲット(主にプレイヤーの位置)とアニメーションキャラクターの距離
+    if(distance > 5) return;  // 距離が5より大きい場合アニメーションさせない
+
+    let skipFrame = 3;
+    if(distance < 2) skipFrame = 2;
+
+    // skipFrame回に一回だけアニメーションを更新
     frame++;
     tmpDelta += clock.getDelta();
-    if(frame < 3) return;
+    if(frame < skipFrame) return;
     
     if ( mixer ) mixer.update(tmpDelta * 1.5);
     if ( model ) model.update(tmpDelta * 1.5);
@@ -37,7 +46,6 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
     // デルタタイムとframeを初期化
     tmpDelta = 0.0;
     frame = 0;
-
   }
 
   function initTalk(e: any){
@@ -59,6 +67,10 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
     loadMixamoAnimation( animationPath, model).then( ( clip ) => {
       mixer.clipAction(clip).play();
       mixer.timeScale = 0.6;
+
+      const delta = clock.getDelta();
+      if ( mixer ) mixer.update(delta * 1.5);
+      if ( model ) model.update(delta * 1.5);
     } );
     animate();
   }, []);
@@ -91,25 +103,27 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
     
     <> 
     {/* @ts-ignore */}
-    <Html zIndexRange={[4, 2]} position={[position[0], 1.3, position[2]]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
-        <MantineProvider withGlobalStyles withNormalizeCSS>
+    <Html zIndexRange={[4, 2]} position={[_position.x, _position.y+1, _position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
           {isOpen && 
-          <Paper shadow="xs" radius="md" p="md" style={{textAlign: "center"}}>
+          <Paper radius="md" p="md" pt="xs" withBorder style={{textAlign: "center"}}>
+            <Group position="right" noWrap>
+            <ActionIcon title="閉じる" onClick={() => setMessageIdx(messages.length)} variant="transparent">
+              <IconSquareRoundedX size="1.125rem" />
+            </ActionIcon>
+            </Group>
             <Text>{messages[messageIdx]}</Text>
           </Paper>
           }
-        </MantineProvider>
     </Html>
-    5
       <RigidBody
         type="fixed"
         colliders={false}
       >
         <BallCollider 
-          position={[position[0], position[1]+0.5, position[2]]} args={[0.5]} 
+          position={_position} args={[0.5]} 
           sensor
           onIntersectionEnter={(e) => initTalk(e)} /> {/* @ts-ignore */}
-          <mesh scale={[1.2, 1.2, 1.2]} rotation={rotation} position={position} ref={mesh} castShadow>
+          <mesh scale={[1.2, 1.2, 1.2]} rotation={rotation} position={position} ref={mesh}>
             {model ?
               <primitive
                 object={model.scene}

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Html } from "@react-three/drei"
 import { Vector3 } from 'three';
-
+import { Tooltip, MantineProvider, Badge  } from '@mantine/core';
+import { IconCircleDot } from '@tabler/icons-react';
 const bldgCenterPos = [
     // 各施設のマップ上での位置
     {name: '研究管理棟',                 pos: new Vector3( -1.8, 1.2, -6.0)},
@@ -37,9 +38,9 @@ const Signboards = () => {
             {bldgCenterPos.map((value, key) => {
                 return (
                     <Html sprite={true} zIndexRange={[1, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
-                        <div style={{ backgroundColor: "#343434", textAlign: "center", lineHeight: "0.5em", padding: "0.1em", borderRadius: "5px", userSelect: "none" }}>
-                            <p style={{ color: "white" }}> {value.name} </p>
-                        </div>
+                        <MantineProvider>
+                            <Badge variant="filled" color="dark" size="lg">{value.name}</Badge>
+                        </MantineProvider>
                     </Html>
                 );
             })}

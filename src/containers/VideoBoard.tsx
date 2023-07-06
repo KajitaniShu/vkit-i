@@ -15,12 +15,8 @@ const VideoBoard: FC<VideoProps> = ({video_path}) => {
 
     return (
         <>
-        <SceneModel 
-            // @ts-ignore
-            gltf={gltf} position={[-3, 0, -3.3]} scale={new Vector3(0.23, 0.23, 0.23)}
-        />
-        <mesh position={[-3, 1.29, -3.25]}>
-            <Plane args={[2.3, 1.5]}>
+        <mesh position={[-2.885, 1.174, -3.25]}>
+            <Plane args={[2.13, 1.4]}>
                 <meshBasicMaterial map={texture}  />
             </Plane>
             

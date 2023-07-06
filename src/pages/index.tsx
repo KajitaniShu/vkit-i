@@ -29,7 +29,7 @@ const IndexPage: NextPage = () => {
   cameraControlsRef.current?.setPosition(1, 3, 4);
   const locked = useRef<boolean>(false);
   const [opened, { open, close }] = useDisclosure();
-  const {characters, loading, progress, load, characterModels, manModel} = useCharacterModel();
+  const {loading, load, characterModels} = useCharacterModel();
 
   const loadModel = async () => {
     await load(path.professors, path.students_man);
@@ -116,7 +116,6 @@ const IndexPage: NextPage = () => {
         >
           
           <Loader size="lg" variant="bars" />
-          <Text>{progress}%</Text>
           <Text color="gray">読み込み中...</Text>
         </Flex>
         </>

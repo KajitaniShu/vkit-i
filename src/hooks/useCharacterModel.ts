@@ -18,7 +18,7 @@ const useCharacterModel = () => {
 
   loadingManager.onProgress = function(url, loaded, total) { nprogress.set(loaded/total * 100)  }
   loadingManager.onStart    = function() { setLoading(true); nprogress.reset() }
-  loadingManager.onLoad     = function() { setLoaded(false); setLoading(false); nprogress.complete() }
+  loadingManager.onLoad     = function() { setLoaded(true); setLoading(false); nprogress.complete() }
 
   const loader = new GLTFLoader(loadingManager);
 
@@ -28,7 +28,6 @@ const useCharacterModel = () => {
 	} );
 
   
-
   const load = async (professor_path: any, stu_man_path: any) => {
 
     if (!loaded) {

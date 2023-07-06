@@ -15,9 +15,6 @@ const Scene: FC<SceneProps> = ({ modelPath }) => {
       <SceneModel // @ts-ignore
         gltf={scene_gltf} position={new Vector3(0.0, 0.0, -14.0)} scale={new Vector3(0.1, 0.1, 0.1)}
       />
-      <NoneShadowSceneModel position={new Vector3(0.0, 0.0, -14.0)} scale={new Vector3(0.1, 0.1, 0.1)} // @ts-ignore
-        gltf={green_gltf}
-      />
     </>
   )
 }

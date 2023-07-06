@@ -21,7 +21,7 @@ const DrawCanvas: FC = ({ children }) => {
           fov: 45,
         }}
       >
-        <ambientLight intensity={0.8}/>
+        <ambientLight intensity={1.3}/>
         <directionalLight
           position={[10,20,0]}
           intensity={0.6}
