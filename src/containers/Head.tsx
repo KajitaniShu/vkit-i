@@ -142,7 +142,7 @@ const Head: FC = () => {
           </Tabs.Tab>
           </Tabs.List>
         </Tabs>
-        <Popover size="sm" position="bottom" withArrow 
+        <Popover position="bottom" withArrow 
           styles={(theme) => ({
             arrow: {
               border: "2px solid #422612",
