@@ -79,12 +79,13 @@ const Head: FC = () => {
       >
         <Group position="right">
         <Tabs
+          color="#422612"
           unstyled
           styles={(theme) => ({
             tab: {
               ...theme.fn.focusStyles(),
               backgroundColor: theme.white,
-              border: `2px solid "#422612"`,
+              border: "2px solid #422612",
               padding: `${theme.spacing.md} ${theme.spacing.md}`,
               cursor: 'pointer',
               fontSize: theme.fontSizes.sm,
@@ -152,15 +153,17 @@ const Head: FC = () => {
             },
           })}
         >
-          <Popover.Target>
+          
             <Tabs
               className={classes.smartphone}
               unstyled
+              color="#422612"
               styles={(theme) => ({
                 tab: {
                   ...theme.fn.focusStyles(),
+                  color: "#422612",
+                  border: "2px solid #422612",
                   backgroundColor: theme.white,
-                  border: `2px solid "#422612"`,
                   padding: `${theme.spacing.md} ${theme.spacing.md}`,
                   cursor: 'pointer',
                   fontSize: theme.fontSizes.sm,
@@ -181,16 +184,18 @@ const Head: FC = () => {
               })}
             >
               <Tabs.List>
-                <Tabs.Tab value="メニュー"  onClick={()=> {console.log("")}} icon={<IconMenu2 size="1.5em" style={{paddingTop: "0.3em"}}/>}>
-                  <Text color="#422612" fw={600} >Menu</Text>
-                </Tabs.Tab>
+                <Popover.Target>
+                  <Tabs.Tab value="メニュー" icon={<IconMenu2 size="1.5em" color="#422612" style={{paddingTop: "0.3em"}}/>}>
+                    <Text color="#422612" fw={600} >Menu</Text>
+                  </Tabs.Tab>
+                </Popover.Target>
               </Tabs.List>
             </Tabs>
-          </Popover.Target>
+          
 
           <Popover.Dropdown p="0">
             <Tabs
-              color="gray"
+              color="#422612"
               orientation="vertical"
               w={"100%"}
               styles={(theme) => ({
@@ -204,7 +209,7 @@ const Head: FC = () => {
                 
               })}
             >
-            <Tabs.List>
+            <Tabs.List color="#422612">
               <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
                 <Text color="#422612" fw={600}>操作方法</Text>
               </Tabs.Tab>
