@@ -206,8 +206,8 @@ const Head: FC = () => {
                   cursor: 'pointer',
                   fontSize: theme.fontSizes.sm,
                 },
-                
               })}
+              
             >
             <Tabs.List color="#422612">
               <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
@@ -234,6 +234,18 @@ const Head: FC = () => {
         onClose={()=> {close(); }}
         title={modalType}
         scrollAreaComponent={ScrollArea.Autosize}
+        styles={(theme) => ({
+          content: {
+            backgroundColor: theme.white,
+            border: "2px solid #422612",
+            fontSize: theme.fontSizes.sm,
+            borderRadius: "15px"
+          },
+          title: {
+            color: "#422612",
+            fontWeight: "bold"
+          }
+        })}
       >
         {modalType === "操作方法" &&
           <Table highlightOnHover withColumnBorders withBorder>

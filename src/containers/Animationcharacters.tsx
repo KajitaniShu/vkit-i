@@ -105,7 +105,20 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
     {/* @ts-ignore */}
     <Html zIndexRange={[4, 2]} position={[_position.x, _position.y+1, _position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
           {isOpen && 
-          <Paper radius="md" p="md" pt="xs" withBorder style={{textAlign: "center"}}>
+          <Paper radius="md" p="md" pt="xs" withBorder style={{textAlign: "center"}}
+            styles={(theme) => ({
+              content: {
+                backgroundColor: theme.white,
+                border: "2px solid #422612",
+                fontSize: theme.fontSizes.sm,
+                borderRadius: "15px"
+              },
+              title: {
+                color: "#422612",
+                fontWeight: "bold"
+              }
+            })}
+          >
             <Group position="right" noWrap>
             <ActionIcon title="閉じる" onClick={() => setMessageIdx(messages.length)} variant="transparent">
               <IconSquareRoundedX size="1.125rem" />
