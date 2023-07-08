@@ -4,24 +4,6 @@
   },
   "youtube_posters": [
     {
-      "model_path": "/character_knight.gltf",
-      "position": [2.0,0.0,0.5],
-      "modal_header": "情報・通信工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#csn",
-      "ids":[
-        "b6cozAFiM-o",
-        "qA4dpZxN5dM",
-        "ToyqjXR5_d8",
-        "JAtbk27z0pQ"
-      ],
-      "messages": [
-        "この後ろにある大きな建物は研究棟だ",
-        "飯塚キャンパスのほぼすべての研究室はここに入ってる",
-        "特に最近改修工事が進んでいるからピカピカさ"
-      ]
-    },
-    {
       "model_path": "/character_rogue.gltf",
       "position": [9.7,0, 0],
       "modal_header": "物理情報工学科",
@@ -98,23 +80,6 @@
         "とにかく勉強や研究に疲れたときは 福利棟 に行ってみてね"
       ]
     },{
-      "model_path": "/character_knight.gltf",
-      "position": [-6, 0, 4.7],
-      "modal_header": "生命化学情報工学科",
-      "modal_message": "学科と各研究室について動画で紹介します！",
-      "modal_url": "https://www.iizuka.kyutech.ac.jp/admissions/open/open2022/lab#bio",
-      "ids":[
-        "SZcagal0RPs",
-        "9Tc0wp0xQ5U",
-        "pT08WBxNNog",
-        "XAVYoqAZwZ4",
-        "I9gDiPDMY6U"
-      ],
-      "messages": [
-        "起業を考えていたり，創業したばかりの学生起業家はこの施設が使えるんだ",
-        "実際に学生起業をした知り合いがいるが，かなり立派なオフィスだったぜ"
-      ]
-    },{
       "model_path": "/character_rogue.gltf",
       "position": [0.6, 0, 2.3],
       "modal_header": "生命化学情報工学科",
@@ -134,7 +99,7 @@
       ]
     }
   ],
-  "professors": [
+  "models": [
     {
       "model_path": "/avatars/Professor_Miyano.vrm",
       "animation_path": "/avatars/ArmGesture.fbx",
@@ -146,11 +111,10 @@
         "横のモニターで詳しく説明しているので見てみてください。"
       ]
 
-    },
-    {
+    },{
       "model_path": "/avatars/Professor_Saito.vrm",
       "animation_path": "/avatars/greet.fbx",
-      "position": [13.0,0.0, -8],
+      "position": [13.5, 0.0, -8],
       "rotation": [0, 0, 0],
       "messages": [
         "横に見える建物はポルト棟です。",
@@ -166,37 +130,88 @@
         "この後ろにある大きな建物は研究棟です。",
         "飯塚キャンパスのほぼすべての研究室はここに入っています。"
       ]
+    },{
+      "model_path": "/avatars/boy1.vrm",
+      "animation_path": "/avatars/WavingGesture.fbx",
+      "position": [5.0,0.0,-3.5],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "ここの図書館には本屋にあるIT系の専門書なら大抵揃っているぞ",
+        "もしほしい本が見つからなくても申請さえすれば買ってくれることもある",
+        "他の施設に比べて静かだから一人で集中したいときに利用するのもいいな"
+      ]
+    },{
+      "model_path": "/avatars/boy2.vrm",
+      "animation_path": "/avatars/greet.fbx",
+      "position": [-7.0,0.0,-9.0],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "この横にあるのは インキュベーション施設 です",
+        "起業を考えている学生や，実用化研究を行う予定の教員はこの施設が使えます",
+        "もし何かやってみたいことがある人は覗いてみるといいかもしれません"
+      ]
+    },{
+      "model_path": "/avatars/boy3.vrm",
+      "animation_path": "/avatars/Waving.fbx",
+      "position": [13.0,0.0,-18],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "この横は ラーニングアゴラ棟 だよ",
+        "自由に使えるスペースがあるからレポートを書いたり，友達と過ごしてる人が多い",
+        "隣が食堂と売店だからここでご飯やお菓子を食べながらゆっくりするといいかも"
+      ]
+    },{
+      "model_path": "/avatars/boy4.vrm",
+      "animation_path": "/avatars/ArmGesture.fbx",
+      "position": [3.5, 0.0,-22],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "この左にある建物は マイクロ化総合技術センター です",
+        "半導体素子を実際にここで開発したりできる施設です",
+        "授業や研究で実際に使う人もいるかも...？"
+      ]
+    },
+    {
+      "model_path": "/avatars/girl1.vrm",
+      "animation_path": "/avatars/HappyIdle.fbx",
+      "position": [0.0,0.0,-5.0],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "この左に見えるのが研究管理棟で，学生生活を素敵にするのに、とっても大切な場所です",
+        "専門スタッフさんが、色々な手続きや履修のことで相談に乗ってくれるし、",
+        "2階には保健センターもあるから、とにかく困ったときはここに来てみてね"
+      ]
+    },{
+      "model_path": "/avatars/girl2.vrm",
+      "animation_path": "/avatars/greet.fbx",
+      "position": [0.5,0.0,-12.0],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "左側に見える施設は 情報基盤センター だよ",
+        "九工大では自分のPCを使う機会が多いんだけど",
+        "パスワードやソフトの不具合などで困ったときはここにお世話になるかもしれないね"
+      ]
+    },{
+      "model_path": "/avatars/girl3.vrm",
+      "animation_path": "/avatars/HappyIdle.fbx",
+      "position": [10,0.0,-14.0],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "左にあるのは 講義棟 だよ",
+        "学部生の授業はだいたいここで行われるんだけど",
+        "最近新しくなったばかりだから、落ち着いた雰囲気の中で勉強ができると思うよ"
+      ]
+    },{
+      "model_path": "/avatars/girl4.vrm",
+      "animation_path": "/avatars/ArmGesture.fbx",
+      "position": [14,0.0,-12.0],
+      "rotation": [0, 3.14, 0],
+      "messages": [
+        "この横の建物は MILAiS だよ",
+        "ここはグループワークとかディスカッションを行う授業で使われるよ"
+      ]
     }
   ],
-  "students_man": 
-  {
-    "model_path": "/avatars/man.vrm",
-    "property": [
-      {
-        "position": [0,0.0,-1.0],
-        "rotation": [0, 3.14, 0],
-        "animation_path": "/avatars/ArmGesture.fbx",
-        "messages": [
-          "MDASHプログラムは、数理、データサイエンス、AIの応用能力を育てる教育プログラムです。",
-          "幅広い科目と演習を通じて、専門技術者の育成を目指します。",
-          "横のモニターで詳しく説明しているので見てみてください。"
-        ]
-      },
-      {
-        "position": [0,0.0,2.0],
-        "rotation": [0, 3.14, 0],
-        "animation_path": "/avatars/ArmGesture.fbx",
-        "messages": [
-          "MDASHプログラムは、数理、データサイエンス、AIの応用能力を育てる教育プログラムです。",
-          "幅広い科目と演習を通じて、専門技術者の育成を目指します。",
-          "横のモニターで詳しく説明しているので見てみてください。"
-        ]
-      }
-    ]
-    
-
-  }
-  ,
   "posters": [
     {
       "model_path": "/knight.glb",

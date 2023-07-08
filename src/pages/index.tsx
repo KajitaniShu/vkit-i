@@ -31,7 +31,7 @@ const IndexPage: NextPage = () => {
   const {loading, load, characterModels} = useCharacterModel();
 
   const loadModel = async () => {
-    await load(path.professors, path.students_man);
+    await load(path.models);
   }
 
   useEffect(() => {

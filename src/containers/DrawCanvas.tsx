@@ -17,7 +17,7 @@ const DrawCanvas: FC = ({ children }) => {
           backgroundColor:'white'
         }}
         camera={{ 
-          position: [1, 3, 4],
+          position: [1, 6, 6],
           fov: 45,
         }}
       >

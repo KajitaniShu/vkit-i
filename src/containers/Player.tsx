@@ -39,7 +39,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
     cameraControlsRef.current.touches.one = 0;
   }
   
-  cameraControlsRef.current?.setPosition(1, 5, 7);
+  cameraControlsRef.current?.setPosition(1, 6, 6);
   const plane = new Plane(new Vector3(0, 1, 0), 0);  
   let _pos = new Vector3();
   const bind = useDrag<ThreeEvent<MouseEvent>>(

@@ -8,9 +8,6 @@ import { nprogress } from '@mantine/nprogress';
 
 const useCharacterModel = () => {
   const [characterModels, setCharacterModels] = useState<any[]>();
-  const [manModel, setManModel] = useState<any>();
-  const [progress, setProgress] = useState<any>();
-  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const loadingManager = new LoadingManager();
@@ -28,11 +25,11 @@ const useCharacterModel = () => {
 	} );
 
   
-  const load = async (professor_path: any, stu_man_path: any) => {
+  const load = async (model_path: any) => {
 
     if (!loaded) {
       // VRM・アニメーションモデル読み込み
-      await professor_path.map((value: any, key: any) => {
+      await model_path.map((value: any, key: any) => {
         // VRMモデル読み込み
         loader.loadAsync(value.model_path).then((gltf) => {
           VRMUtils.removeUnnecessaryVertices( gltf.scene );
@@ -48,19 +45,10 @@ const useCharacterModel = () => {
         });
       });
       setCharacterModels(characters);
-
-      await loader.loadAsync(stu_man_path.model_path).then((gltf) => {
-        VRMUtils.removeUnnecessaryVertices( gltf.scene );
-        VRMUtils.removeUnnecessaryJoints( gltf.scene );
-        const vrm = gltf.userData.vrm;
-        setManModel(vrm);
-      });
-      
-
     }
   };
 
   // データをオブジェクト型で返す
-  return { error, setError, loading, characters, characterModels, progress, load, manModel };
+  return { loading, characters, characterModels, load };
 };
 export default useCharacterModel;
