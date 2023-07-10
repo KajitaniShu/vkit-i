@@ -26,7 +26,8 @@ import {
   IconInfoCircle,
   IconHandClick,
   IconUsers,
-  IconMenu2
+  IconMenu2,
+  IconSquareRoundedX
 } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
@@ -245,6 +246,7 @@ const Head: FC = () => {
             color: "#422612",
             fontWeight: "bold"
           }
+          
         })}
       >
         {modalType === "操作方法" &&

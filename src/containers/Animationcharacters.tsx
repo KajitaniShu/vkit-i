@@ -10,12 +10,14 @@ import {
   ActionIcon,
   Text,
   Paper,
-  Group
+  Group,
+  Button,
+  Box
 } from '@mantine/core';
-import { IconSquareRoundedX } from '@tabler/icons-react';
+import { IconSquareRoundedX, IconExternalLink } from '@tabler/icons-react';
 
 
-const Animationcharacters = React.memo(function Animationcharacters({model, animationPath, position, rotation, messages, cameraControlsRef, locked}: any) {
+const Animationcharacters = React.memo(function Animationcharacters({model, animationPath, position, rotation, messages, url, cameraControlsRef, locked}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [messageIdx, setMessageIdx] = useState<number>(0);  // メッセージの切り替え用
   const mesh = useRef<Mesh>();
@@ -57,7 +59,9 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
       cameraControlsRef.current?.saveState();
       
       // @ts-ignore
-      if(cameraControlsRef != null) cameraControlsRef.current.setLookAt(e.rigidBodyObject.position.x, e.rigidBodyObject.position.y+3, e.rigidBodyObject.position.z+4, e.rigidBodyObject.position.x, e.rigidBodyObject.position.y, e.rigidBodyObject.position.z, true);
+      if(cameraControlsRef != null) {
+        cameraControlsRef.current.setLookAt(_position.x, _position.y+1.5, _position.z+3, _position.x, _position.y+0.5, _position.z, true);
+      }
       setIsOpen(true);
     }
   }
@@ -98,34 +102,61 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
       }
     }
   });
-
+console.log(url)
   return(
     
     <> 
     {/* @ts-ignore */}
     <Html zIndexRange={[4, 2]} position={[_position.x, _position.y+1, _position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
           {isOpen && 
-          <Paper radius="md" p="md" pt="xs" withBorder style={{textAlign: "center"}}
-            styles={(theme) => ({
-              content: {
-                backgroundColor: theme.white,
-                border: "2px solid #422612",
-                fontSize: theme.fontSizes.sm,
-                borderRadius: "15px"
+          <Box
+            sx={(theme) => ({
+              textAlign: 'center',
+              borderRadius: theme.radius.md,
+              backgroundColor: theme.white,
+              border: "2px solid #422612",
+              padding: `${theme.spacing.md} ${theme.spacing.md}`,
+              fontSize: theme.fontSizes.sm,
+      
+              '&:hover': {
+                backgroundColor:
+                  theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
               },
-              title: {
-                color: "#422612",
-                fontWeight: "bold"
-              }
             })}
           >
             <Group position="right" noWrap>
             <ActionIcon title="閉じる" onClick={() => setMessageIdx(messages.length)} variant="transparent">
-              <IconSquareRoundedX size="1.125rem" />
+              <IconSquareRoundedX color="#422612" size="1.125rem" />
             </ActionIcon>
             </Group>
-            <Text>{messages[messageIdx]}</Text>
-          </Paper>
+            <Text color="#422612">{messages[messageIdx]}</Text>
+            <Group position="right" noWrap>
+            {!(url === "") && 
+              <Button 
+                variant="fill" 
+                compact 
+                mt="lg" 
+                size="sm" 
+                component="a"
+                target="_blank"
+                href={url}
+                styles={(theme) => ({
+                  root: {
+                    backgroundColor: '#422612',
+                    color: 'white',
+                    fontSize: theme.spacing.xs,
+                    border: 0,
+                    '&:not([data-disabled])': theme.fn.hover({
+                      backgroundColor: theme.fn.darken('#422612', 0.05),
+                    }),
+                  },
+                })}
+                rightIcon={<IconExternalLink size="0.9rem" />}>
+                  もっと知る
+              </Button>
+            }
+            </Group>
+              </Box>
           }
     </Html>
       <RigidBody

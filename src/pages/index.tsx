@@ -76,29 +76,12 @@ const IndexPage: NextPage = () => {
                 position={value.position}
                 rotation={value.rotation}
                 messages={value.messages}
+                url={value.url}
                 cameraControlsRef={cameraControlsRef}
                 locked={locked}
               />
             );
           })}
-
-          {/* 学生キャラクター(クローンが使えるパターン) */}
-          {/*
-            manModel && path.students_man.property.map((value: any, key: any) => {
-              return (
-                <NonAnimationcharacters
-                  key={key}
-                  model={manModel}
-                  animationPath={value.animation_path}
-                  position={value.position}
-                  rotation={value.rotation}
-                  messages={value.messages}
-                  cameraControlsRef={cameraControlsRef}
-                  locked={locked}
-                />
-              );
-            })
-          */}
 
           <Signboards/>
         </DrawCanvas>

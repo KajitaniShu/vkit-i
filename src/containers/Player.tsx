@@ -9,6 +9,7 @@ import PlayerModel from '@/components/molecules/PlayerModel';
 import PlayerProps from '@/types/interfaces/Player'
 import { Physics, RigidBody, CapsuleCollider, RapierRigidBody } from "@react-three/rapier";
 import TargetMark from '@/components/molecules/TargetMark'
+import { Block } from '@react-three/fiber/dist/declarations/src/core/utils';
 
 
 const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
@@ -108,7 +109,7 @@ const Player: FC<PlayerProps> = ({ modelPath, cameraControlsRef, locked }) => {
       actions.Idle?.play();
     }
     if(rb.current.isSleeping() && actions.Run?.isRunning) {actions.Run?.fadeOut; actions.Run?.reset();}
-    cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
+    if(!locked.current)cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
   });
 
 

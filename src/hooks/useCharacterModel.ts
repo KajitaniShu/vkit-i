@@ -39,6 +39,7 @@ const useCharacterModel = () => {
             "position": value.position,
             "rotation": value.rotation,
             "messages": value.messages,
+            "url": value.url,
             "models": vrm, 
             "animation_path": value.animation_path,
           });
