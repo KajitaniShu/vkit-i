@@ -28,10 +28,10 @@ const IndexPage: NextPage = () => {
   cameraControlsRef.current?.setPosition(1, 3, 4);
   const locked = useRef<boolean>(false);
   const [opened, { open, close }] = useDisclosure();
-  const {loading, load, characterModels} = useCharacterModel();
+  const {loading, load, playerModel, characterModels} = useCharacterModel();
 
   const loadModel = async () => {
-    await load(path.models);
+    await load(path.player, path.models);
   }
 
   useEffect(() => {
@@ -59,9 +59,10 @@ const IndexPage: NextPage = () => {
             infinityDolly={false}
           />
           <Player
+            model={playerModel}
+            animation_path={path.player.animation_path}
             cameraControlsRef={cameraControlsRef}
             locked={locked}
-            modelPath={path.player.model_path}
           />
           <AdaptiveDpr pixelated />
           <VideoBoard video_path={path.board.video_path}/>

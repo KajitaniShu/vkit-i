@@ -1,6 +1,16 @@
 {
   "player": {
-    "model_path": "/knight.glb"
+    "model_path": "/avatars/player.vrm",
+    "animation_path": [
+      {
+        "name": "run",
+        "path": "/avatars/Running.fbx"
+      },
+      {
+        "name": "idle",
+        "path": "/avatars/Idle.fbx"
+      }
+    ]
   },
   "models": [
     {
@@ -14,7 +24,6 @@
         "横のモニターで詳しく説明しているので見てみてください。"
       ],
       "url": "https://www.kyutech.ac.jp/campuslife/mdash.html"
-
     },{
       "model_path": "/avatars/Professor_Saito.vrm",
       "animation_path": "/avatars/greet.fbx",

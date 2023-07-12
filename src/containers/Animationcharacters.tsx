@@ -102,7 +102,7 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
       }
     }
   });
-console.log(url)
+  
   return(
     
     <> 

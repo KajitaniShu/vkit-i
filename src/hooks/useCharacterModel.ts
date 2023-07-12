@@ -8,6 +8,7 @@ import { nprogress } from '@mantine/nprogress';
 
 const useCharacterModel = () => {
   const [characterModels, setCharacterModels] = useState<any[]>();
+  const [playerModel, setPlayerModel] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const loadingManager = new LoadingManager();
@@ -25,12 +26,19 @@ const useCharacterModel = () => {
 	} );
 
   
-  const load = async (model_path: any) => {
+  const load = async (player_model_path: any, character_model_path: any) => {
 
     if (!loaded) {
+      // プレイヤーモデルの読み込み
+      loader.loadAsync(player_model_path.model_path).then((gltf) => {
+        VRMUtils.removeUnnecessaryVertices( gltf.scene );
+        VRMUtils.removeUnnecessaryJoints( gltf.scene );
+        const vrm = gltf.userData.vrm;
+        setPlayerModel(vrm);
+      });
+
       // VRM・アニメーションモデル読み込み
-      await model_path.map((value: any, key: any) => {
-        // VRMモデル読み込み
+      await character_model_path.map((value: any, key: any) => {
         loader.loadAsync(value.model_path).then((gltf) => {
           VRMUtils.removeUnnecessaryVertices( gltf.scene );
           VRMUtils.removeUnnecessaryJoints( gltf.scene );
@@ -50,6 +58,6 @@ const useCharacterModel = () => {
   };
 
   // データをオブジェクト型で返す
-  return { loading, characters, characterModels, load };
+  return { loading, playerModel, characterModels, load };
 };
 export default useCharacterModel;
