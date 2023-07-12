@@ -6,9 +6,8 @@ import DrawCanvas from '@/containers/DrawCanvas'
 import Player from '@/containers/Player'
 import Signboards from '@/containers/Signboard'
 import Head from '@/containers/Head'
-import { CameraControls, Preload, AdaptiveDpr } from '@react-three/drei'
+import { CameraControls, Preload, AdaptiveDpr, OrbitControls } from '@react-three/drei'
 import Animationcharacters from '@/containers/Animationcharacters'
-//import NonAnimationcharacters from '@/containers/NonAnimationcharacters'
 import VideoBoard from '@/containers/VideoBoard'
 import { 
   useDisclosure,
@@ -17,6 +16,7 @@ import {
 import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
 import useCharacterModel from '@/hooks/useCharacterModel'
 import { NavigationProgress } from '@mantine/nprogress';
+import { Collider } from '@/containers/Collider'
 
 const IndexPage: NextPage = () => {
   const { width, height } = useViewportSize();
@@ -45,6 +45,7 @@ const IndexPage: NextPage = () => {
 
         <DrawCanvas>
           <Preload all />
+          <OrbitControls />
           <Scene
             modelPath={path.scene[0].model_path}
           />
@@ -64,6 +65,7 @@ const IndexPage: NextPage = () => {
             cameraControlsRef={cameraControlsRef}
             locked={locked}
           />
+          <Collider />
           <AdaptiveDpr pixelated />
           <VideoBoard video_path={path.board.video_path}/>
 
@@ -83,7 +85,6 @@ const IndexPage: NextPage = () => {
               />
             );
           })}
-
           <Signboards/>
         </DrawCanvas>
       :

@@ -3,6 +3,7 @@
 import { useRef, FC, useEffect } from 'react'
 import { ThreeEvent, useFrame, useThree, Canvas} from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei'
+import CameraControls from 'camera-controls';
 import { Vector3, Plane, Mesh, Clock, AnimationMixer } from 'three';
 import { useDrag } from "@use-gesture/react";
 import PlayerModel from '@/components/molecules/PlayerModel';
@@ -11,7 +12,6 @@ import { Physics, RigidBody, CapsuleCollider, RapierRigidBody } from "@react-thr
 import TargetMark from '@/components/molecules/TargetMark'
 import { Block } from '@react-three/fiber/dist/declarations/src/core/utils';
 import { loadMixamoAnimation } from '@/containers/loadMixamoAnimation'
-
 
 
 const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, locked }) => {
@@ -32,11 +32,11 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
   let _pos = new Vector3();
   let speed: number = 0.0;
   let theta: number = 0.0;
+  let cameraOffset = new Vector3(1.0, 6.0, 6.0);
 
   // 2本指で操作した場合の処理
   const twoFing = useRef(false);
   
-
   // 2本指で操作した場合の処理
   window.addEventListener('touchstart', function(e) {
     if (e.targetTouches.length > 1) twoFing.current = true;
@@ -45,12 +45,33 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
   window.addEventListener('touchend', function(e) {
     twoFing.current = false;
   }, false);
+
+  window.addEventListener('wheel', (e) => {
+    if(cameraControlsRef?.current != null) {  
+      cameraControlsRef.current.dolly(e.deltaY / 50, true);
+      cameraOffset = new Vector3(
+        cameraControlsRef.current.camera.position.x - rb.current?.translation().x, 
+        cameraControlsRef.current.camera.position.y - rb.current?.translation().y, 
+        cameraControlsRef.current.camera.position.z - rb.current?.translation().z
+      );
+    }
+  });
+
+  window.addEventListener('mousedown', (e) => {
+    if(e.button === 2) {
+      twoFing.current = true;
+    }
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    twoFing.current = false;
+  });
   
   const bind = useDrag<ThreeEvent<MouseEvent>>(
     ({event}) => {
       
       // 二本指になったら目的地をリセットし，立ち止まる
-      if(twoFing.current){  
+      if(twoFing.current){
         box.current.position.x = player.current.position.x;
         box.current.position.z = player.current.position.z;
       }
@@ -77,24 +98,16 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
 
   // キャラクター移動
   const move = (speed: number, theta: number) => {
-    if(twoFing.current) return; 
     if(locked.current) return;
+
     if(player.current.position.x + speed * Math.cos(theta) < 25.0 && player.current.position.x + speed * Math.cos(theta) > -18.0){
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x + speed * Math.cos(theta), rb.current?.translation().y, rb.current?.translation().z) , true);
-      const previous = new Vector3();
-
-      // カメラ移動
-      cameraControlsRef.current?.getPosition(previous);
-      cameraControlsRef.current?.setPosition(previous.x + speed * Math.cos(theta), previous.y, previous.z, true);
     }
 
     if(player.current.position.z + speed * Math.sin(theta) < 15.0 && player.current.position.z + speed * Math.sin(theta) > -26.0){
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x, rb.current?.translation().y, rb.current?.translation().z +  speed * Math.sin(theta)) , true);
-      const previous = new Vector3();
-      
-      cameraControlsRef.current?.getPosition(previous);
-      cameraControlsRef.current?.setPosition(previous.x, previous.y, previous.z + speed * Math.sin(theta), true);
     }
+
     player.current.rotation.y = -theta-Math.PI/2;
   }
 
@@ -147,10 +160,14 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
   }, []);
   
   
-  useFrame((_, delta) => {
+  useFrame(({camera}, delta) => {
+    console.log(rb.current?.translation())
     // カメラの向きが変わってしまうことを防ぐ
     if(cameraControlsRef.current.mouseButtons.left !== 0) cameraControlsRef.current.mouseButtons.left = 0;
     if(cameraControlsRef.current.touches.one !== 0) cameraControlsRef.current.touches.one = 0;
+    
+    if(cameraControlsRef.current.mouseButtons.right !== 1)cameraControlsRef.current.mouseButtons.right = 1; 
+    if(cameraControlsRef.current.touches.right !== 1) cameraControlsRef.current.touches.two = 1; 
     
     if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
       let theta : number, speed: number;
@@ -158,7 +175,15 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
       if(speed > 3.0) speed = 3.0;
       if(theta != undefined) move(delta*speed, theta);
     }
-    if(!locked.current) cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
+
+    if(twoFing.current) cameraOffset = new Vector3(camera.position.x - rb.current?.translation().x, camera.position.y - rb.current?.translation().y, camera.position.z - rb.current?.translation().z);
+
+    // カメラを移動
+    if(!locked.current && !twoFing.current) {
+      cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
+      cameraControlsRef.current?.setPosition(rb.current?.translation().x + cameraOffset.x, rb.current?.translation().y + cameraOffset.y, rb.current?.translation().z + cameraOffset.z, true);
+    }
+
     animate(delta);
   });
 
@@ -170,7 +195,7 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
         model={model}
         ref={player}
       />
-      <CapsuleCollider position={[0, 0.28, 0]} args={[0.14, 0.2]} />
+      <CapsuleCollider position={[0, 0.4, 0]} args={[0.3, 0.2]} />
     </RigidBody>
 
     <mesh castShadow rotation={[-Math.PI/2, 0, 0]} position-y={-1} {...bind() as any}>
