@@ -32,10 +32,9 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
   function animate() {
     requestAnimationFrame(animate);
     const distance = _position.distanceTo(cameraControlsRef.current?._target);  // カメラのターゲット(主にプレイヤーの位置)とアニメーションキャラクターの距離
-    if(distance > 5) return;  // 距離が5より大きい場合アニメーションさせない
+    if(distance > 1) return;  // 距離が3より大きい場合アニメーションさせない
 
-    let skipFrame = 3;
-    if(distance < 2) skipFrame = 2;
+    let skipFrame = 2;
 
     // skipFrame回に一回だけアニメーションを更新
     frame++;
@@ -60,7 +59,7 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
       
       // @ts-ignore
       if(cameraControlsRef != null) {
-        cameraControlsRef.current.setLookAt(_position.x, _position.y+1.5, _position.z+3, _position.x, _position.y+0.5, _position.z, true);
+        cameraControlsRef.current.setLookAt(_position.x, _position.y+1.8, _position.z+3.8, _position.x, _position.y+0.5, _position.z, true);
       }
       setIsOpen(true);
     }

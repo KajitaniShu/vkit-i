@@ -71,8 +71,6 @@ const Head: FC = () => {
         style={{
           position: 'absolute',
           top: 0,
-          width: '100vw',
-          height: '100vh',
           zIndex: '10',
           backgroundColor:'transparent',
           borderBottom: 0
@@ -80,13 +78,13 @@ const Head: FC = () => {
       >
         <Group position="right">
         <Tabs
-          color="#422612"
+          color="black"
           unstyled
           styles={(theme) => ({
             tab: {
               ...theme.fn.focusStyles(),
               backgroundColor: theme.white,
-              border: "2px solid #422612",
+              border: "2px solid black",
               padding: `${theme.spacing.md} ${theme.spacing.md}`,
               cursor: 'pointer',
               fontSize: theme.fontSizes.sm,
@@ -122,7 +120,7 @@ const Head: FC = () => {
               },
     
               '&:not([data-disabled])': theme.fn.hover({
-                textDecoration: "underline 2px solid #422612",
+                textDecoration: "underline 2px solid black",
                 textUnderlineOffset: "0.4em",
               }),
             },
@@ -133,24 +131,24 @@ const Head: FC = () => {
         >
           <Tabs.List className={classes.pc}>
           <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
-            <Text color="#422612" fw={600}>操作方法</Text>
+            <Text color="black" fw={600}>操作方法</Text>
           </Tabs.Tab>
           <Tabs.Tab value="開発者" onClick={()=>{setModalType('開発者');  open();}} >
-            <Text color="#422612" fw={600}>開発者</Text>
+            <Text color="black" fw={600}>開発者</Text>
           </Tabs.Tab>
           
-          <Tabs.Tab value="MDASHプログラム"  onClick={()=> {window.open("https://www.kyutech.ac.jp/campuslife/mdash.html");}}>
-            <Text color="#422612" fw={600}>MDASHプログラム</Text>
+          <Tabs.Tab value="MDASHプログラム"  onClick={()=> {window.open("https://www.kyutech.ac.jp/mdash");}}>
+            <Text color="black" fw={600}>MDASHプログラム</Text>
           </Tabs.Tab>
           </Tabs.List>
         </Tabs>
         <Popover position="bottom" withArrow 
           styles={(theme) => ({
             arrow: {
-              border: "2px solid #422612",
+              border: "2px solid black",
             },
             dropdown: {
-              border: "2px solid #422612",
+              border: "2px solid black",
             },
           })}
         >
@@ -158,12 +156,12 @@ const Head: FC = () => {
             <Tabs
               className={classes.smartphone}
               unstyled
-              color="#422612"
+              color="black"
               styles={(theme) => ({
                 tab: {
                   ...theme.fn.focusStyles(),
-                  color: "#422612",
-                  border: "2px solid #422612",
+                  color: "black",
+                  border: "2px solid black",
                   backgroundColor: theme.white,
                   padding: `${theme.spacing.md} ${theme.spacing.md}`,
                   cursor: 'pointer',
@@ -186,8 +184,8 @@ const Head: FC = () => {
             >
               <Tabs.List>
                 <Popover.Target>
-                  <Tabs.Tab value="メニュー" icon={<IconMenu2 size="1.5em" color="#422612" style={{paddingTop: "0.3em"}}/>}>
-                    <Text color="#422612" fw={600} >Menu</Text>
+                  <Tabs.Tab value="メニュー" icon={<IconMenu2 size="1.5em" color="black" style={{paddingTop: "0.3em"}}/>}>
+                    <Text color="black" fw={600} >Menu</Text>
                   </Tabs.Tab>
                 </Popover.Target>
               </Tabs.List>
@@ -196,7 +194,7 @@ const Head: FC = () => {
 
           <Popover.Dropdown p="0">
             <Tabs
-              color="#422612"
+              color="black"
               orientation="vertical"
               w={"100%"}
               styles={(theme) => ({
@@ -210,16 +208,16 @@ const Head: FC = () => {
               })}
               
             >
-            <Tabs.List color="#422612">
+            <Tabs.List color="black">
               <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
-                <Text color="#422612" fw={600}>操作方法</Text>
+                <Text color="black" fw={600}>操作方法</Text>
               </Tabs.Tab>
               <Tabs.Tab value="開発者" onClick={()=>{setModalType('開発者');  open();}} >
-                <Text color="#422612" fw={600}>開発者</Text>
+                <Text color="black" fw={600}>開発者</Text>
               </Tabs.Tab>
               
               <Tabs.Tab value="MDASHプログラム"  onClick={()=> {window.open("https://www.kyutech.ac.jp/campuslife/mdash.html");}}>
-                <Text color="#422612" fw={600}>MDASHプログラム</Text>
+                <Text color="black" fw={600}>MDASHプログラム</Text>
               </Tabs.Tab>
             </Tabs.List>
           </Tabs>
@@ -238,12 +236,12 @@ const Head: FC = () => {
         styles={(theme) => ({
           content: {
             backgroundColor: theme.white,
-            border: "2px solid #422612",
+            border: "2px solid black",
             fontSize: theme.fontSizes.sm,
             borderRadius: "15px"
           },
           title: {
-            color: "#422612",
+            color: "black",
             fontWeight: "bold"
           }
           

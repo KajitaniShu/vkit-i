@@ -1,7 +1,7 @@
 import React from 'react'
 import { Html } from "@react-three/drei"
 import { Vector3 } from 'three';
-import { Tooltip, MantineProvider, Badge  } from '@mantine/core';
+import { Text, MantineProvider, Badge  } from '@mantine/core';
 import { IconCircleDot } from '@tabler/icons-react';
 const bldgCenterPos = [
     // 各施設のマップ上での位置
@@ -39,7 +39,18 @@ const Signboards = () => {
                 return (
                     <Html sprite={true} zIndexRange={[1, 0]} position={value.pos} transform occlude distanceFactor={4} center={true} key={key} style={{ width: countText(value.name) + 2 + 'em' }} >
                         <MantineProvider>
-                            <Badge variant="filled" color="dark" size="lg">{value.name}</Badge>
+                            <Badge 
+                                variant="filled" 
+                                color="dark" 
+                                size="lg" 
+                                styles={(theme) => ({
+                                    inner: {
+                                        textTransform: 'capitalize',
+                                    }
+                                })}
+                            >
+                                {value.name}
+                            </Badge>
                         </MantineProvider>
                     </Html>
                 );

@@ -28,11 +28,12 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
   const rb = useRef<RapierRigidBody>(null);
   const player = useRef<Mesh>();
   const box = useRef({position: new Vector3(0.0, 0.0, 0.0)});
-  const plane = new Plane(new Vector3(0, 1, 0), 0);  
+  const plane = new Plane(new Vector3(0, 1, 0), 0);
+  let cameraOffset = new Vector3(1.0, 6.0, 6.0);
   let _pos = new Vector3();
   let speed: number = 0.0;
   let theta: number = 0.0;
-  let cameraOffset = new Vector3(1.0, 6.0, 6.0);
+  let distance: number = 0.0;
 
   // 2本指で操作した場合の処理
   const twoFing = useRef(false);
@@ -46,16 +47,6 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
     twoFing.current = false;
   }, false);
 
-  window.addEventListener('wheel', (e) => {
-    if(cameraControlsRef?.current != null) {  
-      cameraControlsRef.current.dolly(e.deltaY / 50, true);
-      cameraOffset = new Vector3(
-        cameraControlsRef.current.camera.position.x - rb.current?.translation().x, 
-        cameraControlsRef.current.camera.position.y - rb.current?.translation().y, 
-        cameraControlsRef.current.camera.position.z - rb.current?.translation().z
-      );
-    }
-  });
 
   window.addEventListener('mousedown', (e) => {
     if(e.button === 2) {
@@ -97,8 +88,19 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
 
 
   // キャラクター移動
-  const move = (speed: number, theta: number) => {
-    if(locked.current) return;
+  const move = (speed: number, theta: number, camera: any) => {
+    // もし会話などで動きをロックされた場合は，目標地点をその場にして立ち止まる
+    if(locked.current) {
+      box.current.position.set(rb.current?.translation().x, rb.current?.translation().y, rb.current?.translation().z);
+      return;
+    }
+
+    // もしカメラの相対位置が変わっていたら先にcameraOffsetを更新する
+    if(Math.abs(distance - cameraControlsRef.current.distance) > 1.0) {
+      cameraOffset = new Vector3(camera.position.x - rb.current?.translation().x, camera.position.y - rb.current?.translation().y, camera.position.z - rb.current?.translation().z);
+      distance = cameraControlsRef.current.distance;
+    }
+    
 
     if(player.current.position.x + speed * Math.cos(theta) < 25.0 && player.current.position.x + speed * Math.cos(theta) > -18.0){
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x + speed * Math.cos(theta), rb.current?.translation().y, rb.current?.translation().z) , true);
@@ -106,6 +108,12 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
 
     if(player.current.position.z + speed * Math.sin(theta) < 15.0 && player.current.position.z + speed * Math.sin(theta) > -26.0){
       rb.current?.setTranslation(new Vector3(rb.current?.translation().x, rb.current?.translation().y, rb.current?.translation().z +  speed * Math.sin(theta)) , true);
+    }
+
+    // カメラを移動
+    if(!locked.current && !twoFing.current) {
+      cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
+      cameraControlsRef.current?.setPosition(rb.current?.translation().x + cameraOffset.x, rb.current?.translation().y + cameraOffset.y, rb.current?.translation().z + cameraOffset.z, true);
     }
 
     player.current.rotation.y = -theta-Math.PI/2;
@@ -129,21 +137,23 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
         animations[value.name] = {
           clip: mixer.clipAction(clip)
         };
-      } );
+      });
     });
   }
   
-  function animate(delta: number) {
+  function animate() {
+    requestAnimationFrame(animate);
+
     // skipFrame回に一回だけアニメーションを更新
     frame++;
-    tmpDelta += delta;
+    tmpDelta += clock.getDelta();
     if(frame < skipFrame) return;
 
     // スピードが0より大きい -> 走る， スピードが0 -> アイドル状態
     if(!animations["run"] || !animations["idle"]) return;
-    if(!locked.current && speed > 0.25 && !animations["run"].clip.isRunning())   {animations["idle"].clip.fadeOut(0.2);   animations["run"].clip.reset().play();}
-    if(speed <= 0.25 && !animations["idle"].clip.isRunning()) {animations["run"].clip.fadeOut(0.4); animations["idle"].clip.reset().play()}
-    if(locked.current && !animations["idle"].clip.isRunning()) {animations["run"].clip.fadeOut(0.4); animations["idle"].clip.reset().play()}
+    if(!locked.current && speed > 0.25 && !animations["run"].clip.isRunning())  {animations["idle"].clip.fadeOut(0.2);   animations["run"].clip.reset().play();}
+    if(speed <= 0.25 && !animations["idle"].clip.isRunning())                   {animations["run"].clip.fadeOut(0.4); animations["idle"].clip.reset().play()}
+    if(locked.current && !animations["idle"].clip.isRunning())                  {animations["run"].clip.fadeOut(0.4); animations["idle"].clip.reset().play()}
 
     // アニメーションを更新
     if ( mixer ) mixer.update(tmpDelta * 1.5);
@@ -157,34 +167,25 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
 
   useEffect(() => {
     loadAnimation();
+    animate();
   }, []);
   
   
   useFrame(({camera}, delta) => {
-    console.log(rb.current?.translation())
     // カメラの向きが変わってしまうことを防ぐ
-    if(cameraControlsRef.current.mouseButtons.left !== 0) cameraControlsRef.current.mouseButtons.left = 0;
-    if(cameraControlsRef.current.touches.one !== 0) cameraControlsRef.current.touches.one = 0;
-    
-    if(cameraControlsRef.current.mouseButtons.right !== 1)cameraControlsRef.current.mouseButtons.right = 1; 
-    if(cameraControlsRef.current.touches.right !== 1) cameraControlsRef.current.touches.two = 1; 
+    if(cameraControlsRef.current.mouseButtons.left !== 0)   cameraControlsRef.current.mouseButtons.left = 0;
+    if(cameraControlsRef.current.touches.one !== 0)         cameraControlsRef.current.touches.one = 0;
+    if(cameraControlsRef.current.mouseButtons.right !== 1)  cameraControlsRef.current.mouseButtons.right = 1; 
+    if(cameraControlsRef.current.touches.right !== 1)       cameraControlsRef.current.touches.two = 1; 
     
     if(!twoFing.current && Math.abs(box.current.position.x - rb.current?.translation().x) + Math.abs(box.current.position.z - rb.current?.translation().z) > 0.2){
       let theta : number, speed: number;
       [theta, speed] = calcDirection();
-      if(speed > 3.0) speed = 3.0;
-      if(theta != undefined) move(delta*speed, theta);
+      if(speed > 3.0) speed = 2.0;
+      if(theta != undefined) move(delta*speed, theta, camera);
     }
 
     if(twoFing.current) cameraOffset = new Vector3(camera.position.x - rb.current?.translation().x, camera.position.y - rb.current?.translation().y, camera.position.z - rb.current?.translation().z);
-
-    // カメラを移動
-    if(!locked.current && !twoFing.current) {
-      cameraControlsRef.current?.setTarget(rb.current?.translation().x, rb.current?.translation().y+1, rb.current?.translation().z, true);
-      cameraControlsRef.current?.setPosition(rb.current?.translation().x + cameraOffset.x, rb.current?.translation().y + cameraOffset.y, rb.current?.translation().z + cameraOffset.z, true);
-    }
-
-    animate(delta);
   });
 
 
