@@ -75,7 +75,7 @@ export function Home() {
 
         <HomeScene modelPath={"./kyutech_map_2.glb"}/>
         <VideoBoard video_path={path.board.video_path} position={[-5.689, 1.174, 13.55]}/>
-        <OrbitControls makeDefault enableZoom={true} autoRotate minAzimuthAngle={0}/>
+        <OrbitControls makeDefault enableZoom={false} autoRotate minAzimuthAngle={0}/>
         <Characters />
       </Canvas>
       <Box sx={{position: "absolute", top: "90vh"}} w="100%">
@@ -119,7 +119,7 @@ export function Home() {
                   <IconChevronRight style={{ width: '80%', height: '70%', color: "#FA5252" }} stroke={3} />
                 </ActionIcon>
               </Group>
-              <Text size="xs" color="white" weight="bold">　</Text>
+              <Text size="xs" color="white" weight="bold">&nbsp;</Text>
               <Image
                 mt={rem(18)}
                 radius="sm"
