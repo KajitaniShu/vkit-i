@@ -71,6 +71,7 @@ export function Home() {
         <SoftShadows />
         <ContactShadows frames={2} opacity={0.9} scale={10} blur={0.1} far={4} width={5} height={5} color="#192655"/>
         <Environment preset="city" />
+        
         <HomeScene modelPath={"./kyutech_map_2.glb"}/>
         <VideoBoard video_path={path.board.video_path} position={[-5.689, 1.174, 13.55]}/>
         <OrbitControls makeDefault enableZoom={true} autoRotate minAzimuthAngle={0}/>
