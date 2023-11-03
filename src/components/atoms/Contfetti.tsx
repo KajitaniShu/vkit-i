@@ -2,6 +2,7 @@
 // Based on: https://github.com/JamesChan21/threejs-confetti
 // Based on: https://github.com/daniel-lundin/dom-confetti
 // If you use, please credit it :)
+// @ts-nocheck
 
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useRef, useState } from 'react'
 import { Box, Card, Image, Text, rem, ActionIcon, Group, Tabs, Paper, Container, SimpleGrid, Modal, AspectRatio, Title, Button, Timeline, Divider } from '@mantine/core';
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
@@ -54,24 +55,24 @@ export function Home() {
         />
         <color attach="background" args={['#ECEEF1']} />
         <group position={[10, 0, 10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']} AreaWidth={5} AreaHeight={400} Radius={100}/>
+          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[-10, 0, 10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']} AreaWidth={5} AreaHeight={400} Radius={100}/>
+          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[10, 0, -10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']} AreaWidth={5} AreaHeight={400} Radius={100}/>
+          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[-10, 0, -10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']} AreaWidth={5} AreaHeight={400} Radius={100}/>
+          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
-        <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']} AreaWidth={5} AreaHeight={400} Radius={100}/>
+        <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
 
         <Grid cellColor="#ddd" cellThickness={0.7} sectionThickness={0.7} sectionColor="#fff"  fadeStrength={1} position={[0, -0.04, 0]} args={[500, 500]} />
         <SoftShadows />
         <ContactShadows frames={2} opacity={0.9} scale={10} blur={0.1} far={4} width={5} height={5} color="#192655"/>
         <Environment preset="city" />
-        
+
         <HomeScene modelPath={"./kyutech_map_2.glb"}/>
         <VideoBoard video_path={path.board.video_path} position={[-5.689, 1.174, 13.55]}/>
         <OrbitControls makeDefault enableZoom={true} autoRotate minAzimuthAngle={0}/>

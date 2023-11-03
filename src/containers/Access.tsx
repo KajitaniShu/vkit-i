@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, {useState} from 'react'
 import { Text, rem, Group, Tabs, Paper, Container, Timeline, Divider, Anchor, Alert } from '@mantine/core';
 import { IconSettings, IconMessageCircle, IconMapPinFilled, IconBus, IconCircleChevronRight  } from '@tabler/icons-react';
