@@ -24,8 +24,8 @@ export function Home() {
   return (
     <>
     <div style={{position: "relative", height: "100vh"}}>
-      <Box sx={{position: "absolute", top: "60vh", }}  h="100vh" w="100%" pt="0vh">
-        <Container size="md" px="xl">
+      <Box sx={{position: "absolute"}} style={{zIndex: width > 700 ? -1 : 100}}  bg="transparent" h="100vh" w="100%" pt="0vh">
+        <Container size="md" px="xl" mt="60vh" >
           <Title sx={{position: "absolute", zIndex:100}}>九工大</Title>
           <Title sx={{position: "absolute", zIndex:100}} mt={rem(45)}>バーチャルキャンパス</Title>
           <Button sx={{position: "absolute", zIndex:20}} variant='filled' mt={rem(100)} color="dark.8">入ってみる</Button>
@@ -55,18 +55,18 @@ export function Home() {
         />
         <color attach="background" args={['#ECEEF1']} />
         <group position={[10, 0, 10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
+          <ExplosionConfetti  rate={0.4} amount={40} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[-10, 0, 10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
+          <ExplosionConfetti  rate={0.4} amount={40} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[10, 0, -10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
+          <ExplosionConfetti  rate={0.4} amount={40} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
         <group position={[-10, 0, -10]}>
-          <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
+          <ExplosionConfetti  rate={0.4} amount={40} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
         </group>
-        <ExplosionConfetti  rate={0.4} amount={60} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
+        <ExplosionConfetti  rate={0.4} amount={40} fallingHeight={6} fallingSpeed={0.01} Radius={1000} AreaHeight={100000000} AreaWidth={10000000} enableShadows={false} isExploding colors={['yellow', 'white', 'red', 'blue', '#6BCB77']}/>
 
         <Grid cellColor="#ddd" cellThickness={0.7} sectionThickness={0.7} sectionColor="#fff"  fadeStrength={1} position={[0, -0.04, 0]} args={[500, 500]} />
         <SoftShadows />
@@ -75,7 +75,7 @@ export function Home() {
 
         <HomeScene modelPath={"./kyutech_map_2.glb"}/>
         <VideoBoard video_path={path.board.video_path} position={[-5.689, 1.174, 13.55]}/>
-        <OrbitControls makeDefault enableZoom={false} autoRotate minAzimuthAngle={0}/>
+        <OrbitControls autoRotate={true} makeDefault  enableZoom={false} minAzimuthAngle={0}/>
         <Characters />
       </Canvas>
       <Box sx={{position: "absolute", top: "90vh"}} w="100%">

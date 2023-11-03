@@ -3,14 +3,14 @@ import { useGLTF, Shadow } from '@react-three/drei'
 import { useSpring, animated, config } from '@react-spring/three'
 import { Globals } from "@react-spring/shared";
 
-Globals.assign({
-  frameLoop: "always",
-});
-
 export default function JumpCharacter({path, ...props}: any) {
   const model : any = useGLTF(path);
   const [spring, api] = useSpring(() => ({ 'position-y': 0, config: { friction: 50, mass: 10, tension: 4000 } }), [])
-  
+
+  Globals.assign({
+    frameLoop: "demand",
+  });
+
   useEffect(() => {
     let timer: any;
     let isJump: boolean = false;
