@@ -43,7 +43,6 @@ export default function Access() {
       <Group p="xl" mt="md" >
         
         <Timeline active={routes_data[routes].path.length} bulletSize={20} ml="md" lineWidth={2}>
-        <>
           {routes_data[routes].path.map((item, index) => 
             <Timeline.Item title={item.spot} key={index}>
               <Alert color="gray.7" my="xl" variant="light"  title={item.routes} icon={<IconBus />}>
@@ -51,8 +50,6 @@ export default function Access() {
               </Alert>
             </Timeline.Item>
           )}
-          
-        </>
           <Timeline.Item bullet={<IconMapPinFilled size={12} />} title="九工大飯塚キャンパス"/>
         </Timeline>
       </Group>
