@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React, { useRef, useState } from 'react'
-import { Box, Card, Image, Text, rem, ActionIcon, Group, Tabs, Paper, Container, SimpleGrid, Modal, AspectRatio, Title, Button, Timeline, Divider } from '@mantine/core';
+import { Box, Card, Image, Text, rem, ActionIcon, Group, Table, Avatar, Container, SimpleGrid, Modal, AspectRatio, Title, Button, Paper, px } from '@mantine/core';
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { Environment, Grid, ContactShadows, OrbitControls, SoftShadows } from '@react-three/drei'
 import { Carousel } from '@mantine/carousel';
@@ -24,12 +24,8 @@ export function Home() {
   return (
     <>
     <div style={{position: "relative", height: "100vh"}}>
-      <Box sx={{position: "absolute"}} style={{zIndex: width > 700 ? -1 : 3}}  bg="transparent" h="100vh" w="100%" pt="0vh">
-        <Container size="md" px="xl" mt="60vh" >
-          <Title sx={{position: "absolute", zIndex:100}}>九工大</Title>
-          <Title sx={{position: "absolute", zIndex:100}} mt={rem(45)}>バーチャルキャンパス</Title>
-          <Button sx={{position: "absolute", zIndex:20}} variant='filled' mt={rem(100)} color="dark.8">入ってみる</Button>
-        </Container>
+      <Box sx={{position: "absolute"}} style={{zIndex: width > 700 ? 0 : 3}}  bg="transparent" h="100vh" w="100%" pt="0vh">
+        
       </Box>
     <Canvas
         flat
@@ -42,7 +38,7 @@ export function Home() {
         }}
         
         camera={{ 
-          position: [15, 15, 30],
+          position: [18, 12, 34],
           fov: 30,
         }}
       >
@@ -78,9 +74,12 @@ export function Home() {
         <OrbitControls maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
         <Characters />
       </Canvas>
-      <Box sx={{position: "absolute", top: "90vh"}} w="100%">
-        <Text w="100%" align="center" weight="bold">Scroll</Text>
-        <Group position='center'><IconChevronsDown /></Group>
+      <Box sx={{position: "absolute", top: "60vh"}} w="100%">
+        <Container size="md" px="xl">
+          <Title>九工大</Title>
+          <Title>バーチャルキャンパス</Title>
+          <Button variant='filled' color="dark.8" mt="md">入ってみる</Button>
+        </Container>
       </Box>
       </div>
 
@@ -199,20 +198,98 @@ export function Home() {
         </Group>
 
         <SimpleGrid cols={width > 700 ? 2 : 1} spacing={ width > 700 ? rem(60) : ""} verticalSpacing={ width > 700 ? rem(80) : ""}>
-          <AspectRatio ratio={16 / 9}>
-            <Image src="" bg="blue" />
+          <AspectRatio ratio={16 / 9} >
+            <Canvas
+              flat
+              shadows="soft"
+              style={{
+                position:"absolute",
+                borderRadius: rem(5),
+                zIndex: -10
+              }}
+              
+              camera={{ 
+                position: [5, 4, 5],
+                fov: 30,
+              }}
+            >
+            <color attach="background" args={['#495780']} />
+            <OrbitControls target={[0, 0.7, 0]} maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
+
+            <ambientLight intensity={0.8}/>
+            <directionalLight
+              position={[3,25,0]}
+              intensity={1.3}
+              castShadow
+            />
+            <Grid cellColor="#293966" cellThickness={1} sectionThickness={0.7} fadeStrength={4} position={[0, -0.04, 0]} args={[500, 500]} />
+
+            <HomeScene modelPath={"./kenkyutou.glb"}/>
+            </Canvas>
           </AspectRatio>
           <Text
             mb={ width > 700 ? "" : rem(60)}
           >あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお</Text>
           <AspectRatio ratio={16 / 9} >
-            <Image src="" bg="blue" />
+          <Canvas
+              flat
+              shadows="soft"
+              style={{
+                position:"absolute",
+                borderRadius: rem(5),
+                zIndex: -10
+              }}
+              
+              camera={{ 
+                position: [5, 4, 5],
+                fov: 30,
+              }}
+            >
+          <color attach="background" args={['#495780']} />
+          <OrbitControls target={[0, 0.6, 0]} maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
+
+            <ambientLight intensity={0.8}/>
+            <directionalLight
+              position={[3,25,0]}
+              intensity={1.3}
+              castShadow
+            />
+            <Grid cellColor="#293966" cellThickness={1} sectionThickness={0.7} fadeStrength={4} position={[0, -0.04, 0]} args={[500, 500]} />
+
+            <HomeScene modelPath={"./kougitou.glb"}/>
+            </Canvas>
           </AspectRatio>
           <Text
             mb={ width > 700 ? "" : rem(60)}
-          >あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお</Text>
+          >研究棟</Text>
           <AspectRatio ratio={16 / 9} >
-            <Image src="" bg="blue" />
+          <Canvas
+              flat
+              shadows="soft"
+              style={{
+                position:"absolute",
+                borderRadius: rem(5),
+                zIndex: -10
+              }}
+              
+              camera={{ 
+                position: [5, 4, 5],
+                fov: 30,
+              }}
+            >
+          <color attach="background" args={['#495780']} />
+          <OrbitControls target={[0, 0.3, 0]} maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
+
+            <ambientLight intensity={0.8}/>
+            <directionalLight
+              position={[3,25,0]}
+              intensity={1.3}
+              castShadow
+            />
+            <Grid cellColor="#293966" cellThickness={1} sectionThickness={0.7} fadeStrength={4} position={[0, -0.04, 0]} args={[500, 500]} />
+
+            <HomeScene modelPath={"./tosyokan.glb"}/>
+            </Canvas>
           </AspectRatio>
           <Text
             mb={ width > 700 ? "" : rem(60)}
@@ -222,18 +299,85 @@ export function Home() {
 
       <Box w="100%" bg="#ECEEF1">
         <Container size="md" py={rem(50)} px="xl" >
-
           <Group position='apart' >
             <Title>Access</Title>
             <Group mt="xs">
               {width > 700 && <Text weight="bolder">もっと見る</Text>}
-              <ActionIcon variant="filled" color="dark.9" radius="lg" size="sm" aria-label="Settings">
+              <ActionIcon target="_blank" component="a" variant="filled" color="dark.9" radius="lg" size="sm" aria-label="Settings" href="https://www.iizuka.kyutech.ac.jp/access">
                 <IconChevronRight style={{ width: '80%', height: '70%' }} stroke={3} />
               </ActionIcon>
             </Group>
           </Group>
           </Container>
           <Access />
+      </Box>
+
+      <Box w="100%">
+        <Container size="md" py={rem(50)} px="xl" >
+          <Group position='apart' >
+            <Title>開発メンバー</Title>
+            <Group mt="xs">
+              {width > 700 && <Text weight="bolder">もっと見る</Text>}
+              <ActionIcon target="_blank" component="a" variant="filled" color="dark.9" radius="lg" size="sm" aria-label="Settings" href="">
+                <IconChevronRight style={{ width: '80%', height: '70%' }} stroke={3} />
+              </ActionIcon>
+            </Group>
+          </Group>
+          <Container size="sm">
+            <Paper mt={rem(80)} p="sm">
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/1.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>梶谷 柊</Text>
+                        <Text fz="xs" c="dimmed">情報創成工学専攻 M2 (物理情報工学科)</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/2.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>冨岡 莉生</Text>
+                        <Text fz="xs" c="dimmed">情報創成工学専攻 D1 (システム創成情報工学科)</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/3.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>井上 快斗</Text>
+                        <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/4.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>高津 太一</Text>
+                        <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/5.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>根崎 翔</Text>
+                        <Text fz="xs" c="dimmed">情報創成工学専攻 M1 (物理情報工学科)</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/6.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>南 歩希</Text>
+                        <Text fz="xs" c="dimmed">工学部 応用化学科 B4</Text>
+                      </Box>
+                    </Group>
+                    <Group spacing="xs" mt="xs">
+                      <Avatar w={rem(50)} h={rem(50)}  bg="gray.2" src={"./avatars/7.png"} radius={100} />
+                      <Box w="70%">
+                        <Text fz="md" fw={500}>糸園 朔</Text>
+                        <Text fz="xs" c="dimmed"></Text>
+                      </Box>
+                    </Group>
+              <Text mt="md" size="xs" color="dimmed">所属は2023年時点のもの．カッコ内は学部生の時の所属学科．</Text>
+            </Paper>
+          </Container>
+        </Container>
       </Box>
     </>
   )
