@@ -11,7 +11,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
       theme={{
         /** Put your mantine theme override here */
         colorScheme: "light",
-        fontFamily: 'Noto Sans JP, sans-serif',
       }}
       withGlobalStyles 
       withNormalizeCSS
