@@ -6,7 +6,7 @@ import { Shadow } from '@react-three/drei'
 
 const PlayerModel: FC<PlayerModelProps> = forwardRef(({ model }, ref) => (
     
-  <mesh scale={[1.16, 1.16, 1.16]} ref={ref} rotation={[0, 0, 0]}>
+  <mesh scale={[0.8, 0.8, 0.8]} ref={ref} rotation={[0, 0, 0]}>
     <primitive
       object={model.scene}
     />

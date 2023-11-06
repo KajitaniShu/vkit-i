@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useRef, useEffect } from "react";
 import path from '@/configs/model.json'
 import Scene from '@/containers/Scene'
@@ -11,14 +12,15 @@ import {
   useDisclosure,
   useViewportSize
 } from '@mantine/hooks';
-import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
+import { Loader, Flex, Tabs, px, Text, Header } from '@mantine/core'
 import useCharacterModel from '@/hooks/useCharacterModel'
 import { NavigationProgress } from '@mantine/nprogress';
 import DrawCanvas from '@/containers/DrawCanvas'
 import Head from '@/containers/Head'
+import { IconChevronLeft } from '@tabler/icons-react';
 
-export default function mdash_3d() {
-  const { width, height } = useViewportSize();
+export default function Mdash_3d() {
+  const { height } = useViewportSize();
   const cameraControlsRef = useRef<CameraControls>(null!);
   if(cameraControlsRef?.current != null) {  // @ts-ignore
     cameraControlsRef.current.mouseButtons.left = 0;  // @ts-ignore
@@ -64,7 +66,7 @@ export default function mdash_3d() {
           locked={locked}
         />
         <Collider />
-        <VideoBoard video_path={path.board.video_path}/>
+        <VideoBoard video_path={path.board.video_path_mdash} position={[-2.89, 1.174, -3.25]}/>
 
         {/* 教授キャラクター(クローンが使えないパターン) */}
         {characterModels && characterModels.length > 0 && characterModels.map((value: any, key: any) => {

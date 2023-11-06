@@ -2,6 +2,7 @@
 // Based on: https://github.com/JamesChan21/threejs-confetti
 // Based on: https://github.com/daniel-lundin/dom-confetti
 // If you use, please credit it :)
+// @ts-nocheck
 
 import React, { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
@@ -41,7 +42,7 @@ export default function ExplosionConfetti(
   const [booms, setBooms] = useState([])
 
   rate = rate / 100
-  const geometry = new THREE.PlaneGeometry(0.05, 0.05, 1, 1)
+  const geometry = new THREE.PlaneGeometry(0.04, 0.04, 1, 1)
 
   function explode() {
     const boom = new THREE.Object3D()

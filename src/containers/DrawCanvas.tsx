@@ -9,22 +9,23 @@ const DrawCanvas: FC = ({ children }) => {
   return (
     
     <Canvas
+        flat
+        shadows="soft"
         style={{
           position: 'absolute',
           top: 0,
           width: '100vw',
           height: '100vh',
-          backgroundColor:'white'
         }}
         camera={{ 
-          position: [1, 6, 6],
-          fov: 45,
+          position: [2, 10, 18],
+          fov: 30,
         }}
       >
-        <ambientLight intensity={1.3}/>
+        <ambientLight intensity={0.8}/>
         <directionalLight
-          position={[10,20,0]}
-          intensity={0.6}
+          position={[4,25,0]}
+          intensity={0.05}
           castShadow
         />
           <Physics gravity={[0,0,0]} 
@@ -33,12 +34,12 @@ const DrawCanvas: FC = ({ children }) => {
             {children}
           </Physics>
         
-        <SoftShadows />
         <Preload all />
-        {/* @ts-ignore */}
-        <Grid cellColor="#ddd" cellThickness={0.7} sectionThickness={0.7} sectionColor="#fff" followCamera={true} fadeDistance={25} fadeStrength={1} position={[0, -0.02, 0]} args={[500, 500]} />
-        {/* @ts-ignore */}
-        <ContactShadows frames={1} opacity={0.6} scale={10} blur={0.2} far={10} width={5} height={5} color="#000000"/>
+        
+        <color attach="background" args={['#ECEEF1']} />
+        <Grid cellColor="#ddd" cellThickness={0.7} sectionThickness={0.7} sectionColor="#fff"  fadeStrength={1} position={[0, -0.04, 0]} args={[500, 500]} />
+        <SoftShadows />
+        <ContactShadows frames={2} opacity={0.9} scale={10} blur={0.1} far={4} width={5} height={5} color="#192655"/>
         <Environment preset="city" />
       </Canvas> 
   )

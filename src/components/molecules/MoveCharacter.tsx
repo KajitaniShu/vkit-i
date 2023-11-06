@@ -3,14 +3,15 @@ import { useGLTF, Shadow } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 import { Globals } from "@react-spring/shared";
 
-Globals.assign({
-  frameLoop: "always",
-});
+
 
 export default function MoveCharacter({path, ...props}: any) {
   const model : any = useGLTF(path);
   const [spring, api] = useSpring(() => ({ 'position-x': 0, config: { friction: 600, mass: 1, tension: 5000 } }), [])
-  
+  Globals.assign({
+    frameLoop: "demand",
+  });
+
   useEffect(() => {
     let timer: any;
     let isMove: boolean = false;
