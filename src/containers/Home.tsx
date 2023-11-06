@@ -116,7 +116,7 @@ export function Home() {
             w={rem(200)}
             onClick={()=>{setModalType(0); open()}}
           >
-            <Card.Section p="md" bg="red.6" h={rem(250)}>
+            <Card.Section p="md" bg="red.7" h={rem(250)}>
               <Group position='apart'>
                 <Text size="sm" color="white" weight="bold">通常ワールド</Text>
                 <ActionIcon variant="filled" color="gray.0" radius="lg" size="xs" aria-label="Settings">
@@ -124,13 +124,7 @@ export function Home() {
                 </ActionIcon>
               </Group>
               <Text size="xs" color="white" weight="bold">&nbsp;</Text>
-              <Image
-                mt={rem(18)}
-                radius="sm"
-                src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                height={rem(150)}
-                alt="画像"
-              />
+              <Box mt={rem(18)} h={rem(150)} bg="red.8" sx={{borderRadius: "6px"}} />
             </Card.Section>
           </Card>
         </Carousel.Slide>
@@ -144,7 +138,7 @@ export function Home() {
             onClick={()=>{setModalType(1); open()}}
             w={rem(200)}
           >
-            <Card.Section p="md" bg="yellow.5" h={rem(250)}>
+            <Card.Section p="md" bg="yellow.6" h={rem(250)}>
               <Group position='apart'>
                 <Text size="sm" color="white" weight="bold">MDASHワールド</Text>
                 <ActionIcon variant="filled" color="gray.0" radius="lg" size="xs" aria-label="Settings">
@@ -152,13 +146,7 @@ export function Home() {
                 </ActionIcon>
               </Group>
               <Text size="xs" color="white" weight="bold">(軽量版)</Text>
-              <Image
-                mt={rem(18)}
-                radius="sm"
-                src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                height={rem(150)}
-                alt="画像"
-              />
+              <Box mt={rem(18)} h={rem(150)} bg="yellow.7" sx={{borderRadius: "6px"}} />
             </Card.Section>
           </Card>
         </Carousel.Slide>
@@ -172,7 +160,7 @@ export function Home() {
             onClick={()=>{setModalType(2); open()}}
             w={rem(200)}
           >
-            <Card.Section p="md" bg="indigo.5" h={rem(250)}>
+            <Card.Section p="md" bg="indigo.7" h={rem(250)}>
               <Group position='apart'>
                 <Text size="sm" color="white" weight="bold">MDASHワールド</Text>
                 <ActionIcon variant="filled" color="gray.0" radius="lg" size="xs" aria-label="Settings">
@@ -180,13 +168,7 @@ export function Home() {
                 </ActionIcon>
               </Group>
               <Text size="xs" color="white" weight="bold">(3Dキャラクター版)</Text>
-              <Image
-                mt={rem(18)}
-                radius="sm"
-                src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                height={rem(150)}
-                alt="画像"
-              />
+              <Box mt={rem(18)} h={rem(150)} bg="indigo.9" sx={{borderRadius: "6px"}} />
             </Card.Section>
           </Card>
         </Carousel.Slide>
