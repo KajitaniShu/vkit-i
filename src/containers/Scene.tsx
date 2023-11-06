@@ -13,7 +13,7 @@ const Scene: FC<SceneProps> = ({ modelPath }) => {
   return (
     <>
       <SceneModel // @ts-ignore
-        gltf={scene_gltf} position={new Vector3(0.0, 0.0, -14.0)} scale={new Vector3(0.1, 0.1, 0.1)}
+        gltf={scene_gltf} position={new Vector3(2.8, 0.0, -16.8)} scale={new Vector3(0.1, 0.1, 0.1)}
       />
     </>
   )

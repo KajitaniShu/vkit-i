@@ -106,7 +106,7 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
     
     <> 
     {/* @ts-ignore */}
-    <Html zIndexRange={[4, 2]} position={[_position.x, _position.y+1, _position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
+    <Html zIndexRange={[4, 2]} position={[_position.x, _position.y+0.6, _position.z]} occlude distanceFactor={4} center={true} style={{width: "16em"}}>
           {isOpen && 
           <Box
             sx={(theme) => ({
@@ -166,7 +166,7 @@ const Animationcharacters = React.memo(function Animationcharacters({model, anim
           position={_position} args={[0.5]} 
           sensor
           onIntersectionEnter={(e) => initTalk(e)} /> {/* @ts-ignore */}
-          <mesh scale={[1.2, 1.2, 1.2]} rotation={rotation} position={position} ref={mesh}>
+          <mesh scale={[0.8, 0.8, 0.8]} rotation={rotation} position={position} ref={mesh}>
             {model ?
               <primitive
                 object={model.scene}

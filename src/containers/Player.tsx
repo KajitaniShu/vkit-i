@@ -196,7 +196,7 @@ const Player: FC<PlayerProps> = ({ model, animation_path, cameraControlsRef, loc
         model={model}
         ref={player}
       />
-      <CapsuleCollider position={[0, 0.4, 0]} args={[0.3, 0.2]} />
+      <CapsuleCollider position={[0, 0.27, 0]} args={[0.24, 0.2]} />
     </RigidBody>
 
     <mesh castShadow rotation={[-Math.PI/2, 0, 0]} position-y={-1} {...bind() as any}>

@@ -20,7 +20,9 @@ const Meta: FC<MetaProps> = ({ detail, path }) => (
 
       {/* <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:title' content={detail.title} /> */}
-
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com"/>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
       <link rel='canonical' href={detail.url} />
       <link rel='shortcut icon' href={path.favicon} />
       <link rel='apple-touch-icon' type='image/png' href={path.icon} sizes='180x180' />

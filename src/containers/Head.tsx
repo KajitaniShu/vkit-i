@@ -1,12 +1,12 @@
 import { FC, useState } from 'react'
 import { 
-  MantineProvider, 
-  ColorSchemeProvider, 
+  Image, 
+  ThemeIcon, 
   ColorScheme, 
   Header,
   Container,
   Group,
-  Title,
+  Anchor,
   Modal,
   ActionIcon,
   ScrollArea,
@@ -27,7 +27,7 @@ import {
   IconHandClick,
   IconUsers,
   IconMenu2,
-  IconSquareRoundedX
+  IconChevronLeft
 } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
@@ -85,11 +85,12 @@ const Head: FC = () => {
               ...theme.fn.focusStyles(),
               backgroundColor: theme.white,
               border: "2px solid black",
-              padding: `${theme.spacing.md} ${theme.spacing.md}`,
+              height: rem(60),
               cursor: 'pointer',
               fontSize: theme.fontSizes.sm,
               display: 'flex',
               alignItems: 'center',
+              paddingLeft: 20,
     
               '&:disabled': {
                 opacity: 0.5,
@@ -130,6 +131,9 @@ const Head: FC = () => {
           })}
         >
           <Tabs.List className={classes.pc}>
+          <Tabs.Tab value="ホーム" onClick={()=> {window.location.replace("/");}}>
+            <Text color="black" fw={600}>ホーム</Text>
+          </Tabs.Tab>
           <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
             <Text color="black" fw={600}>操作方法</Text>
           </Tabs.Tab>
@@ -209,6 +213,9 @@ const Head: FC = () => {
               
             >
             <Tabs.List color="black">
+              <Tabs.Tab value="ホーム" onClick={()=> {window.location.replace("/");}}>
+                <Text color="black" fw={600}>ホーム</Text>
+              </Tabs.Tab>
               <Tabs.Tab value="操作方法" onClick={()=>{setModalType('操作方法');  open();}}>
                 <Text color="black" fw={600}>操作方法</Text>
               </Tabs.Tab>

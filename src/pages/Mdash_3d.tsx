@@ -12,11 +12,12 @@ import {
   useDisclosure,
   useViewportSize
 } from '@mantine/hooks';
-import { Loader, Flex, rem, px, Text, Group } from '@mantine/core'
+import { Loader, Flex, Tabs, px, Text, Header } from '@mantine/core'
 import useCharacterModel from '@/hooks/useCharacterModel'
 import { NavigationProgress } from '@mantine/nprogress';
 import DrawCanvas from '@/containers/DrawCanvas'
 import Head from '@/containers/Head'
+import { IconChevronLeft } from '@tabler/icons-react';
 
 export default function Mdash_3d() {
   const { height } = useViewportSize();
@@ -65,7 +66,7 @@ export default function Mdash_3d() {
           locked={locked}
         />
         <Collider />
-        <VideoBoard video_path={path.board.video_path_mdash} position={[-5.689, 1.174, 13.55]}/>
+        <VideoBoard video_path={path.board.video_path_mdash} position={[-2.89, 1.174, -3.25]}/>
 
         {/* 教授キャラクター(クローンが使えないパターン) */}
         {characterModels && characterModels.length > 0 && characterModels.map((value: any, key: any) => {

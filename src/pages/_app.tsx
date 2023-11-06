@@ -7,7 +7,15 @@ import { Analytics } from '@vercel/analytics/react';
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
   <>
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider 
+      theme={{
+        /** Put your mantine theme override here */
+        colorScheme: "light",
+        fontFamily: 'Noto Sans JP, sans-serif',
+      }}
+      withGlobalStyles 
+      withNormalizeCSS
+    >
       <Layout>
         {/* @ts-ignore */}
         <Component {...pageProps} />

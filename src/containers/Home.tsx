@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React, { useRef, useState } from 'react'
-import { Box, Card, Image, Text, rem, ActionIcon, Group, Table, Avatar, Container, SimpleGrid, Modal, AspectRatio, Title, Button, Paper, px } from '@mantine/core';
+import { Box, Card, Image, Text, rem, ActionIcon, Group, Footer, Avatar, Container, SimpleGrid, Modal, AspectRatio, Title, Button, Paper, Anchor, ThemeIcon } from '@mantine/core';
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { Environment, Grid, ContactShadows, OrbitControls, SoftShadows } from '@react-three/drei'
 import { Carousel } from '@mantine/carousel';
@@ -19,12 +19,17 @@ export function Home() {
   const { height, width } = useViewportSize();
   const [modalType, setModalType] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
-
+  const links = [
+    { link: '#', label: 'Contact' },
+    { link: '#', label: 'Privacy' },
+    { link: '#', label: 'Blog' },
+    { link: '#', label: 'Careers' },
+  ];
 
   return (
     <>
     <div style={{position: "relative", height: "100vh"}}>
-      <Box sx={{position: "absolute"}} style={{zIndex: width > 700 ? 0 : 3}}  bg="transparent" h="100vh" w="100%" pt="0vh">
+      <Box sx={{position: "absolute"}} style={{zIndex: width > 700 ? 0 : 3}}  bg="transparent" h="100vh" w="100%" pt="0vh" id="top">
         
       </Box>
     <Canvas
@@ -74,13 +79,13 @@ export function Home() {
         <OrbitControls maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
         <Characters />
       </Canvas>
-      <Box sx={{position: "absolute", top: "60vh"}} w="100%">
+      <div style={{position: "absolute", top: "60vh", width: "100%"}}>
         <Container size="md" px="xl">
           <Title>九工大</Title>
           <Title>バーチャルキャンパス</Title>
-          <Button variant='filled' color="dark.8" mt="md">入ってみる</Button>
+          <Button variant='filled' color="dark.8" mt="md" onClick={()=>{setModalType(2); open()}}>入ってみる</Button>
         </Container>
-      </Box>
+      </div>
       </div>
 
       <Modal.Root
@@ -188,7 +193,7 @@ export function Home() {
       </Carousel>
 
         <Group position='apart' mt={rem(100)} mb={rem(100)}>
-          <Title>Campus Map</Title>
+          <Title id="campus_map">Campus Map</Title>
           <Group mt="xs">
             {width > 700 && <Text weight="bolder">もっと見る</Text>}
             <ActionIcon variant="filled" color="dark.9" radius="lg" size="sm" aria-label="Settings">
@@ -216,10 +221,10 @@ export function Home() {
             <color attach="background" args={['#495780']} />
             <OrbitControls target={[0, 0.7, 0]} maxPolarAngle={11*Math.PI/24}  autoRotate={true} makeDefault  enableZoom={false} />
 
-            <ambientLight intensity={0.8}/>
+            <ambientLight intensity={0.9}/>
             <directionalLight
               position={[3,25,0]}
-              intensity={1.3}
+              intensity={2}
               castShadow
             />
             <Grid cellColor="#293966" cellThickness={1} sectionThickness={0.7} fadeStrength={4} position={[0, -0.04, 0]} args={[500, 500]} />
@@ -227,9 +232,14 @@ export function Home() {
             <HomeScene modelPath={"./kenkyutou.glb"}/>
             </Canvas>
           </AspectRatio>
-          <Text
-            mb={ width > 700 ? "" : rem(60)}
-          >あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお</Text>
+          <div style={{marginBottom:rem(30)}}>
+            <Title
+              mb="xs"
+              order={4}
+              weight={500}
+            >研究棟</Title>
+            <Text color="gray.7">幅広い分野の研究室が入っており，日々研究を進めています．</Text>
+          </div>
           <AspectRatio ratio={16 / 9} >
           <Canvas
               flat
@@ -259,9 +269,14 @@ export function Home() {
             <HomeScene modelPath={"./kougitou.glb"}/>
             </Canvas>
           </AspectRatio>
-          <Text
-            mb={ width > 700 ? "" : rem(60)}
-          >研究棟</Text>
+          <div style={{marginBottom:rem(30)}}>
+            <Title
+              mb="xs"
+              order={4}
+              weight={500}
+            >講義棟</Title>
+            <Text color="gray.7">情報工学部の多くの講義がこの建物で行われます．加えて，1階にはレーザーカッター等の設備を利用できる<Anchor href="https://www.ltc.kyutech.ac.jp/business/engineering-design/koubou/iizuka/" target="_blank">デザイン工房</Anchor>もあります．</Text>
+          </div>
           <AspectRatio ratio={16 / 9} >
           <Canvas
               flat
@@ -291,10 +306,16 @@ export function Home() {
             <HomeScene modelPath={"./tosyokan.glb"}/>
             </Canvas>
           </AspectRatio>
-          <Text
-            mb={ width > 700 ? "" : rem(60)}
-          >あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお</Text>
-        </SimpleGrid>
+          <div style={{marginBottom:rem(30)}}>
+            <Title
+              mb="xs"
+              order={4}
+              weight={500}
+            >附属図書館 分館</Title>
+            <Text color="gray.7">最新の専門書や研究資料が揃っています．静かなので一人で集中したい人に人気なスポットです．</Text>
+          </div>
+          
+          </SimpleGrid>
       </Container>
 
       <Box w="100%" bg="#ECEEF1">
@@ -315,7 +336,7 @@ export function Home() {
       <Box w="100%">
         <Container size="md" py={rem(50)} px="xl" >
           <Group position='apart' >
-            <Title>開発メンバー</Title>
+            <Title id="member">開発メンバー</Title>
             <Group mt="xs">
               {width > 700 && <Text weight="bolder">もっと見る</Text>}
               <ActionIcon target="_blank" component="a" variant="filled" color="dark.9" radius="lg" size="sm" aria-label="Settings" href="">
@@ -323,6 +344,8 @@ export function Home() {
               </ActionIcon>
             </Group>
           </Group>
+          <Text mt={rem(50)}>九工大バーチャルキャンパスの開発は以下の学生で行いました．</Text>
+          <Text>2023年度からは「メタプラス」という学生プロジェクトとして，「バーチャルGYMLABO」や「バーチャル戸畑キャンパス」等，様々なアプリケーションの開発を行っています．</Text>
           <Container size="sm">
             <Paper mt={rem(80)} p="sm">
                     <Group spacing="xs" mt="xs">
@@ -379,6 +402,21 @@ export function Home() {
           </Container>
         </Container>
       </Box>
+      <Footer bg="dark" mt={rem(60)}>
+        <Container py={rem(60)} >
+          <Group position="center">
+            <ThemeIcon radius="xl" size="lg" p="6px" variant="filled" color="dark.9">
+              <Image src="./images/vkit.png"/>
+            </ThemeIcon>
+            <Text size="sm" color="gray.5">九工大バーチャルキャンパス</Text>
+          </Group>
+          <Group position='center' mt="md">
+            <Text size="xs" color="gray.5" component="a" href="#top">Top</Text>
+            <Text size="xs" color="gray.5" component="a" href="#campus_map">Campus Map</Text>
+            <Text size="xs" color="gray.5" component="a" href="#member">開発メンバー</Text>
+          </Group>
+        </Container>
+      </Footer>
     </>
   )
 }
